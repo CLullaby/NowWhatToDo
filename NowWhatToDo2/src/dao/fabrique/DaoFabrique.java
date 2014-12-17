@@ -1,6 +1,6 @@
 package dao.fabrique;
 
-import dao.instance.DaoUtilisateur;
+import dao.instance.DaoCompte;
 
 public class DaoFabrique {
 
@@ -43,8 +43,8 @@ public class DaoFabrique {
 		return DaoFabrique.instance;
 	}
 
-	public DaoUtilisateur createUserDao() {
-		DaoUtilisateur userDao = new DaoUtilisateur(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
+	public DaoCompte createUserDao() {
+		DaoCompte userDao = new DaoCompte(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
 		return userDao;
 	}
 
