@@ -3,6 +3,8 @@ package dao.instance;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import model.CompteModelBean;
+
 public class DaoUtilisateur {
 
 		private Connection connection;
@@ -21,7 +23,7 @@ public class DaoUtilisateur {
 			dB_PWD = DB_PWD;
 		}
 
-		/*public void addUser(UserModelBean user) {
+		public void addUtilisateur(CompteModelBean user) {
 			// Création de la requête
 			java.sql.Statement query;
 			try {
@@ -31,27 +33,18 @@ public class DaoUtilisateur {
 
 				// Creation de l'élément de requète
 				query = connection.createStatement();
-
+				
 				// Executer puis parcourir les résultats
-				String sql = "INSERT INTO stepbystep1.user (surname, lastname, age, login, pwd, email) VALUES ('"
-						+ user.getSurname()
-						+ "', '"
-						+ user.getLastname()
-						+ "', '"
-						+ user.getAge()
-						+ "', '"
-						+ user.getLogin()
-						+ "', '"
-						+ user.getPwd()
-						+ "', '"
-						+ user.getEmail() + "');";
+				String sql = "INSERT INTO nowwhattodo.compte (test2) VALUES ('"
+						+ user.getNom()
+						+ "');";
 				int rs = query.executeUpdate(sql);
 				query.close();
 				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}*/
+		}
 
 }
 
