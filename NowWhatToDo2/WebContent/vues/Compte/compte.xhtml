@@ -1,11 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
+<ui:composition 
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h ="http://java.sun.com/jsf/html"
+	  xmlns:ui = "http://java.sun.com/jsf/facelets"
+	  template="../Template/template.xhtml">
 
-</body>
-</html>
+<ui:define name="title">
+Compte
+</ui:define>
+
+<ui:define name="content">
+
+	
+
+	<div class = "compteManagement">
+		<div class = "creationCompte">
+			<button class="btn btn-default" ><span>Créer un compte</span></button>
+		</div>
+		<div class = "connexionCompte">
+			<button class="btn btn-default" ><span>Connexion</span></button>
+		</div>
+	</div>
+
+
+
+	<div class = "news">
+	
+	</div>
+	
+	
+	
+</ui:define>
+
+</ui:composition>
+
