@@ -10,3 +10,6 @@
 
 
 ----------------- Général ------------------------
+Le templateAccueil permet de gérer que la page accueil n'est pas au meme endroit que les autres donc chemin pour css et js différent.
+-> Autre template pour la page accueil
+-> Met le code du template dans la vue accueil.xhtml
