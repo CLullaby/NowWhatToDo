@@ -184,7 +184,9 @@ hr {
 }
 
 .mt {
-	margin-top: 25px;
+	/*margin-top: 25px;*/
+	/*Modifier pour égalité de marges/espacement dans le menu de gauche*/
+	margin-top: 0px;
 }
 
 .mb {

@@ -1,0 +1,19 @@
+@CHARSET "ISO-8859-1";
+
+.menuLi {
+	min-width: 50px;
+	padding: 1%;
+	margin: 0% 10px 0% 5px;
+	cursor: pointer;
+}
+.menuLi:hover {
+	background-color: #68dff0;
+	color: #fff;
+}
+.menuLiBis {
+	cursor: pointer;
+}
+.menuLiBis:hover  {
+	background-color: #68dff0;
+	color: #fff;
+}
