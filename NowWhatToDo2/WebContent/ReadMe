@@ -13,3 +13,5 @@
 Le templateAccueil permet de gérer que la page accueil n'est pas au meme endroit que les autres donc chemin pour css et js différent.
 -> Autre template pour la page accueil
 -> Met le code du template dans la vue accueil.xhtml
+
+Pour le compte: faire un choix au niveau de la sélection de domaine. Sélection faite au préalable ou via une liste déroulante dans la page compte qui permet de chager le contenu associé automatiquement
