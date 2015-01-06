@@ -17,3 +17,7 @@
 	background-color: #68dff0;
 	color: #fff;
 }
+
+.cache {
+	display : none;
+}

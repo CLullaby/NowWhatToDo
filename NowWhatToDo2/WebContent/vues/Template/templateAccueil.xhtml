@@ -34,6 +34,24 @@
     
 	<!--common script for all pages-->
     <script src="js/common-scripts.js"></script>
+    
+    <script type="text/javascript">
+	function coucouvvvv() {
+		var elm = $('#sidebar');
+		if(elm.hasClass('cache'))
+		{
+			elm.removeClass('cache');
+		}
+		else
+		{
+			elm.addClass('cache');
+		}
+	}   
+	
+	function coucou() {
+		$('#sidebar').tooltip();
+	}  
+    </script>
      
 </h:head>
 <h:body>
@@ -44,14 +62,14 @@
       <!--header start-->
       <header class="header black-bg">
               <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Ouvrir menu"></div>
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Ouvrir menu" onclick="coucou();" ></div>
               </div>
               
             <!--logo start-->
             <a href="#" class="logo"><b>Now How To Do</b></a>
             <!--logo end-->
 			
-			<div class="nav notify-row" id="top_menu" style="display: none;">
+			<div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
                 <ul class="nav top-menu">
                     <!-- settings start -->
