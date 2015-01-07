@@ -6,7 +6,6 @@
     <meta name="description" content="">
     <meta name="author" content="Now What To Do">
 
-
     <title>Now What To Do | Connexion</title>
 
     <!-- Bootstrap core CSS -->
@@ -18,7 +17,7 @@
     <link href="../../css/style-responsive.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
 
-    <link href="../../css/accueil.css" type="text/css" rel="stylesheet"/>
+    <link href="../../css/general.css" type="text/css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -26,36 +25,41 @@
     <![endif]-->
 </head>
 <body>
-
+               
 	<div id="login-page">
 		<div class="container">
 
 			<form class="form-login" action="#">
 				<h2 class="form-login-heading">Connexion</h2>
-				<div class="login-wrap">
-					<input type="text" class="form-control" name="identifiant"
-						placeholder="Identifiant" /> 
-					<input type="password"
-						class="form-control" name="motDePasse" placeholder="Mot de Passe" />
-					<label class="checkbox"> <span class="pull-right"> <a
-							data-toggle="modal" href="login.jsf#myModal"> Mot de passe
-								oublié?</a>
-
-					</span>
-					</label>
-					<button class="btn btn-theme btn-block" type="submit">
-						<i class="fa fa-lock"></i> Connexion
-					</button>
-
+				<div class="login-wrap">					
+					<div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" name="identifiant" placeholder="Login" />
+                        </div>
+                    </div>
+                         
+					<div class="form-group">
+						<div class="input-group input-group-lg">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" name="motDePasse" placeholder="Mot de Passe" />
+                        </div>
+					</div>					
+					<div class="form-group">
+						<button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Connexion</button>
+					</div>	
+					
 					<div class="registration">
-						Pas encore de compte?<br /> 
-						<a class="" href="compte.jsf"> Créer un	compte </a>
+						<a class="btn btn-default" href="../Compte/inscription.html">Créer un compte</a>
+					</div>
+					
+					<div class="form-group centered">
+						<label class="checkbox"><span><a data-toggle="modal" href="#myModal"> Mot de passe oublié?</a></span></label>
 					</div>
 				</div>
 
 				<!-- Modal -->
-				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
-					tabindex="-1" id="myModal" class="modal fade">
+				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -87,14 +91,6 @@
 
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="../../js/jquery.js"></script>
-	<script src="../../js/bootstrap.min.js"></script>
-
-	<!--BACKSTRETCH-->
-	<!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-	<!--     <script type="text/javascript" src="../../js/jquery.backstretch.min.js"></script> -->
-	<!-- 	<script> -->
-	$.backstretch("assets/img/login-bg.jpg", { speed : 500 });
-	<!-- 	</script> -->
-	
+	<script src="../../js/bootstrap.min.js"></script>	
 </body>
 </html>
