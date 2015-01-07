@@ -1,5 +1,6 @@
 package dao.fabrique;
 
+import dao.instance.DaoAvancement;
 import dao.instance.DaoCompte;
 import dao.instance.DaoActivite;
 
@@ -49,12 +50,14 @@ public class DaoFabrique {
 		return userDao;
 	}
 	
-	
-	
-	
 	public DaoActivite createActiviteDao(){
 		DaoActivite activiteDao = new DaoActivite(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
 		return activiteDao;
+}
+	public DaoAvancement createAvancementDao() {
+		DaoAvancement avancementDao = new DaoAvancement(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
+		return avancementDao;
+
 	}
 
 }
