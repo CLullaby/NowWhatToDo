@@ -49,7 +49,10 @@
 	}   
 	
 	function coucou() {
-		$('#sidebar').tooltip();
+		$('#sidebar').tooltip({
+			selector:'[data-tooltip="right"]',
+            placement:'right'
+			});
 	}  
     </script>
      
