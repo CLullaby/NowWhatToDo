@@ -14,13 +14,6 @@
 
   
   <welcome-file-list>
-    <welcome-file>accueil.jsf</welcome-file>
-    <welcome-file>accueil.html</welcome-file>
-    <welcome-file>accueil.htm</welcome-file>
-    <welcome-file>accueil.jsp</welcome-file>
-    <welcome-file>accueil.xhtml</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>vues/accueil/accueil.html</welcome-file>
   </welcome-file-list>
 </web-app>
