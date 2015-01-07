@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/vues/Template/template.xhtml">
+
+	<ui:define name="title">
+Login
+</ui:define>
+
+	<ui:define name="content">
+		<!-- INLINE FORM ELELEMNTS -->
+		<div class="row mt">
+			<div class="col-lg-12">
+				<div class="form-panel">
+					<h4 class="mb">
+						<i class="fa fa-angle-right"></i> Inscription
+					</h4>
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Identifiant</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Mot de
+								passe</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Nom</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Prénom</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Date de
+								naissance</label>
+							<div class="col-sm-10">
+								<input type="date" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Photo</label>
+							<div class="col-sm-10">
+								<input type="file" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Adresse</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">E-mail</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Telephone</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">Accompagnateur</label>
+							<div class="col-sm-10">
+								<select class="form-control">
+									<option value="">Badi Ramdane</option>
+									<option value="">Noam Chabaud</option>
+								</select>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-theme">S'inscrire</button>
+					</form>
+				</div>
+				<!-- /form-panel -->
+			</div>
+			<!-- /col-lg-12 -->
+		</div>
+		<!-- /row -->
+	</ui:define>
+
+
+</ui:composition>
