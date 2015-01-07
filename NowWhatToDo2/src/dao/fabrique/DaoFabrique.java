@@ -1,5 +1,6 @@
 package dao.fabrique;
 
+import dao.instance.DaoAvancement;
 import dao.instance.DaoCompte;
 
 public class DaoFabrique {
@@ -46,6 +47,11 @@ public class DaoFabrique {
 	public DaoCompte createUserDao() {
 		DaoCompte userDao = new DaoCompte(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
 		return userDao;
+	}
+	
+	public DaoAvancement createAvancementDao() {
+		DaoAvancement avancementDao = new DaoAvancement(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
+		return avancementDao;
 	}
 
 }

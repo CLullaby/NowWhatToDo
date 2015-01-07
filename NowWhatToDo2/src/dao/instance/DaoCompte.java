@@ -114,6 +114,40 @@ public class DaoCompte {
 			return userList; 
 		}	
 		
-
+		public ArrayList<CompteModelBean> getUserNom(String nom)
+		{
+			//return value 
+			ArrayList<CompteModelBean> userList=new ArrayList<CompteModelBean>();
+			// Création de la requête 
+			java.sql.Statement query; 
+			try { 
+				// create connection 
+				connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
+				query = connection.createStatement();
+				ResultSet resultat = query.executeQuery("SELECT * FROM Compte WHERE Nom = '" + nom + "'");
+				//Extraction des données	
+				while (resultat.next())
+				{
+					CompteModelBean model = new CompteModelBean();
+					model.setNom(resultat.getString("Nom"));
+					model.setPrenom(resultat.getString("Prenom"));
+					model.setIdentifiant(resultat.getString("Identifiant"));
+					model.setMotDePasse(resultat.getString("MotDePasse"));
+					model.setEmail(resultat.getString("Email"));
+					model.setAge(resultat.getInt("Age"));
+					model.setLienPhoto(resultat.getString("LienPhoto"));
+					model.setAdresse(resultat.getString("Adresse"));
+					model.setRole(resultat.getString("Role"));
+					userList.add(model);
+				}
+				resultat.close();
+				connection.close(); 
+				}
+			catch (SQLException e) 
+			{
+				e.printStackTrace(); 
+			}
+			return userList; 
+		}
 }
 
