@@ -15,7 +15,7 @@ public class CompteModelBean implements Serializable{
 	private String motDePasse;
 	private String email;
 	private int age;
-	private String lienAvatar;
+	private String lienPhoto;
 	private String adresse;
 	private String role;
 	public CompteModelBean() {
@@ -27,7 +27,7 @@ public class CompteModelBean implements Serializable{
 		return "CompteModelBean [nom=" + nom + ", prenom=" + prenom
 				+ ", identifiant=" + identifiant + ", motDePasse=" + motDePasse
 				+ ", email=" + email + ", age=" + age + ", lienAvatar="
-				+ lienAvatar + ", adresse=" + adresse + ", role=" + role + "]";
+				+ lienPhoto + ", adresse=" + adresse + ", role=" + role + "]";
 	}
 	public String getNom() {
 		return nom;
@@ -65,11 +65,11 @@ public class CompteModelBean implements Serializable{
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getLienAvatar() {
-		return lienAvatar;
+	public String getLienPhoto() {
+		return lienPhoto;
 	}
-	public void setLienAvatar(String lienAvatar) {
-		this.lienAvatar = lienAvatar;
+	public void setLienPhoto(String lienAvatar) {
+		this.lienPhoto = lienAvatar;
 	}
 	public String getAdresse() {
 		return adresse;

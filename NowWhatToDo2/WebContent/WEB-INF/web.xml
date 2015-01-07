@@ -3,14 +3,15 @@
   <display-name>NowWhatToDo2</display-name>
   
   <servlet>
-  	<servlet-name>Identification</servlet-name>
-  	<servlet-class>IdentificationServlet</servlet-class>
+    <servlet-name>Identification</servlet-name>
+    <servlet-class>IdentificationServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>Identification</servlet-name>
-  	<url-pattern>/Identification</url-pattern>
+    <servlet-name>Identification</servlet-name>
+    <url-pattern>/Identification</url-pattern>
   </servlet-mapping>
+
   
   <welcome-file-list>
     <welcome-file>accueil.jsf</welcome-file>
