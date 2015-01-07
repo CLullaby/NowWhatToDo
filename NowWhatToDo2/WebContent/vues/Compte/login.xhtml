@@ -38,29 +38,20 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
 
-	<div id="login-page">
+	<div id="login_page">
 		<div class="container">
 
-			<form class="form-login" action="accueil.jsf">
+			<form class="form-login" action="" method="post">  <!-- action="../../Identification" -->
 				<h2 class="form-login-heading">sign in now</h2>
 				<div class="login-wrap">
-					<input type="text" class="form-control" name="identifiant"
-						placeholder="Identifiant" /> <input type="password"
-						class="form-control" name="motDePasse" placeholder="Mot de Passe" />
-					<label class="checkbox"> <span class="pull-right"> <a
-							data-toggle="modal" href="login.jsf#myModal"> Mot de passe
-								oublié?</a>
-
-					</span>
-					</label>
-					<button class="btn btn-theme btn-block" type="submit">
+					<input type="text" class="form-control" id="identifiant" placeholder="Identifiant" /> 
+					<input type="password" class="form-control" id="motDePasse" placeholder="Mot de Passe" />
+					<label class="checkbox"> <span class="pull-right"> <a data-toggle="modal" href="login.jsf#myModal"> Mot de passe oublié?</a></span></label>
+					<button class="btn btn-theme btn-block" type="button" id="send_identification">
 						<i class="fa fa-lock"></i> SIGN IN
 					</button>
 
-					<div class="registration">
-						Pas encore de compte?<br /> <a class="" href="compte.jsf"> Créer un
-							compte </a>
-					</div>
+					<div class="registration">Pas encore de compte?<br /> <a class="" href="compte.jsf"> Créer un compte </a></div>
 				</div>
 
 				<!-- Modal -->
@@ -83,7 +74,7 @@
 							<div class="modal-footer">
 								<button data-dismiss="modal" class="btn btn-default"
 									type="button">Cancel</button>
-								<button class="btn btn-theme" type="Submit">Submit</button>
+								<button class="btn btn-theme" type="Submit" >Submit</button>
 							</div>
 						</div>
 					</div>
@@ -96,8 +87,9 @@
 	</div>
 
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="/NowWhatToDo2/js/jquery.js"></script>
+	<script src="/NowWhatToDo2/js/bootstrap.min.js"></script>
+	<script src="/NowWhatToDo2/js/myCode.js"></script>
 
 	<!--BACKSTRETCH-->
 	<!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->

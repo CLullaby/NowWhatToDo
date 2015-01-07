@@ -4,7 +4,7 @@
   
   <servlet>
   	<servlet-name>Identification</servlet-name>
-  	<servlet-class>IdentificationServlet</servlet-class>
+  	<servlet-class>servlet.IdentificationServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
