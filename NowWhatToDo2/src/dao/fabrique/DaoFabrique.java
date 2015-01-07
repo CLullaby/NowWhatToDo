@@ -1,6 +1,7 @@
 package dao.fabrique;
 
 import dao.instance.DaoCompte;
+import dao.instance.DaoActivite;
 
 public class DaoFabrique {
 
@@ -9,8 +10,8 @@ public class DaoFabrique {
 	private String DB_HOST = "localhost";
 	private String DB_PORT = "3306";
 	private String DB_NAME = "NowWhatToDo";
-	private String DB_USER = "NowWhatToDo";
-	private String DB_PWD = "NowWhatToDo";
+	private String DB_USER = "root";
+	private String DB_PWD = "";
 
 	private DaoFabrique() {
 		super();
@@ -46,6 +47,14 @@ public class DaoFabrique {
 	public DaoCompte createUserDao() {
 		DaoCompte userDao = new DaoCompte(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
 		return userDao;
+	}
+	
+	
+	
+	
+	public DaoActivite createActiviteDao(){
+		DaoActivite activiteDao = new DaoActivite(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD);
+		return activiteDao;
 	}
 
 }

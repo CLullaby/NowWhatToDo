@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ActiviteModelBean;
 import model.CompteModelBean;
+import model.DomaineModelBean;
 import dao.fabrique.DaoFabrique;
+import dao.instance.DaoActivite;
 import dao.instance.DaoCompte;
 
 /**
@@ -74,6 +77,50 @@ public class testServlet extends HttpServlet {
 		}
 		
 		System.out.println("hello je suis cense avoir ecrit");
+		
+		
+		//Tests création - mise à jour d'activités et domaines
+		//Attention créer les domaines avant les activités (contrainte de clé etrangère)
+		
+		DaoActivite daoActivite = DaoFabrique.getInstance().createActiviteDao();
+		
+		ActiviteModelBean activite = createActivite();
+		DomaineModelBean domaine = createDomaine();
+		
+		daoActivite.addDomaine(domaine);
+		daoActivite.addActivite(activite);
+		
+		ActiviteModelBean updateActivite = createActivite();
+		updateActivite.setNom("Corde");
+		
+		DomaineModelBean updateDomaine = createDomaine();
+		updateDomaine.setNom("Remplacement");
+		
+		
+		daoActivite.updateDomaine(domaine, updateDomaine);
+		daoActivite.updateActivite(activite, updateActivite);
+		
+		//daoActivite.deleteActivite(updateActivite);
+		//daoActivite.deleteDomaine(updateDomaine);
+		
+		
+	}
+	
+	
+	ActiviteModelBean createActivite(){
+		ActiviteModelBean testActivite = new ActiviteModelBean();
+		testActivite.setNom("Code Bleu");
+		testActivite.setDescription("Urgence");
+		testActivite.setIdDomaine(1);
+		testActivite.setSiteWeb("http://www.epicfail.com");
+		return testActivite;
+		
+	}
+	
+	DomaineModelBean createDomaine(){
+		DomaineModelBean testDomaine = new DomaineModelBean();
+		testDomaine.setNom("Essai de domaine");
+		return testDomaine;
 	}
 
 }
