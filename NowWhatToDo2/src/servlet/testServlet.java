@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 import model.ActiviteModelBean;
 import model.AvancementActiviteModelBean;
 import model.CompteModelBean;
 import model.DomaineModelBean;
+import model.LoginBean;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;
 import dao.instance.DaoAvancement;
@@ -24,7 +26,7 @@ import dao.instance.DaoCompte;
 /**
  * Servlet implementation class testServlet
  */
-@WebServlet("/test")
+@WebServlet("/vues/accueil/test")
 public class testServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,6 +53,15 @@ public class testServlet extends HttpServlet {
 		System.out.println("hello je suis cense avoir ecrit");
 		DaoCompte dao = DaoFabrique.getInstance().createUserDao();
 		DaoAvancement daoA = DaoFabrique.getInstance().createAvancementDao();
+		
+		LoginBean test = new LoginBean("bla", "bla", false);
+		if (dao.checkUtilisateur(test))
+		{
+			System.out.println("utilisateur dans BD");
+		}
+		System.out.println(dao.hasher(test.getMotDePasse()));
+		System.out.println(dao.toReadable(dao.hasher(test.getMotDePasse())));
+		
 //		CompteModelBean user = new CompteModelBean();
 //		user.setNom("blabla");
 //		user.setPrenom("titit");
@@ -107,45 +118,45 @@ public class testServlet extends HttpServlet {
 		//Tests création - mise à jour d'activités et domaines
 		//Attention créer les domaines avant les activités (contrainte de clé etrangère)
 		
-		DaoActivite daoActivite = DaoFabrique.getInstance().createActiviteDao();
-		
-		ActiviteModelBean activite = createActivite();
-		DomaineModelBean domaine = createDomaine();
-		
-		daoActivite.addDomaine(domaine);
-		daoActivite.addActivite(activite);
-		
-		ActiviteModelBean updateActivite = createActivite();
-		updateActivite.setNom("Corde");
-		
-		DomaineModelBean updateDomaine = createDomaine();
-		updateDomaine.setNom("Remplacement");
-		
-		
-		daoActivite.updateDomaine(domaine, updateDomaine);
-		daoActivite.updateActivite(activite, updateActivite);
-		
-		//daoActivite.deleteActivite(updateActivite);
-		//daoActivite.deleteDomaine(updateDomaine);
-		
-		
-	}
-	
-	
-	ActiviteModelBean createActivite(){
-		ActiviteModelBean testActivite = new ActiviteModelBean();
-		testActivite.setNom("Code Bleu");
-		testActivite.setDescription("Urgence");
-		testActivite.setIdDomaine(1);
-		testActivite.setSiteWeb("http://www.epicfail.com");
-		return testActivite;
-		
-	}
-	
-	DomaineModelBean createDomaine(){
-		DomaineModelBean testDomaine = new DomaineModelBean();
-		testDomaine.setNom("Essai de domaine");
-		return testDomaine;
+//		DaoActivite daoActivite = DaoFabrique.getInstance().createActiviteDao();
+//		
+//		ActiviteModelBean activite = createActivite();
+//		DomaineModelBean domaine = createDomaine();
+//		
+//		daoActivite.addDomaine(domaine);
+//		daoActivite.addActivite(activite);
+//		
+//		ActiviteModelBean updateActivite = createActivite();
+//		updateActivite.setNom("Corde");
+//		
+//		DomaineModelBean updateDomaine = createDomaine();
+//		updateDomaine.setNom("Remplacement");
+//		
+//		
+//		daoActivite.updateDomaine(domaine, updateDomaine);
+//		daoActivite.updateActivite(activite, updateActivite);
+//		
+//		//daoActivite.deleteActivite(updateActivite);
+//		//daoActivite.deleteDomaine(updateDomaine);
+//		
+//		
+//	}
+//	
+//	
+//	ActiviteModelBean createActivite(){
+//		ActiviteModelBean testActivite = new ActiviteModelBean();
+//		testActivite.setNom("Code Bleu");
+//		testActivite.setDescription("Urgence");
+//		testActivite.setIdDomaine(1);
+//		testActivite.setSiteWeb("http://www.epicfail.com");
+//		return testActivite;
+//		
+//	}
+//	
+//	DomaineModelBean createDomaine(){
+//		DomaineModelBean testDomaine = new DomaineModelBean();
+//		testDomaine.setNom("Essai de domaine");
+//		return testDomaine;
 	}
 
 }
