@@ -5,106 +5,48 @@ $(document).ready(function(){
 	
 	$("#send_identification").on('click',function(){
 		
-		var identifiant = "id";
-		var mdp = "mdp";
 		
-//		$("#login_page").find("form").each(function(){
-//			identifiant = $(this).find("#identifiant").text();
-//			mdp = $(this).find("#motDePasse").text();
-//			alert(identifiant+mdp);
-//		});
+		var $inputs = $('#form_identification :input');
 		
-		alert(identifiant+mdp+"ok");
+		var values = {};
+	    $inputs.each(function() {
+	        values[this.name] = $(this).val();
+	    });
+
+		var identifiant = values["identifiant"];
+		var mdp = values["motDePasse"];
 		
-//		var identifiant = $("#identifiant").html();
-//		var mdp = $("#motDePasse").text();
-//		alert(identifiant+mdp+"ok");
+		//alert(identifiant+mdp+"ok");
+	
+		 var jsonTable = [];
 		
 		 var identificationForm = {
 				 identifiant: identifiant,
 				 motDePasse: mdp
 		 }
-		
-//		 JSON.stringify(identificationForm)
 		 
+		jsonTable.push(identificationForm);
+		
+		 //méthode envoie et retour de tableau de json
 		$.post("../../Identification",
 				
 				{
-					identificationForm: JSON.stringify(identificationForm)
+					identificationForm: JSON.stringify(jsonTable)
 				},
 				function(data,status){
-					alert("correct");
+					var identifiantResponse = data[0].identifiant;
+					var motDePasseResponse = data[0].motDePasse;
+					
+					alert("id retour:"+identifiantResponse+"and mdp retour:"+motDePasseResponse);
 				}
 				
 				
 				
 		);
 		
-		
-		  
-//		 $.ajax(
-//			{
-//		      url: 'Identification',
-//		      type: 'POST',
-//		      data: JSON.stringify(identificationForm),
-//		      contentType: "application/json; charset=utf-8",
-//		      success: function (data) {
-//		    	  alert("Thanks!"); 
-//		     }
-//		  })
+	
 		
 	});
-	
-//	$("#send_plan").on('click',function(){
-//		  
-//		  var jsonTable = [];
-//		  
-//		  $("#exercice_table").find("tr").each(function(){
-//			  
-//			  var index_v = $(this).find("#number").text();
-//			  var name_v = $(this).find("#name").text();				//"#titleDescription").val();
-//		      var description_v = $(this).find("#description").text();
-//		      var time_v = $(this).find("#time").text();
-//		      
-//		      jsonTable.push(
-//			    		{
-//			    			exercice: {
-//			    				index:index_v,
-//			    				name:name_v,
-//			    				description:description_v,
-//			    				time:time_v
-//			    			} 
-//			    		}
-//			      );
-//			  });
-//		 
-//		  
-//		  $.post("planStoring",
-//				  {
-//			  			form_plan:$("#form_plan").serialize(),	  
-//			  			exercices:JSON.stringify(jsonTable)
-//
-//				  },
-//		  
-//				 function(data,status){
-//
-//					 if(data.plan_is_set ==  " "){
-//						 alert("Data correctly sent"); 
-//					 }
-//					 else{
-//						 alert(data.plan_is_set);
-//					 }
-//				  }
-//					 
-//			);
-//		  
-//
-//		  	alert("finish");
-//		  
-//		  
-//
-//		  
-//	  });  
 	
 	
 });
