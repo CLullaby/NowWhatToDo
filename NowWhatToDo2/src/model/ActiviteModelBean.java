@@ -2,20 +2,66 @@ package model;
 
 public class ActiviteModelBean {
 
-	private String nom;
+	public ActiviteModelBean() {
+
+	}
+	private int id;
+	private String nomActivite;
+	private String Description;
+	private String nomLieu;
+	private String adresse;
+	private String ville;
+	private String codePostal;
 	private String siteWeb;
-	private String description;
-	private int idDomaine;
+	private int telephone;
+	private String email;
+	private String domaine;
+	private String lienPhoto;
+	private int importance;
 	
-	public ActiviteModelBean(){
-		
-	}
 	
-	public String getNom() {
-		return nom;
+	
+	public int getId() {
+		return id;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNomActivite() {
+		return nomActivite;
+	}
+	public void setNomActivite(String nomActivite) {
+		this.nomActivite = nomActivite;
+	}
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
+	}
+	public String getNomLieu() {
+		return nomLieu;
+	}
+	public void setNomLieu(String nomLieu) {
+		this.nomLieu = nomLieu;
+	}
+	public String getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	public String getVille() {
+		return ville;
+	}
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	public String getCodePostal() {
+		return codePostal;
+	}
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 	public String getSiteWeb() {
 		return siteWeb;
@@ -23,18 +69,35 @@ public class ActiviteModelBean {
 	public void setSiteWeb(String siteWeb) {
 		this.siteWeb = siteWeb;
 	}
-	public String getDescription() {
-		return description;
+	public int getTelephone() {
+		return telephone;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
 	}
-	public int getIdDomaine() {
-		return idDomaine;
+	public String getEmail() {
+		return email;
 	}
-	public void setIdDomaine(int idDomaine) {
-		this.idDomaine = idDomaine;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
-	
+	public String getDomaine() {
+		return domaine;
+	}
+	public void setDomaine(String domaine) {
+		this.domaine = domaine;
+	}
+	public String getLienPhoto() {
+		return lienPhoto;
+	}
+	public void setLienPhoto(String lienPhoto) {
+		this.lienPhoto = lienPhoto;
+	}
+	public int getImportance() {
+		return importance;
+	}
+	public void setImportance(int importance) {
+		this.importance = importance;
+	}
+
 }

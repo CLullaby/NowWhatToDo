@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 import model.ActiviteModelBean;
 import model.CompteModelBean;
-import model.DomaineModelBean;
+import model.LieuModelBean;
+
 
 public class DaoActivite {
 
@@ -44,7 +45,7 @@ public class DaoActivite {
 						query = connection.createStatement();
 						
 						// Executer puis parcourir les résultats				
-						String sql = "INSERT INTO nowwhattodo.activite (Nom, SiteWeb, Description, IdDomaine) VALUES ('" +activite.getNom()+"', '"+activite.getSiteWeb()+"', '"+activite.getDescription()+"', '"+activite.getIdDomaine()+"')";
+						String sql = "INSERT INTO nowwhattodo.activite (NomActivite, Description, NomLieu, Adresse, Ville, CodePostal, SiteWeb, Tel, Email, Domaine, LienPhoto, Importance) VALUES ('" +activite.getNomActivite()+"', '"+activite.getDescription()+"', '"+activite.getNomLieu()+"', '"+activite.getAdresse()+"', '"+activite.getVille()+"', '"+activite.getCodePostal()+"', '"+activite.getSiteWeb()+"', '"+activite.getTelephone()+"', '"+activite.getEmail()+"', '"+activite.getDomaine()+"', '"+activite.getLienPhoto()+"', '"+activite.getImportance()+"')";
 
 						int rs = query.executeUpdate(sql);
 						query.close();
@@ -61,7 +62,7 @@ public class DaoActivite {
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
 			query = connection.createStatement(); 
-			query.executeUpdate("UPDATE Activite SET Nom = '" +updateActivite.getNom() + "', SiteWeb = '" +updateActivite.getSiteWeb() + "', Description = '" +updateActivite.getDescription() + "', IdDomaine = '" +updateActivite.getIdDomaine() + "'");
+			query.executeUpdate("UPDATE Activite SET NomActivite = '" +updateActivite.getNomActivite() + "', Description = '" +updateActivite.getDescription() + "', NomLieu = '" +updateActivite.getNomLieu() + "', Adresse = '" +updateActivite.getAdresse() + "', Ville = '" +updateActivite.getVille() +"', CodePostal = '" +updateActivite.getCodePostal()+"', SiteWeb = '" +updateActivite.getSiteWeb()+"', Tel = '" +updateActivite.getTelephone()+"', Email = '" +updateActivite.getEmail()+ "', Domaine = '" +updateActivite.getDomaine()+ "', LienPhoto = '" +updateActivite.getLienPhoto()+"', Importance = '" +updateActivite.getImportance()+"'");
 					
 			connection.close();
 		} catch (SQLException e) 
@@ -70,14 +71,14 @@ public class DaoActivite {
 		}
 	}
 	
-	//Supprime une activité voulue
-	public void deleteActivite(ActiviteModelBean activite)
+	//Supprime une activité voulue par ID
+	public void deleteActivite(int id)
 	{
 		java.sql.Statement query; 
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
 			query = connection.createStatement(); 
-			query.executeUpdate("DELETE FROM Activite WHERE Nom = '" +activite.getNom() + "' AND SiteWeb = '" +activite.getSiteWeb() + "' AND Description = '" +activite.getDescription() + "' AND IdDomaine = '" +activite.getIdDomaine() + "'");
+			query.executeUpdate("DELETE FROM Activite WHERE Id = '" +id+  "'");
 			connection.close();
 		} catch (SQLException e) 
 		{
@@ -102,10 +103,20 @@ public class DaoActivite {
 			while (resultat.next())
 			{
 				ActiviteModelBean model = new ActiviteModelBean();
-				model.setNom(resultat.getString("Nom"));
-				model.setSiteWeb(resultat.getString("SiteWeb"));
+				
+				model.setNomActivite(resultat.getString("NomActivite"));
 				model.setDescription(resultat.getString("Description"));
-				model.setIdDomaine(resultat.getInt("IdDomaine"));
+				model.setNomLieu(resultat.getString("NomLieu"));
+				model.setAdresse(resultat.getString("Adresse"));
+				model.setVille(resultat.getString("Ville"));
+				model.setCodePostal(resultat.getString("CodePostal"));
+				model.setSiteWeb(resultat.getString("SiteWeb"));
+				model.setTelephone(resultat.getInt("Tel"));
+				model.setEmail(resultat.getString("Email"));
+				model.setDomaine(resultat.getString("Domaine"));
+				model.setLienPhoto(resultat.getString("LienPhoto"));
+				model.setImportance(resultat.getInt("Importance"));
+				
 				activiteList.add(model);
 			}
 			resultat.close();
@@ -117,89 +128,5 @@ public class DaoActivite {
 		}
 		return activiteList; 
 	}	
-	
-	
-	//Crée un domaine d'activités
-	public void addDomaine(DomaineModelBean domaine){
 
-		// Création de la requête
-		java.sql.Statement query;
-
-		try {
-			// create connection
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
-					+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
-
-			// Creation de l'élément de requète
-			query = connection.createStatement();
-			
-			// Executer puis parcourir les résultats				
-			String sql = "INSERT INTO nowwhattodo.domaine (Nom) VALUES ('" +domaine.getNom()+"')";
-
-			int rs = query.executeUpdate(sql);
-			query.close();
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	//Met à jour un domaine d'activités 
-	public void updateDomaine(DomaineModelBean domaine, DomaineModelBean updateModel){
-		java.sql.Statement query;
-		try{
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
-			query = connection.createStatement();
-			query.executeUpdate("UPDATE Domaine SET Nom = '" + updateModel.getNom() + "'");
-		} catch (SQLException e){
-			e.printStackTrace();
-		}
-	}
-	
-	
-	//Supprime un domaine voulu
-	public void deleteDomaine(DomaineModelBean domaine)
-	{
-		java.sql.Statement query; 
-		try {
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
-			query = connection.createStatement(); 
-			query.executeUpdate("DELETE FROM Domaine WHERE Nom = '" +domaine.getNom() + "'");
-			connection.close();
-		} catch (SQLException e) 
-		{
-			e.printStackTrace(); 
-		}
-	}
-	
-	//Récupère tous les domaines 
-	public ArrayList<DomaineModelBean> getAllDomaine()
-	{
-		//return value 
-		ArrayList<DomaineModelBean> domaineList = new ArrayList<DomaineModelBean>();
-		// Création de la requête 
-		java.sql.Statement query; 
-		try { 
-			// create connection 
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
-			query = connection.createStatement();
-			ResultSet resultat = query.executeQuery("SELECT * FROM Domaine");
-			//Extraction des données	
-			while (resultat.next())
-			{
-				DomaineModelBean model = new DomaineModelBean();
-				model.setNom(resultat.getString("Nom"));
-				domaineList.add(model);
-			}
-			resultat.close();
-			connection.close(); 
-			}
-		catch (SQLException e) 
-		{
-			e.printStackTrace(); 
-		}
-		return domaineList; 
-	}	
-	
-	
 }
