@@ -10,7 +10,23 @@ import javax.faces.bean.RequestScoped;
 public class LoginBean implements Serializable{
 	private String identifiant;
 	private String motDePasse;
+	private boolean connected;
 	
+	public LoginBean(String identifiant, String motDePasse, boolean connected) {
+		super();
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+		this.connected = connected;
+	}
+
+	public boolean isConnected() {
+		return connected;
+	}
+
+	public void setConnected(boolean connected) {
+		this.connected = connected;
+	}
+
 	public LoginBean() {
 	}
 

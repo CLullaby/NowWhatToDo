@@ -9,6 +9,9 @@
 Compte: faire un choix au niveau de la sélection de domaine. Sélection faite au préalable ou via une liste déroulante dans la page compte qui permet de chager le contenu associé automatiquement
 
 
+Css:Pour bootstrap chercher "modif" permet de retrouver le css modifié.
+
+JS: //Si alert ne marche pas remplacer par un div cache
 
 ----------------- Général ------------------------
 Le templateAccueil permet de gérer que la page accueil n'est pas au meme endroit que les autres donc chemin pour css et js différent.
@@ -16,4 +19,4 @@ Le templateAccueil permet de gérer que la page accueil n'est pas au meme endroit
 -> Met le code du template dans la vue accueil.xhtml
 
 
-En css : chercher "modif" permet de retrouver le css modifié.
+

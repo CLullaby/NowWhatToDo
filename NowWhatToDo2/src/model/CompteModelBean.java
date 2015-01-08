@@ -17,18 +17,39 @@ public class CompteModelBean implements Serializable{
 	private int age;
 	private String lienPhoto;
 	private String adresse;
+	private String codePostal;
+	private int tel;
 	private String role;
 	public CompteModelBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public String toString() {
 		return "CompteModelBean [nom=" + nom + ", prenom=" + prenom
 				+ ", identifiant=" + identifiant + ", motDePasse=" + motDePasse
-				+ ", email=" + email + ", age=" + age + ", lienAvatar="
-				+ lienPhoto + ", adresse=" + adresse + ", role=" + role + "]";
+				+ ", email=" + email + ", age=" + age + ", lienPhoto="
+				+ lienPhoto + ", adresse=" + adresse + ", codePostal="
+				+ codePostal + ", tel=" + tel + ", role=" + role + "]";
 	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	public int getTel() {
+		return tel;
+	}
+
+	public void setTel(int tel) {
+		this.tel = tel;
+	}
+
 	public String getNom() {
 		return nom;
 	}
