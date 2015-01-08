@@ -3,23 +3,24 @@
   <display-name>NowWhatToDo2</display-name>
   
   <servlet>
-  	<servlet-name>Identification</servlet-name>
-  	<servlet-class>servlet.IdentificationServlet</servlet-class>
+    <servlet-name>Identification</servlet-name>
+    <servlet-class>servlet.IdentificationServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>Identification</servlet-name>
-  	<url-pattern>/Identification</url-pattern>
+    <servlet-name>Identification</servlet-name>
+    <url-pattern>/Identification</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Inscription</servlet-name>
+    <servlet-class>servlet.InscriptionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Inscription</servlet-name>
+    <url-pattern>/Inscription</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
-    <welcome-file>accueil.jsf</welcome-file>
-    <welcome-file>accueil.html</welcome-file>
-    <welcome-file>accueil.htm</welcome-file>
-    <welcome-file>accueil.jsp</welcome-file>
-    <welcome-file>accueil.xhtml</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file></welcome-file>
   </welcome-file-list>
 </web-app>

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import model.ActiviteModelBean;
 import model.CompteModelBean;
-import model.LieuModelBean;
+
 
 
 public class DaoActivite {
