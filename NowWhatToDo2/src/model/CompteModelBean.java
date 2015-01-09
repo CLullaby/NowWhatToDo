@@ -25,6 +25,23 @@ public class CompteModelBean implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public CompteModelBean(String nom, String prenom, String identifiant,
+			String motDePasse, String email, int age, String lienPhoto,
+			String adresse, String codePostal, int tel, String role) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+		this.email = email;
+		this.age = age;
+		this.lienPhoto = lienPhoto;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.tel = tel;
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return "CompteModelBean [nom=" + nom + ", prenom=" + prenom
