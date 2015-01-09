@@ -60,7 +60,6 @@ public class testServlet extends HttpServlet {
 			System.out.println("utilisateur dans BD");
 		}
 		System.out.println(dao.hasher(test.getMotDePasse()));
-		System.out.println(dao.toReadable(dao.hasher(test.getMotDePasse())));
 		
 //		CompteModelBean user = new CompteModelBean();
 //		user.setNom("blabla");
