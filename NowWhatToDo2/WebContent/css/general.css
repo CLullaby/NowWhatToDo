@@ -4,6 +4,13 @@
 	background: #ffffff;
 }
 
+.messageValidation {
+	color: green;
+}
+.messageErreur {
+	color: red;
+}
+
 .cache {
 	display : none;
 }

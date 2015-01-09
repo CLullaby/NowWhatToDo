@@ -8,6 +8,7 @@
 
 Compte: faire un choix au niveau de la sélection de domaine. Sélection faite au préalable ou via une liste déroulante dans la page compte qui permet de chager le contenu associé automatiquement
 
+Inscription : Servlet : Générer message du else.
 
 Css:Pour bootstrap chercher "modif" permet de retrouver le css modifié.
 

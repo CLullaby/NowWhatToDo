@@ -1,3 +1,47 @@
+function verifUniciteLogin()
+{
+	var login = document.getElementById("login").value;
+	if(login != "" && verifNom(document.getElementById("login")))
+	{
+		$.ajax({
+	        url: '../../Inscription',
+	        data: {
+				login : login
+	        },
+	        async: true,
+	        type: 'GET',
+	        dataType: 'json',
+	        success: function (data) {
+	        	//Enlève pour pb lors du second affichage
+  				$('#messageErreur').removeClass('messageErreur');
+  				$('#messageErreur').removeClass('messageValidation');
+  			
+  				var span = document.createElement("span");
+  				var text;
+	    
+  				if(data.texte == "existe")
+        		{
+	        		$('#messageErreur').addClass('messageErreur');
+	  				text = document.createTextNode("Ce login existe déja. Veuillez en choisir un autre.");
+        		}
+	        	else
+        		{
+	        		$('#messageErreur').addClass('messageValidation');
+	  				text = document.createTextNode("Ce login n'existe pas. C'est OK !");
+	  			}	
+	        	
+  				span.appendChild(text);	
+	        	//Permet de supprimer si un message est déja présent
+	        	var elm = document.getElementById('messageErreur');
+	        	while (elm.firstChild) {
+	        		  elm.removeChild(elm.firstChild);
+	        		}
+	        	elm.appendChild(span);
+	        }
+	    });
+	}
+}
+
 //Les champs ont déja été vérifiés en js donc on va envoyer à la Servlet les données en format JSON
 //On gère la réponse de la Servlet avec une alert + redirection
 function ajaxInscription()

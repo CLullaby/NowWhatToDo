@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CompteModelBean;
+import classe.Enumerations;
+
 /**
  * Servlet implementation class CompteServlet
  */
@@ -43,9 +46,37 @@ public class CompteServlet extends HttpServlet {
 		String agee = request.getParameter("age"); 
 		String adresse = request.getParameter("adresse");
 		String codePostal = request.getParameter("codePostal"); 
-		String telephonee = request.getParameter("telephone"); 
+		String telephone = request.getParameter("telephone"); 
 		
-		
-	}
+		//Transformation des parametres
+		int age = 0;
+		try
+		{
+			age = Integer.parseInt(agee);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
+		//Verifier Infos
+		if(login.length() < 30 && email.length() < 30 && nom.length() < 30 && prenom.length() < 30 && adresse.length() < 50 && codePostal.length() < 6 && telephone.length() < 20)
+		{
+			//Récup du login dans la session
+			
+			//Requeter pour avoir le MDP
+			
+			//Création du modèle
+			//CompteModelBean compte = new CompteModelBean(nom, prenom, login, mdp, email, age, "", adresse, codePostal, telephone, Enumerations.Utilisateur.returnValue());
+
+			//Appel a la DAO + update dans le BD
+			
+		}
+		else
+		{
+			//Prévoir la cas ou les conditions du if ne sont pas respectéees 
+			//-> Renvoie un texte en JSON
+			
+		}
+	}
 }

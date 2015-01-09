@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CompteModelBean;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
@@ -36,37 +38,34 @@ public class InscriptionServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //Verifie l'unicité du login
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	/*
-		String resultatIdentification = request.getParameter("");
+		String login = request.getParameter("login");
+		
+		//Si la fonction renvoie true -> login existe -> message JSON
+		String value;
+		if(DaoCompte.checkLoginExiste(login))
+		{
+			value = "existe";			
+		}
+		else
+		{
+			value="existepas";
+		}
+		response.setContentType("application/json");
+		JSONObject jsonToSend = new JSONObject();
+		try {
+			jsonToSend.put("texte", value);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PrintWriter out = response.getWriter();
+		out.write(jsonToSend.toString());
+		out.close();
 
-	    System.out.println(resultatIdentification); 
-
-		Object obj = JSONValue.parse(resultatIdentification);
-	    JSONArray identificationValeurs = (JSONArray)obj;
-	   
-	    JSONObject values = (JSONObject) identificationValeurs.get(0);
-	    String identifiantValeurFinale = " ";
-	    String motdePasseValeurFinale = " ";
-	    
-	    System.out.println(values);
-//	    try {
-//			String identifiant = values.getString(IDENTIFICATION_LABEL);
-//			identifiantValeurFinale = identifiant;
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	    try {
-//			String motDePasse = values.getString(MOT_DE_PASSE_LABEL);
-//			motdePasseValeurFinale = motDePasse;
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-	    /*
-	    System.out.println(identifiantValeurFinale+motdePasseValeurFinale);*/
+		
 	}
 
 	/**
@@ -100,11 +99,19 @@ public class InscriptionServlet extends HttpServlet {
 		if(login.length() < 30 && mdp.length() < 200 && email.length() < 30 && nom.length() < 30 && prenom.length() < 30 && adresse.length() < 50 && codePostal.length() < 6 && telephone.length() < 20
 				&& mdp.equals(mdpBis))
 		{
-			//Crétaion du modèle
-			CompteModelBean compte = new CompteModelBean(nom, prenom, login, mdp, email, age, "", adresse, codePostal, telephone, Enumerations.Utilisateur.returnValue());
-
-			//Appel a la DAO + ajout dans le BD
-			DaoCompte.addUtilisateur(compte);
+			//Verifier unicité du login
+			if(!DaoCompte.checkLoginExiste(login))
+			{
+				//Création du modèle
+				CompteModelBean compte = new CompteModelBean(nom, prenom, login, mdp, email, age, "", adresse, codePostal, telephone, Enumerations.Utilisateur.returnValue());
+				//Appel a la DAO + ajout dans le BD
+				DaoCompte.addUtilisateur(compte);
+			}
+			else
+			{
+				//Prévoir la cas ou les conditions du if ne sont pas respectéees 
+				//-> renvoie un texte login "déja pris"
+			}
 		}
 		else
 		{

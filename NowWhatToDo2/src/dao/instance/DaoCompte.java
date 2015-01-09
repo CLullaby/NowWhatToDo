@@ -230,5 +230,20 @@ public class DaoCompte {
 		    }
 		    return stringBuilder.toString();
 		}
+		
+		public boolean checkLoginExiste(String login)
+		{
+			boolean returnValue = false;
+			ArrayList<CompteModelBean> listeUser = getAllUser();
+			for (CompteModelBean user : listeUser)
+			{
+				if(user.getIdentifiant().equals(login))
+				{
+					returnValue = true;
+					break;
+				}
+			}
+			return returnValue;
+		}
 }
 
