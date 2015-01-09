@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.ActiviteModelBean;
 import model.AvancementActiviteModelBean;
 import model.CompteModelBean;
-import model.DomaineModelBean;
+//import model.DomaineModelBean;
 import model.LoginBean;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CompteModelBean;
+
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
@@ -106,8 +108,9 @@ public class InscriptionServlet extends HttpServlet {
 		}
 		else
 		{
-			//Prévoir la cas ou les conditions du if ne sont pas respectéees
-			//return false;
+			//Prévoir la cas ou les conditions du if ne sont pas respectéees 
+			//-> Renvoie un texte en JSON
+			
 		}
 
 	}
