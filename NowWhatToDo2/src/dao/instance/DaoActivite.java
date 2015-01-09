@@ -111,7 +111,7 @@ public class DaoActivite {
 				model.setVille(resultat.getString("Ville"));
 				model.setCodePostal(resultat.getString("CodePostal"));
 				model.setSiteWeb(resultat.getString("SiteWeb"));
-				model.setTelephone(resultat.getInt("Tel"));
+				model.setTelephone(resultat.getString("Tel"));
 				model.setEmail(resultat.getString("Email"));
 				model.setDomaine(resultat.getString("Domaine"));
 				model.setLienPhoto(resultat.getString("LienPhoto"));
@@ -127,6 +127,6 @@ public class DaoActivite {
 			e.printStackTrace(); 
 		}
 		return activiteList; 
-	}	
+	}		
 
 }

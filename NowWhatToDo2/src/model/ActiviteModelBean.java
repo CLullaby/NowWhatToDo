@@ -13,7 +13,7 @@ public class ActiviteModelBean {
 	private String ville;
 	private String codePostal;
 	private String siteWeb;
-	private int telephone;
+	private String telephone;
 	private String email;
 	private String domaine;
 	private String lienPhoto;
@@ -23,7 +23,7 @@ public class ActiviteModelBean {
 	
 	public ActiviteModelBean(int id, String nomActivite, String description,
 			String nomLieu, String adresse, String ville, String codePostal,
-			String siteWeb, int telephone, String email, String domaine,
+			String siteWeb, String telephone, String email, String domaine,
 			String lienPhoto, int importance) {
 		super();
 		this.id = id;
@@ -88,10 +88,10 @@ public class ActiviteModelBean {
 	public void setSiteWeb(String siteWeb) {
 		this.siteWeb = siteWeb;
 	}
-	public int getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 	public String getEmail() {
