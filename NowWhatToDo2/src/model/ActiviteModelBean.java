@@ -21,6 +21,25 @@ public class ActiviteModelBean {
 	
 	
 	
+	public ActiviteModelBean(int id, String nomActivite, String description,
+			String nomLieu, String adresse, String ville, String codePostal,
+			String siteWeb, int telephone, String email, String domaine,
+			String lienPhoto, int importance) {
+		super();
+		this.id = id;
+		this.nomActivite = nomActivite;
+		Description = description;
+		this.nomLieu = nomLieu;
+		this.adresse = adresse;
+		this.ville = ville;
+		this.codePostal = codePostal;
+		this.siteWeb = siteWeb;
+		this.telephone = telephone;
+		this.email = email;
+		this.domaine = domaine;
+		this.lienPhoto = lienPhoto;
+		this.importance = importance;
+	}
 	public int getId() {
 		return id;
 	}
