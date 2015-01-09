@@ -70,6 +70,36 @@ public class DaoCompte {
 			}
 		}
 		
+		public void updateUtilisateurNoIdentification(CompteModelBean user, CompteModelBean updateUser)
+		{
+			java.sql.Statement query; 
+			try {
+				connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
+				query = connection.createStatement(); 
+				query.executeUpdate("UPDATE Compte SET Nom = '" +updateUser.getNom() + "', Prenom = '" +updateUser.getPrenom() + "', Email = '" +updateUser.getEmail() + "', Age = '" +updateUser.getAge() + "', LienPhoto = '" +updateUser.getLienPhoto() + "', Adresse = '" +updateUser.getAdresse() + "', CodePostal = '" +updateUser.getCodePostal() + "', Tel = '" +updateUser.getTel() + "', Role = '" +updateUser.getRole() + "' WHERE Nom = '" +user.getNom() + "' AND Prenom = '" +user.getPrenom() + "' AND Email = '" +user.getEmail() + "' AND Age = '" +user.getAge() + "' AND LienPhoto = '" +user.getLienPhoto() + "' AND Adresse = '" +user.getAdresse() + "' AND CodePostal = '" +user.getCodePostal() + "' AND Tel = '" +user.getTel() + "' AND Role = '" +user.getRole() + "'");
+						
+				connection.close();
+			} catch (SQLException e) 
+			{
+				e.printStackTrace(); 
+			}
+		}
+		
+		public void updateMotDePasse(String login, String updateMdp)
+		{
+			java.sql.Statement query; 
+			try {
+				connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
+				query = connection.createStatement(); 
+				query.executeUpdate("UPDATE Compte SET MotDePasse = '" +updateMdp + "' WHERE Identifiant = '" +login +"'");
+						
+				connection.close();
+			} catch (SQLException e) 
+			{
+				e.printStackTrace(); 
+			}
+		}
+		
 		public void deleteUtilisateur(int idUser)
 		{
 			java.sql.Statement query; 
