@@ -69,7 +69,7 @@
 						<div class="form-group">
 							<label for="age" class="col-sm-2 control-label">Age</label>
 							<div class="col-sm-10">
-								<input id="age" type="text" class="form-control" placeholder="Age" required onblur="verifAge(this);" ></input>
+								<input id="age" type="number" class="form-control" placeholder="Age" required onblur="verifAge(this);" ></input>
 							</div>
 						</div>
 						<div class="form-group">
@@ -91,7 +91,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<button type="button" class="btn btn-theme pull-right" style="margin: 0 20px 0 0;" onclick="ajaxInscription();">S'inscrire</button>
+							<button type="button" class="btn btn-success pull-right" style="margin: 0 20px 0 0;" onclick="ajaxInscription();">S'inscrire</button>
 							<a href="../accueil/accueil.html"><button type="submit" class="btn btn-default pull-right" style="margin: 0 20px 0 0;">Annuler</button></a>
 						</div>
 					</form>
@@ -113,6 +113,7 @@
     <script src="../../js/common-scripts.js"></script>
     
 	<!--Script ajouté  -->
-	<script src="../../js/script/compteScript.js"></script>
+	<script src="../../js/script/verificationFonctionScript.js"></script>
+	<script src="../../js/script/inscriptionScript.js"></script>
 </body>
 </html>

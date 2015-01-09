@@ -108,7 +108,7 @@ public class DaoCompte {
 					model.setLienPhoto(resultat.getString("LienPhoto"));
 					model.setAdresse(resultat.getString("Adresse"));
 					model.setCodePostal(resultat.getString("CodePostal"));
-					model.setTel(resultat.getInt("Tel"));
+					model.setTel(resultat.getString("Tel"));
 					model.setRole(resultat.getString("Role"));
 					userList.add(model);
 				}
@@ -146,7 +146,7 @@ public class DaoCompte {
 					model.setLienPhoto(resultat.getString("LienPhoto"));
 					model.setAdresse(resultat.getString("Adresse"));
 					model.setCodePostal(resultat.getString("CodePostal"));
-					model.setTel(resultat.getInt("Tel"));
+					model.setTel(resultat.getString("Tel"));
 					model.setRole(resultat.getString("Role"));
 					userList.add(model);
 				}

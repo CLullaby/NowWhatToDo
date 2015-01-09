@@ -18,11 +18,28 @@ public class CompteModelBean implements Serializable{
 	private String lienPhoto;
 	private String adresse;
 	private String codePostal;
-	private int tel;
+	private String tel;
 	private String role;
 	public CompteModelBean() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public CompteModelBean(String nom, String prenom, String identifiant,
+			String motDePasse, String email, int age, String lienPhoto,
+			String adresse, String codePostal, String tel, String role) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+		this.email = email;
+		this.age = age;
+		this.lienPhoto = lienPhoto;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.tel = tel;
+		this.role = role;
 	}
 
 	@Override
@@ -42,11 +59,11 @@ public class CompteModelBean implements Serializable{
 		this.codePostal = codePostal;
 	}
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
