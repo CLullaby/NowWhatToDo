@@ -21,12 +21,11 @@ public class ActiviteModelBean {
 	
 	
 	
-	public ActiviteModelBean(int id, String nomActivite, String description,
+	public ActiviteModelBean(String nomActivite, String description,
 			String nomLieu, String adresse, String ville, String codePostal,
 			String siteWeb, String telephone, String email, String domaine,
 			String lienPhoto, int importance) {
 		super();
-		this.id = id;
 		this.nomActivite = nomActivite;
 		Description = description;
 		this.nomLieu = nomLieu;
