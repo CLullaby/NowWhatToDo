@@ -20,4 +20,7 @@ Le templateAccueil permet de gérer que la page accueil n'est pas au meme endroit
 -> Met le code du template dans la vue accueil.xhtml
 
 
+Supprimer les role, mot de passe dans Update pour compte
+
+
 

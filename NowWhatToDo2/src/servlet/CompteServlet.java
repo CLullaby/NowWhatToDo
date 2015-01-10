@@ -7,9 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import model.CompteModelBean;
 import classe.Enumerations;
+import dao.fabrique.DaoFabrique;
+import dao.instance.DaoCompte;
 
 /**
  * Servlet implementation class CompteServlet
@@ -17,12 +21,13 @@ import classe.Enumerations;
 @WebServlet("/Compte")
 public class CompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private DaoCompte DaoCompte;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CompteServlet() {
         super();
+        this.DaoCompte = DaoFabrique.getInstance().createUserDao();
         // TODO Auto-generated constructor stub
     }
 
@@ -37,7 +42,7 @@ public class CompteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	//Met a jour les champs de la page
+	//Met a jour les champs de la page (pas du mdp)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login"); 
 		String email = request.getParameter("email"); 
@@ -63,14 +68,17 @@ public class CompteServlet extends HttpServlet {
 		if(login.length() < 30 && email.length() < 30 && nom.length() < 30 && prenom.length() < 30 && adresse.length() < 50 && codePostal.length() < 6 && telephone.length() < 20)
 		{
 			//Récup du login dans la session
+			//HttpSessionContext session new HttpSessionContext();
+			HttpSession session = request.getSession();
+			String loginConnecte = (String) session.getAttribute("login");
 			
 			//Requeter pour avoir le MDP
 			
 			//Création du modèle
-			//CompteModelBean compte = new CompteModelBean(nom, prenom, login, mdp, email, age, "", adresse, codePostal, telephone, Enumerations.Utilisateur.returnValue());
+			CompteModelBean compte = new CompteModelBean(nom, prenom, login, "", email, age, "", adresse, codePostal, telephone, "");
 
 			//Appel a la DAO + update dans le BD
-			
+			//DaoCompte.updateUtilisateurNoIdentification(, compte); //Passer que le login ??
 		}
 		else
 		{
