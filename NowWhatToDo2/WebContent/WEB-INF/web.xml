@@ -2,7 +2,9 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>NowWhatToDo2</display-name>
 
-  <servlet>
+	<!-- On utilise les annotations pour appeler les Servlet sinon ca va etre ingérable comme fichier vu le nb de Servlet que l'on va avoir --> 
+	
+<!--   <servlet>
     <servlet-name>Identification</servlet-name>
     <servlet-class>servlet.IdentificationServlet</servlet-class>
   </servlet>
@@ -27,9 +29,9 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
-  </servlet-mapping>
- 
+  </servlet-mapping> -->
   
+	<!-- On utilise les annotations pour appeler les Servlet sinon ca va etre ingérable comme fichier vu le nb de Servlet que l'on va avoir -->  
   
   <welcome-file-list>
     <welcome-file></welcome-file>

@@ -13,8 +13,6 @@ import model.CompteModelBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONValue;
 
 import classe.*;
 import dao.instance.DaoCompte;
@@ -22,7 +20,7 @@ import dao.fabrique.DaoFabrique;
 /**
  * Servlet implementation class InscriptionServlet
  */
-//@WebServlet("/Inscription")
+@WebServlet("/Inscription")
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte DaoCompte;
