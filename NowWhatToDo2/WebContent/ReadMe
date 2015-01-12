@@ -20,6 +20,8 @@ Le templateAccueil permet de gérer que la page accueil n'est pas au meme endroit
 -> Met le code du template dans la vue accueil.xhtml
 
 
-Supprimer les role, mot de passe dans Update pour compte
+Administration :
+Un admin possedera un seul compte pour manager et parcourir l'appli/site.
+Il aura accès a toutes les fonctionnalités + pourra manager le contenu du site en allant dans Menu -> Autres -> Administration
 
 

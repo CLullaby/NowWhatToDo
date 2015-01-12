@@ -18,7 +18,7 @@ import dao.instance.DaoCompte;
 /**
  * Servlet implementation class CompteServlet
  */
-@WebServlet("/Compte")
+//@WebServlet("/Compte")
 public class CompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte DaoCompte;
@@ -36,7 +36,18 @@ public class CompteServlet extends HttpServlet {
 	 */
     //Récupére les infos pour afficher la page
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//Vérifie si l'utilisateur est connecté
+		if(false)
+		{
+			//Aller chercher les infos dans la BD
+			
+			//Former la reponse JSON
+			
+			
+		}
+		else{
+			response.sendRedirect("../../compteNonConnecte.html");
+		}
 	}
 
 	/**
@@ -70,15 +81,19 @@ public class CompteServlet extends HttpServlet {
 			//Récup du login dans la session
 			//HttpSessionContext session new HttpSessionContext();
 			HttpSession session = request.getSession();
-			String loginConnecte = (String) session.getAttribute("login");
-			
-			//Requeter pour avoir le MDP
-			
-			//Création du modèle
-			CompteModelBean compte = new CompteModelBean(nom, prenom, login, "", email, age, "", adresse, codePostal, telephone, "");
-
-			//Appel a la DAO + update dans le BD
-			//DaoCompte.updateUtilisateurNoIdentification(, compte); //Passer que le login ??
+			//Verif si user connecté
+			if(session.getAttribute("connecte").equals("true"))
+			{
+				String loginConnecte = (String) session.getAttribute("login");
+				//CompteModelBean compteBd = DaoCompte.getUserNom(loginConnecte);
+				
+				//Création du nouveau compte
+				//CompteModelBean compteNouveau = new CompteModelBean(nom, prenom, login, "", email, age, "", adresse, codePostal, telephone, compteBd.getRole());
+	
+				//Appel a la DAO + update dans le BD
+				//DaoCompte.updateUtilisateurNoIdentification(compteBd, compteNouveau); 
+			}
+			//else de non connecté -> Pb bizarre de code -> non utile a priori
 		}
 		else
 		{

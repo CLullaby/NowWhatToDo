@@ -152,6 +152,7 @@ public class DaoCompte {
 			return userList; 
 		}	
 		
+		//public CompteModelBean getUserNom(String nom)
 		public ArrayList<CompteModelBean> getUserNom(String nom)
 		{
 			//return value 

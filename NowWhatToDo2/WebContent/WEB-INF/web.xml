@@ -31,6 +31,15 @@
     <url-pattern>/Login</url-pattern>
   </servlet-mapping> -->
   
+  <!-- <servlet>
+    <servlet-name>Compte</servlet-name>
+    <servlet-class>servlet.CompteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Compte</servlet-name>
+    <url-pattern>/Compte</url-pattern>
+  </servlet-mapping>-->
+  
 	<!-- On utilise les annotations pour appeler les Servlet sinon ca va etre ingérable comme fichier vu le nb de Servlet que l'on va avoir -->  
   
   <welcome-file-list>
