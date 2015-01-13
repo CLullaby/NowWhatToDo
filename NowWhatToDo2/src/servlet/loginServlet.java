@@ -59,7 +59,9 @@ public class loginServlet extends HttpServlet {
 		
 		}
 	 
-	    
+		//Cryptage sha256
+		//motdePasseValeurFinale = daoCompte.hasher(motdePasseValeurFinale);
+		
 	   //TO DO comparer valeurs
 	   //Regarder si user existe dans la BD
 	   //Si existe: log dans session et redirection vers page compte
