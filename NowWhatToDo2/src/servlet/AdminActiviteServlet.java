@@ -37,17 +37,18 @@ public class AdminActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	// GET : Récupération de toutes les activités en base de données
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
 		List<ActiviteModelBean> listeActivites = dao.getAllActivite();
 
-		//Créer un JsonArray comprenant toutes les activités
+		// Créer un JsonArray comprenant toutes les activités
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.put(listeActivites);
-		
-		//Créer un json contenant le JsonArray
+
+		// Créer un json contenant le JsonArray
 		JSONObject jsonToSend = new JSONObject();
 		try {
 			jsonToSend.put("listeActivites", jsonArray.get(0));
@@ -55,7 +56,7 @@ public class AdminActiviteServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// Envoyer le Json contenant le JsonArray
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
@@ -67,9 +68,29 @@ public class AdminActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
+	// POST : suppression d'une activité par son ID
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		// Récupération de l'action à effectuer et l'id de l'activité sur
+		// laquelle agir
+		String action = request.getParameter("action");
+		String idString = request.getParameter("id");
+		int id = Integer.parseInt(idString);
+
+		//Suppression dans la base de données
+		DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
+		dao.deleteActivite(id);
+		
+		//Formation d'une réponse Json
+		JSONObject jsonToSend = new JSONObject();
+		jsonToSend.put("response", "OK");
+
+		// Envoyer le Json contenant le JsonArray
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.write(jsonToSend.toString());
 	}
 
 }
