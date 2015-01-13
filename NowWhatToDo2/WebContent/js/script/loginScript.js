@@ -4,10 +4,7 @@ $(document).ready(function(){
 	{
 		var identifiant = $('#form_login :input[name="identifiant"]').val();
 		var mdp = $('#form_login :input[name="motDePasse"]').val();
-		
-		var string_echec_login = "echec";
-		var string_succes_login = "succes";
-		
+
 		//Regex pour vérifier que les champs ont été remplis (équivalent des fonctions dans verificationFonctionScript.js) car
 		//pb de ces fonctions avec JQuery
 		if(identifiant != "" && mdp != "")
@@ -25,7 +22,7 @@ $(document).ready(function(){
 					jsonTable.push(identificationForm);
 					
 					 //méthode envoie et retour de tableau de json
-					$.post("../../Login",
+					/*$.post("../../Login",
 							{
 								identificationForm: JSON.stringify(jsonTable)
 							},
@@ -41,7 +38,37 @@ $(document).ready(function(){
 								}
 							}
 							//Pensez a renvoyer le type d'erreur si l'authentification est false									
-					);
+					);*/
+					 $.ajax({
+					        url: '../../Login',
+					        data: {
+					        	identificationForm: JSON.stringify(jsonTable)
+					        },
+					        async: false,
+					        type: 'POST',
+					        dataType: 'json',
+					        success: function (data) {
+					        	if(data.connecte == "oui"){
+									location.href = "compte.html";
+								}
+								else
+								{									
+									$('#messageErreur').addClass('messageErreur');
+					  				var span = document.createElement("span");
+					  				var text = document.createTextNode("Ce couple login & mot de passe n'existe pas !");
+					  				span.appendChild(text);	
+						        	//Permet de supprimer si un message est déja présent
+						        	var elm = document.getElementById('messageErreur');
+						        	while (elm.firstChild) {
+						        		  elm.removeChild(elm.firstChild);
+						        		}
+					  				elm.appendChild(span);
+								}
+					        },
+					        error: function (data) {
+					        	alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+					        }
+					    });
 				}
 				else
 				{

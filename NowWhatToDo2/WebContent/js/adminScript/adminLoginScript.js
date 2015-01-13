@@ -31,7 +31,12 @@ function ajaxLoginAdmin()
 			  				var span = document.createElement("span");
 			  				var text = document.createTextNode("Ce couple login & mot de passe n'existe pas !");
 			  				span.appendChild(text);	
-			  				document.getElementById("messageErreur").appendChild(span);
+				        	//Permet de supprimer si un message est déja présent
+				        	var elm = document.getElementById('messageErreur');
+				        	while (elm.firstChild) {
+				        		  elm.removeChild(elm.firstChild);
+				        		}
+			  				elm.appendChild(span);
 		        		}
 			        },
 			        error: function (data) {

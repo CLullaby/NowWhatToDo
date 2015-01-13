@@ -35,7 +35,7 @@ public class loginServlet extends HttpServlet {
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
     }
 
-	//Partie Admin
+	//Partie login Admin
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
 		String mdp = request.getParameter("mdp");
@@ -64,7 +64,7 @@ public class loginServlet extends HttpServlet {
 		out.close();
 	}
 	
-	//Partie utilisateur
+	//Partie login utilisateur
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String resultatIdentification = request.getParameter(IDENTIFICATION_RESULT_LABEL);
@@ -74,34 +74,32 @@ public class loginServlet extends HttpServlet {
 
 		String login = "";
 		String mdp = "";
+		String value ="";
 		
 		while(iterator.hasNext()) {
 	    	JSONObject values = (JSONObject) iterator.next();
 	    	login = (String) values.get(IDENTIFICATION_LABEL);
 	    	mdp =  (String) values.get(MOT_DE_PASSE_LABEL);
 		}
-
-	   response.setContentType("application/json");
-	   JSONArray arrayResponse = new JSONArray();
-	   JSONObject jsonToSend = new JSONObject();
-	   
-	   //if(daoCompte.checkUtilisateur(login, mdp)){
-	   if(login.equals("aaa") && mdp.equals("bbb"))
+   
+	   if(daoCompte.checkUtilisateur(login, mdp))
 	   {		
 		   HttpSession session = request.getSession();
 		   if(session != null)
 		   {
 			   session.setAttribute("connecte", login);
 		   }
-		   jsonToSend.put("resultat", "succes");
+		   value = "oui";
 	   }
 	   else{
-			jsonToSend.put("resultat", "echec");	
+			value = "non";
 	   }
 	   
-	   arrayResponse.add(jsonToSend);
-	   PrintWriter out = response.getWriter();
-	   out.write(arrayResponse.toString());
-	   out.close();
+		response.setContentType("application/json");
+		JSONObject jsonToSend = new JSONObject();
+		jsonToSend.put("connecte", value);
+		PrintWriter out = response.getWriter();
+		out.write(jsonToSend.toString());
+		out.close();
 	}
 }
