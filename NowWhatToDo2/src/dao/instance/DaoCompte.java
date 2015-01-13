@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 import model.CompteModelBean;
 import model.LoginBean;
 
+import classe.Enumerations;
+
 public class DaoCompte {
 
 		private Connection connection;
@@ -54,7 +56,7 @@ public class DaoCompte {
 				e.printStackTrace();
 			}
 		}
-		
+		/*
 		public void updateUtilisateur(CompteModelBean user, CompteModelBean updateUser)
 		{
 			java.sql.Statement query; 
@@ -68,9 +70,10 @@ public class DaoCompte {
 			{
 				e.printStackTrace(); 
 			}
-		}
+		}*/
 		
-		public void updateUtilisateurNoIdentification(CompteModelBean user, CompteModelBean updateUser)
+		//Update sans le mot de passe
+		public void updateUtilisateur(CompteModelBean user, CompteModelBean updateUser)
 		{
 			java.sql.Statement query; 
 			try {
@@ -85,6 +88,7 @@ public class DaoCompte {
 			}
 		}
 		
+		//Update que du mot de passe
 		public void updateMotDePasse(String login, String updateMdp)
 		{
 			java.sql.Statement query; 
@@ -151,11 +155,48 @@ public class DaoCompte {
 			}
 			return userList; 
 		}	
-		
-		//public CompteModelBean getUserNom(String nom)
-		public ArrayList<CompteModelBean> getUserNom(String nom)
+		public ArrayList<CompteModelBean> getAllUserAdmin()
 		{
 			//return value 
+			ArrayList<CompteModelBean> userList = new ArrayList<CompteModelBean>();
+			// Création de la requête 
+			java.sql.Statement query; 
+			try { 
+				// create connection 
+				connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
+				query = connection.createStatement();
+				ResultSet resultat = query.executeQuery("SELECT * FROM Compte WHERE Role = '" + Enumerations.Administrateur + "'");
+				//Extraction des données	
+				while (resultat.next())
+				{
+					CompteModelBean model = new CompteModelBean();
+					model.setNom(resultat.getString("Nom"));
+					model.setPrenom(resultat.getString("Prenom"));
+					model.setIdentifiant(resultat.getString("Identifiant"));
+					model.setMotDePasse(resultat.getString("MotDePasse"));
+					model.setEmail(resultat.getString("Email"));
+					model.setAge(resultat.getInt("Age"));
+					model.setLienPhoto(resultat.getString("LienPhoto"));
+					model.setAdresse(resultat.getString("Adresse"));
+					model.setCodePostal(resultat.getString("CodePostal"));
+					model.setTel(resultat.getString("Tel"));
+					model.setRole(resultat.getString("Role"));
+					userList.add(model);
+				}
+				resultat.close();
+				connection.close(); 
+				}
+			catch (SQLException e) 
+			{
+				e.printStackTrace(); 
+			}
+			return userList; 
+		}	
+		
+		public CompteModelBean getUserNom(String nom)
+		{
+			//return value 
+			CompteModelBean userReturn = new CompteModelBean();
 			ArrayList<CompteModelBean> userList=new ArrayList<CompteModelBean>();
 			// Création de la requête 
 			java.sql.Statement query; 
@@ -188,9 +229,15 @@ public class DaoCompte {
 			{
 				e.printStackTrace(); 
 			}
-			return userList; 
+			//Affectation de la valeur de retour
+			if(!userList.isEmpty())
+			{
+				userReturn = userList.get(1);
+			}
+			return userReturn;
 		}
 		
+		//checke utilisateur pour connexion banale du site
 		public boolean checkUtilisateur(LoginBean user)
 		{
 			boolean value = false;
@@ -199,6 +246,22 @@ public class DaoCompte {
 			
 			//Recherche dans la BD
 			ArrayList<CompteModelBean> listeUser = getAllUser();
+			for(CompteModelBean userTemp : listeUser)
+			{
+				if(userTemp.getIdentifiant().equals(login) && userTemp.getMotDePasse().equals(password))
+				{
+					value = true;
+					//break;
+				}
+			}
+			return value;
+		}
+		//checke utilisateur administrateur pour connexion à la partie admin -> Plus de protection en prétriant par les role
+		public boolean checkUtilisateurAdmin(String login, String password)
+		{
+			boolean value = false;			
+			//Recherche dans la BD
+			ArrayList<CompteModelBean> listeUser = getAllUserAdmin();
 			for(CompteModelBean userTemp : listeUser)
 			{
 				if(userTemp.getIdentifiant().equals(login) && userTemp.getMotDePasse().equals(password))

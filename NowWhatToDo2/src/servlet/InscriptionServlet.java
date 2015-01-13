@@ -14,7 +14,7 @@ import model.CompteModelBean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import classe.*;
+import classe.Enumerations;
 import dao.instance.DaoCompte;
 import dao.fabrique.DaoFabrique;
 /**

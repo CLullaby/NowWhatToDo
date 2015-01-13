@@ -30,8 +30,8 @@ function ajaxMiseAJour()
 	        type: 'POST',
 	        dataType: 'json',
 	        success: function (data) {
-	        	alert("Votre informations ont été modifiées avec success");
-	        	location.href = "compte.html";
+	        	//alert("Votre informations ont été modifiées avec success");
+	        	//location.href = "compte.html";
 	        },
 	        error: function (data) {
 	        	alert("Un problème est survenu, veuillez réessayer ultérieurement.");

@@ -1,6 +1,10 @@
 ---------------------- BD ---------------------------
 
 
+---------------------- DAO ---------------------
+Simplifier les requetes
+
+
 --------------------- Model ------------------------
 
 
@@ -23,5 +27,6 @@ Le templateAccueil permet de gérer que la page accueil n'est pas au meme endroit
 Administration :
 Un admin possedera un seul compte pour manager et parcourir l'appli/site.
 Il aura accès a toutes les fonctionnalités + pourra manager le contenu du site en allant dans Menu -> Autres -> Administration
+
 
 

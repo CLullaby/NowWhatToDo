@@ -18,7 +18,7 @@ import dao.instance.DaoCompte;
 /**
  * Servlet implementation class CompteServlet
  */
-//@WebServlet("/Compte")
+@WebServlet("/Compte")
 public class CompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte DaoCompte;
@@ -37,7 +37,7 @@ public class CompteServlet extends HttpServlet {
     //Récupére les infos pour afficher la page
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Vérifie si l'utilisateur est connecté
-		if(false)
+		/*if(false)
 		{
 			//Aller chercher les infos dans la BD
 			
@@ -47,7 +47,7 @@ public class CompteServlet extends HttpServlet {
 		}
 		else{
 			response.sendRedirect("../../compteNonConnecte.html");
-		}
+		}*/
 	}
 
 	/**
@@ -79,19 +79,23 @@ public class CompteServlet extends HttpServlet {
 		if(login.length() < 30 && email.length() < 30 && nom.length() < 30 && prenom.length() < 30 && adresse.length() < 50 && codePostal.length() < 6 && telephone.length() < 20)
 		{
 			//Récup du login dans la session
-			//HttpSessionContext session new HttpSessionContext();
 			HttpSession session = request.getSession();
 			//Verif si user connecté
-			if(session.getAttribute("connecte").equals("true"))
+			if(session != null)	
 			{
-				String loginConnecte = (String) session.getAttribute("login");
-				//CompteModelBean compteBd = DaoCompte.getUserNom(loginConnecte);
-				
-				//Création du nouveau compte
-				//CompteModelBean compteNouveau = new CompteModelBean(nom, prenom, login, "", email, age, "", adresse, codePostal, telephone, compteBd.getRole());
-	
-				//Appel a la DAO + update dans le BD
-				//DaoCompte.updateUtilisateurNoIdentification(compteBd, compteNouveau); 
+				if(session.getAttribute("connecte").equals("true"))
+				{
+					String loginConnecte = (String) session.getAttribute("login");
+					CompteModelBean compteBd = DaoCompte.getUserNom(loginConnecte);
+					
+					//Création du nouveau compte
+					CompteModelBean compteNouveau = new CompteModelBean(nom, prenom, login, "", email, age, "", adresse, codePostal, telephone, compteBd.getRole());
+		
+					//Appel a la DAO + update dans le BD
+					DaoCompte.updateUtilisateur(compteBd, compteNouveau); 
+					
+					response.sendRedirect("../vues/Compte/compte.html");
+				}
 			}
 			//else de non connecté -> Pb bizarre de code -> non utile a priori
 		}

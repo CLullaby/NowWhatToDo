@@ -34,12 +34,34 @@ public class loginServlet extends HttpServlet {
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
     }
 
-	
+	//Partie Admin
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String login = request.getParameter("login");
+		String mdp = request.getParameter("mdp");
 		
-	}
-
+		
+		if(daoCompte.checkUtilisateurAdmin(login, mdp))
+		{
+			//Connection dans la session
+			HttpSession session = request.getSession();
+			if(session != null)	
+			{
+		
+			
+			
+			}
+			
+			//Redirection
+			response.sendRedirect("vues/Admin/adminActivite.html");
+		}
+		else
+		{
+			response.sendRedirect("vues/Admin/loginAdmin.html");
+		}
 	
+	}
+	
+	//Partie utilisateur
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String resultatIdentification = request.getParameter(IDENTIFICATION_RESULT_LABEL);
