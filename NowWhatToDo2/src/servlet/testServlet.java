@@ -55,7 +55,7 @@ public class testServlet extends HttpServlet {
 		DaoAvancement daoA = DaoFabrique.getInstance().createAvancementDao();
 		
 		LoginBean test = new LoginBean("bla", "bla", false);
-		if (dao.checkUtilisateur(test))
+		if (dao.checkUtilisateur("bla", "bla"))
 		{
 			System.out.println("utilisateur dans BD");
 		}

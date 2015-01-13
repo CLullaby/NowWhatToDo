@@ -29,19 +29,18 @@ $(document).ready(function(){
 							{
 								identificationForm: JSON.stringify(jsonTable)
 							},
-							function(data,status){
-								alert(data[0].resultat);
-								if(data[0].resultat == string_echec_login){
+							function(data){						
+								//alert(data[0].resultat);
+								if(data[0].resultat == "succes"){
+									location.href = "compte.html";
+									//window.location.replace("http://localhost:8080/NowWhatToDo2/vues/Compte/compte.html");
+								}
+								else(data[0].resultat == "echec")
+								{									
 									alert("Mauvaise authentification");
 								}
-								else if(data[0].resultat == string_succes_login){
-									//alert("Bonne authentification");
-									window.location.replace("http://localhost:8080/NowWhatToDo2/vues/Compte/compte.html");
-								}
 							}
-							//Pensez a renvoyer le type d'erreur si l'authentification est false
-							
-									
+							//Pensez a renvoyer le type d'erreur si l'authentification est false									
 					);
 				}
 				else

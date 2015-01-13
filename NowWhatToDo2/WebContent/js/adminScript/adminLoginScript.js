@@ -1,7 +1,7 @@
 function ajaxLoginAdmin()
 {
-	var login = $('#login').val();
-	var mdp = $('#mdp').val();
+	var login = document.getElementById("login").value;
+	var mdp = document.getElementById("mdp").value;
 	
 	//Regex pour vérifier que les champs ont été remplis (équivalent des fonctions dans verificationFonctionScript.js) car
 	//pb de ces fonctions avec JQuery
@@ -19,9 +19,25 @@ function ajaxLoginAdmin()
 			        },
 			        async: false,
 			        type: 'GET',
-			        dataType: 'json'
-			    });
-				
+			        dataType: 'json',
+			        success: function (data) {
+			        	if(data.connecte == "oui")
+		        		{
+			        		location.href = "adminActivite.html";
+		        		}
+			        	else
+		        		{
+			  				$('#messageErreur').addClass('messageErreur');
+			  				var span = document.createElement("span");
+			  				var text = document.createTextNode("Ce couple login & mot de passe n'existe pas !");
+			  				span.appendChild(text);	
+			  				document.getElementById("messageErreur").appendChild(span);
+		        		}
+			        },
+			        error: function (data) {
+			        	alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+			        }
+			    });				
 			}
 			else
 			{

@@ -238,11 +238,9 @@ public class DaoCompte {
 		}
 		
 		//checke utilisateur pour connexion banale du site
-		public boolean checkUtilisateur(LoginBean user)
+		public boolean checkUtilisateur(String login, String password)
 		{
 			boolean value = false;
-			String login = user.getIdentifiant();
-			String password = user.getMotDePasse();
 			
 			//Recherche dans la BD
 			ArrayList<CompteModelBean> listeUser = getAllUser();
