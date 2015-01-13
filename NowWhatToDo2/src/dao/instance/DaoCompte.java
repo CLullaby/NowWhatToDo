@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import model.CompteModelBean;
 import model.LoginBean;
 
-import classe.Enumerations;
+import enumerations.Roles;
 
 public class DaoCompte {
 
@@ -165,7 +165,7 @@ public class DaoCompte {
 				// create connection 
 				connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
 				query = connection.createStatement();
-				ResultSet resultat = query.executeQuery("SELECT * FROM Compte WHERE Role = '" + Enumerations.Administrateur + "'");
+				ResultSet resultat = query.executeQuery("SELECT * FROM Compte WHERE Role = '" + Roles.Administrateur.returnValue() + "'");
 				//Extraction des données	
 				while (resultat.next())
 				{

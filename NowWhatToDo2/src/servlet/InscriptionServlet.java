@@ -14,7 +14,7 @@ import model.CompteModelBean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import classe.Enumerations;
+import enumerations.Roles;
 import dao.instance.DaoCompte;
 import dao.fabrique.DaoFabrique;
 /**
@@ -101,7 +101,7 @@ public class InscriptionServlet extends HttpServlet {
 			if(!DaoCompte.checkLoginExiste(login))
 			{
 				//Création du modèle
-				CompteModelBean compte = new CompteModelBean(nom, prenom, login, mdp, email, age, "", adresse, codePostal, telephone, Enumerations.Utilisateur.returnValue());
+				CompteModelBean compte = new CompteModelBean(nom, prenom, login, mdp, email, age, "", adresse, codePostal, telephone, Roles.Utilisateur.returnValue());
 				//Appel a la DAO + ajout dans le BD
 				DaoCompte.addUtilisateur(compte);
 			}

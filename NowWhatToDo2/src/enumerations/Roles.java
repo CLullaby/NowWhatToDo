@@ -1,11 +1,11 @@
-package classe;
+package enumerations;
 
-public enum Enumerations {
+public enum Roles {
 	Administrateur("Administrateur"), Tuteur("Tuteur"), Utilisateur("Utilisateur");
 	
 	private String value;
 	
-	private Enumerations(String value)
+	private Roles(String value)
 	{
 		this.value = value;
 	}

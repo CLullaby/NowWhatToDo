@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
 
 import model.CompteModelBean;
-import classe.Enumerations;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoCompte;
 
@@ -83,9 +81,9 @@ public class CompteServlet extends HttpServlet {
 			//Verif si user connecté
 			if(session != null)	
 			{
-				if(session.getAttribute("connecte").equals("true"))
+				if(session.getAttribute("connecte") != null)
 				{
-					String loginConnecte = (String) session.getAttribute("login");
+					String loginConnecte = (String) session.getAttribute("connecte");
 					CompteModelBean compteBd = DaoCompte.getUserNom(loginConnecte);
 					
 					//Création du nouveau compte
