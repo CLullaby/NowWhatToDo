@@ -5,6 +5,9 @@ $(document).ready(function(){
 		var identifiant = $('#form_login :input[name="identifiant"]').val();
 		var mdp = $('#form_login :input[name="motDePasse"]').val();
 		
+		var string_echec_login = "echec";
+		var string_succes_login = "succes";
+		
 		//Regex pour vérifier que les champs ont été remplis (équivalent des fonctions dans verificationFonctionScript.js) car
 		//pb de ces fonctions avec JQuery
 		if(identifiant != "" && mdp != "")
@@ -27,7 +30,14 @@ $(document).ready(function(){
 								identificationForm: JSON.stringify(jsonTable)
 							},
 							function(data,status){
-								alert(data.resultat);
+								alert(data[0].resultat);
+								if(data[0].resultat == string_echec_login){
+									alert("Mauvaise authentification");
+								}
+								else if(data[0].resultat == string_succes_login){
+									//alert("Bonne authentification");
+									window.location.replace("http://localhost:8080/NowWhatToDo2/vues/Compte/compte.html");
+								}
 							}
 							//Pensez a renvoyer le type d'erreur si l'authentification est false
 							

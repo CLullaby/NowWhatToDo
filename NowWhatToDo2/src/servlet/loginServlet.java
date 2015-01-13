@@ -72,32 +72,30 @@ public class loginServlet extends HttpServlet {
 	   currentUser.setMotDePasse(motdePasseValeurFinale);
 	   currentUser.setConnected(daoCompte.checkUtilisateur(currentUser));
 		
+	   System.out.println("requete");
+	   
+	   response.setContentType("application/json");
+	   JSONArray arrayResponse = new JSONArray();
+	   JSONObject jsonToSend = new JSONObject();
+	   
+	   
 	   if(currentUser.isConnected()){
 		   
 		   HttpSession session = request.getSession();
 		   session.putValue("connected", true);
 		   session.putValue("login", identifiantValeurFinale);
-		   response.sendRedirect("/Compte");
+		   jsonToSend.put("resultat", "succes");
 		   
 	   }
 	   else{
-		   
-		    response.setContentType("application/json");
-			
-			JSONArray arrayResponse = new JSONArray();
-			
-			JSONObject jsonToSend = new JSONObject();
-			jsonToSend.put("resultat", "echec");
-			
-			arrayResponse.add(jsonToSend);
-			
-			PrintWriter out = response.getWriter();
-			//out.write(jsonToSend.toString());
-			out.write(arrayResponse.toString());
-			out.close();
-					
-		   
+			jsonToSend.put("resultat", "echec");	
 	   }
+	   
+	   arrayResponse.add(jsonToSend);
+		
+	   PrintWriter out = response.getWriter();
+	   out.write(arrayResponse.toString());
+	   out.close();
 		
 	}
 
