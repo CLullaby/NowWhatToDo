@@ -34,7 +34,7 @@ function envoyerFormulaire(){
         type: 'POST',
         dataType: 'json',
         success: function (data) {
-        	alert("Activité crée avec succès");
+        	alert("Activité créee avec succès");
         	location.href = "adminActivite.html";
         },
         error: function (data) {

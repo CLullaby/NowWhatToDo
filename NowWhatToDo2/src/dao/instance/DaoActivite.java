@@ -104,6 +104,7 @@ public class DaoActivite {
 			{
 				ActiviteModelBean model = new ActiviteModelBean();
 				
+				model.setId(resultat.getInt("Id"));
 				model.setNomActivite(resultat.getString("NomActivite"));
 				model.setDescription(resultat.getString("Description"));
 				model.setNomLieu(resultat.getString("NomLieu"));
@@ -146,6 +147,7 @@ public class DaoActivite {
 			{
 				ActiviteModelBean model = new ActiviteModelBean();
 				
+				model.setId(resultat.getInt("Id"));
 				model.setNomActivite(resultat.getString("NomActivite"));
 				model.setDescription(resultat.getString("Description"));
 				model.setNomLieu(resultat.getString("NomLieu"));
