@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import model.CompteModelBean;
 import dao.fabrique.DaoFabrique;
@@ -34,18 +37,42 @@ public class CompteServlet extends HttpServlet {
 	 */
     //Récupére les infos pour afficher la page
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
+		JSONObject jsonToSend = new JSONObject();
+		
 		//Vérifie si l'utilisateur est connecté
-		/*if(false)
+		HttpSession session = request.getSession();
+		if(session != null)
 		{
-			//Aller chercher les infos dans la BD
+			String login = (String) session.getAttribute("connecte");
+			if(login != null && login != "")
+			{
+				//Aller chercher les infos dans la BD
+				CompteModelBean compte = new CompteModelBean();
+				compte = DaoCompte.getUserNom(login);
+				
+				
+				//Former la reponse JSON
+				jsonToSend.put("etat", "loge");
+				jsonToSend.put("login", compte.getIdentifiant());
+				jsonToSend.put("email", compte.getEmail());
+				jsonToSend.put("nom", compte.getNom());
+				jsonToSend.put("prenom", compte.getPrenom());
+				jsonToSend.put("age", compte.getAge());
+				jsonToSend.put("adresse", compte.getAdresse());
+				jsonToSend.put("codePostal", compte.getCodePostal());
+				jsonToSend.put("tel", compte.getTel());
+				//Mdp, lienPhoto
 			
-			//Former la reponse JSON
-			
-			
+			}
 		}
 		else{
-			response.sendRedirect("../../compteNonConnecte.html");
-		}*/
+			jsonToSend.put("etat", "nonLoge");
+		}	
+		
+		PrintWriter out = response.getWriter();
+		out.write(jsonToSend.toString());
+		out.close();
 	}
 
 	/**

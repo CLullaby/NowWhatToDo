@@ -12,6 +12,7 @@ Simplifier les requetes
 
 Compte: faire un choix au niveau de la sélection de domaine. Sélection faite au préalable ou via une liste déroulante dans la page compte qui permet de chager le contenu associé automatiquement
 
+Form Bootstrap : supprimer l'action entréé / modif qui rafraichi le formulaire
 
 
 ----------------- Général ------------------------
