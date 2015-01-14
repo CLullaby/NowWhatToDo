@@ -43,3 +43,49 @@ function ajaxMiseAJour()
 		alert("Veuillez remplir tout le formulaire !");
 	}
 }
+
+function getDonnees()
+{
+	$.ajax({
+        url: '../../Compte',
+        data: {
+
+        },
+        async: false,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+        	//Verifie le log
+        	if(data.etat == "loge")
+        	{
+        		//Affiche les données chargées
+        		var inputLogin = document.getElementById("login");
+        		var inputEmail = document.getElementById("email");
+        		var inputNom = document.getElementById("nom");
+        		var inputPrenom = document.getElementById("prenom");
+        		var inputAge = document.getElementById("age");
+        		var inputAdresse = document.getElementById("adresse");
+        		var inputCodePostal = document.getElementById("codePostal");
+        		var inputTel = document.getElementById("telephone");
+        		
+        		inputLogin.value = data.login;
+        		inputEmail.value = data.email;
+        		inputNom.value = data.nom;
+        		inputPrenom.value = data.prenom;
+        		inputAge.value = data.age;
+        		inputAdresse.value = data.adresse;
+        		inputCodePostal.value = data.codePostal;
+        		inputTel.value = data.tel;
+        		
+        		
+        	}
+        	else
+    		{
+        		location.href = "login.html";
+    		}	
+        },
+        error: function (data) {
+        	alert("Un problème est survenu, veuillez recharger la page.");
+        }
+    });
+}

@@ -56,9 +56,11 @@ public class RecupererActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		String domaine = request.getParameter("domaine");
+
 		DaoActivite daoA = DaoFabrique.getInstance().createActiviteDao();
-		ArrayList<ActiviteModelBean> allActList = daoA.getActivitebyDomaine("transport"); // passer en parametre le domaine
+		ArrayList<ActiviteModelBean> allActList = daoA.getActivitebyDomaine(domaine); // passer en parametre le domaine
 		ArrayList listeGeneral = new ArrayList();
 		List<String> nomAct = new ArrayList();
 		
@@ -86,6 +88,7 @@ public class RecupererActiviteServlet extends HttpServlet {
 			listeGeneral.add(liste);
 		}
 		
+
 		response.setContentType("application/json");
 		JSONArray arrayActiviteList;
 		PrintWriter out = response.getWriter();
@@ -141,7 +144,7 @@ public class RecupererActiviteServlet extends HttpServlet {
 				jsonActivite.put(DOMAINE_LABEL,activite.getDomaine());
 				jsonActivite.put(LIEN_PHOTO_LABEL,activite.getLienPhoto());
 				jsonActivite.put(IMPORTANCE_LABEL,activite.getImportance());
-				
+
 				arrayResponse.add(jsonActivite);
 			}
 			
