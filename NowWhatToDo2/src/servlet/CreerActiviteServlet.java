@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
 import org.json.simple.JSONObject;
 
 import dao.fabrique.DaoFabrique;
@@ -34,15 +36,43 @@ public class CreerActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	//Permet de verifier l'authentification sur la page creerActiviteAdmin
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String value = "";
+		//Vérifie si l'admin est connecté
+		HttpSession session = request.getSession();
+		if(session != null)
+		{
+			String login = (String) session.getAttribute("connecteAdmin");
+			if(login != null && login != "")
+			{
+				value = "oui";
+			}
+			else
+			{
+				value = "non";
+			}
+		}
+		else //Peu provable
+		{
+			value = "non";
+		}
+		
+		response.setContentType("application/json");
+		JSONObject jsonToSend = new JSONObject();
+		jsonToSend.put("connecte", value);
+		PrintWriter out = response.getWriter();
+		out.write(jsonToSend.toString());
+		out.close();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	//Renvoie le formulaire
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 

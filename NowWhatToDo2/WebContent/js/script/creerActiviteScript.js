@@ -1,3 +1,23 @@
+//Verifie l'authentication au chargement de la page
+function verifAuthentication()
+{
+	$.ajax({
+        url: '../../CreerActivite',
+        data: {
+        },
+        async: false,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+        	//Verifie le log
+        	if(data.connecte == "non")
+        	{
+        		location.href = "loginAdmin.html";
+    		}	
+        }
+    });
+}
+
 //Envoi du formulaire 
 function envoyerFormulaire() {
 
