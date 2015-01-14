@@ -1,3 +1,4 @@
+//Met a jour les données du formulaire
 function ajaxMiseAJour()
 {
 	var login = document.getElementById("login").value;
@@ -30,8 +31,8 @@ function ajaxMiseAJour()
 	        type: 'POST',
 	        dataType: 'json',
 	        success: function (data) {
-	        	//alert("Votre informations ont été modifiées avec success");
-	        	//location.href = "compte.html";
+	        	//alert("Vos informations ont été modifiées avec success");
+	        	location.href = "compte.html";
 	        },
 	        error: function (data) {
 	        	alert("Un problème est survenu, veuillez réessayer ultérieurement.");
@@ -44,6 +45,7 @@ function ajaxMiseAJour()
 	}
 }
 
+//Récupère les infos du formulaire dans la BD
 function getDonnees()
 {
 	$.ajax({

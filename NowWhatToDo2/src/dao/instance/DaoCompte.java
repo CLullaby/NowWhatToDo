@@ -193,7 +193,7 @@ public class DaoCompte {
 			return userList; 
 		}	
 		
-		public CompteModelBean getUserNom(String nom)
+		public CompteModelBean getUserLogin(String login)
 		{
 			//return value 
 			CompteModelBean userReturn = new CompteModelBean();
@@ -204,7 +204,7 @@ public class DaoCompte {
 				// create connection 
 				connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
 				query = connection.createStatement();
-				ResultSet resultat = query.executeQuery("SELECT * FROM Compte WHERE Nom = '" + nom + "'");
+				ResultSet resultat = query.executeQuery("SELECT * FROM Compte WHERE Identifiant = '" + login + "'");
 				//Extraction des données	
 				while (resultat.next())
 				{
@@ -232,7 +232,7 @@ public class DaoCompte {
 			//Affectation de la valeur de retour
 			if(!userList.isEmpty())
 			{
-				userReturn = userList.get(1);
+				userReturn = userList.get(0);
 			}
 			return userReturn;
 		}

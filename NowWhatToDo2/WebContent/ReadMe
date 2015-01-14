@@ -1,5 +1,7 @@
 ---------------------- BD ---------------------------
-
+Dans phpMyAdmin,
+- Créer la BD
+- Importer le fichier .sql
 
 ---------------------- DAO ---------------------
 Simplifier les requetes

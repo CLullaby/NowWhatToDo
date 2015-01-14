@@ -49,20 +49,21 @@ public class CompteServlet extends HttpServlet {
 			{
 				//Aller chercher les infos dans la BD
 				CompteModelBean compte = new CompteModelBean();
-				compte = DaoCompte.getUserNom(login);
-				
-				
-				//Former la reponse JSON
-				jsonToSend.put("etat", "loge");
-				jsonToSend.put("login", compte.getIdentifiant());
-				jsonToSend.put("email", compte.getEmail());
-				jsonToSend.put("nom", compte.getNom());
-				jsonToSend.put("prenom", compte.getPrenom());
-				jsonToSend.put("age", compte.getAge());
-				jsonToSend.put("adresse", compte.getAdresse());
-				jsonToSend.put("codePostal", compte.getCodePostal());
-				jsonToSend.put("tel", compte.getTel());
-				//Mdp, lienPhoto
+				compte = DaoCompte.getUserLogin(login);
+				if(compte != null)
+				{			
+					//Former la reponse JSON
+					jsonToSend.put("etat", "loge");
+					jsonToSend.put("login", compte.getIdentifiant());
+					jsonToSend.put("email", compte.getEmail());
+					jsonToSend.put("nom", compte.getNom());
+					jsonToSend.put("prenom", compte.getPrenom());
+					jsonToSend.put("age", compte.getAge());
+					jsonToSend.put("adresse", compte.getAdresse());
+					jsonToSend.put("codePostal", compte.getCodePostal());
+					jsonToSend.put("tel", compte.getTel());
+					//Mdp, lienPhoto
+				}
 			
 			}
 		}
@@ -111,7 +112,7 @@ public class CompteServlet extends HttpServlet {
 				if(session.getAttribute("connecte") != null)
 				{
 					String loginConnecte = (String) session.getAttribute("connecte");
-					CompteModelBean compteBd = DaoCompte.getUserNom(loginConnecte);
+					CompteModelBean compteBd = DaoCompte.getUserLogin(loginConnecte);
 					
 					//Création du nouveau compte
 					CompteModelBean compteNouveau = new CompteModelBean(nom, prenom, login, "", email, age, "", adresse, codePostal, telephone, compteBd.getRole());
@@ -119,7 +120,11 @@ public class CompteServlet extends HttpServlet {
 					//Appel a la DAO + update dans le BD
 					DaoCompte.updateUtilisateur(compteBd, compteNouveau); 
 					
-					response.sendRedirect("../vues/Compte/compte.html");
+					//Reconnecter si changement de Login
+					if(!login.equals(compteBd.getIdentifiant()))
+					{
+						session.setAttribute("connecte", login);
+					}
 				}
 			}
 			//else de non connecté -> Pb bizarre de code -> non utile a priori
