@@ -21,7 +21,7 @@ import dao.instance.DaoAvancement;
 /**
  * Servlet implementation class RecupererActiviteServlet
  */
-@WebServlet("/vues/accueil/RecupererActivite")
+@WebServlet("/RecupererActivite")
 public class RecupererActiviteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,8 +37,10 @@ public class RecupererActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String domaine = request.getParameter("domaine");
+		
 		DaoActivite daoA = DaoFabrique.getInstance().createActiviteDao();
-		ArrayList<ActiviteModelBean> allActList = daoA.getActivitebyDomaine("transport"); // passer en parametre le domaine
+		ArrayList<ActiviteModelBean> allActList = daoA.getActivitebyDomaine(domaine); // passer en parametre le domaine
 		ArrayList listeGeneral = new ArrayList();
 		List<String> nomAct = new ArrayList();
 		
@@ -66,6 +68,8 @@ public class RecupererActiviteServlet extends HttpServlet {
 			listeGeneral.add(liste);
 		}
 		
+		/////////////////////////////////////////////////////////////////////
+		//test 
 		for( Iterator<ArrayList> listIter = listeGeneral.iterator(); listIter.hasNext();){
 			for( Iterator<ActiviteModelBean> sublistIter = listIter.next().iterator(); sublistIter.hasNext();){
 				
