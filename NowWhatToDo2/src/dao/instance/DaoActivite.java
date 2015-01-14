@@ -237,4 +237,13 @@ public class DaoActivite {
 
 	}
 
+	//Fonction recherche
+	public ArrayList<ActiviteModelBean> RechercheParMotCle(String motCle)
+	{
+		ArrayList<ActiviteModelBean> listeRetour = new ArrayList<ActiviteModelBean>();
+		
+		
+		
+		return listeRetour;
+	}
 }

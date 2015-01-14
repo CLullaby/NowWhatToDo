@@ -51,24 +51,23 @@ public class AdminActiviteServlet extends HttpServlet {
 		{
 			String login = (String) session.getAttribute("connecteAdmin");
 			if(login != null && login != "")
-			{
-				
-			//Va chercher les données
-			DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
-			List<ActiviteModelBean> listeActivites = dao.getAllActivite();
-	
-			// Créer un JsonArray comprenant toutes les activités
-			JSONArray jsonArray = new JSONArray();
-			jsonArray.put(listeActivites);
-	
-			// Créer un json contenant le JsonArray
-			try {
-				jsonToSend.put("listeActivites", jsonArray.get(0));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			value = "oui";
+			{	
+				//Va chercher les données
+				DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
+				List<ActiviteModelBean> listeActivites = dao.getAllActivite();
+		
+				// Créer un JsonArray comprenant toutes les activités
+				JSONArray jsonArray = new JSONArray();
+				jsonArray.put(listeActivites);
+		
+				// Créer un json contenant le JsonArray
+				try {
+					jsonToSend.put("listeActivites", jsonArray.get(0));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				value = "oui";
 
 			
 			}
@@ -84,7 +83,6 @@ public class AdminActiviteServlet extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
-
 	}
 
 	/**
