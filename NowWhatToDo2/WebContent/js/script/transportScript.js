@@ -66,7 +66,7 @@ $(document).ready(function(){
 			
 			var stringLienPhoto = " ";
 			if(value['lienPhoto'] != ""){
-				stringLienPhoto = "</td><td><img src='"+cheminImage+value['lienPhoto']+"' width='"+arraySizeImages['SNCF']['width']+"' height='"+arraySizeImages['SNCF']['height']+"' alt='image'/></td></tr>";
+				stringLienPhoto = "<img src='"+cheminImage+value['lienPhoto']+"' width='"+arraySizeImages['SNCF']['width']+"' height='"+arraySizeImages['SNCF']['height']+"' alt='image'/></td></tr>";
 			}
 			
 			var stringDescription = " ";
@@ -74,19 +74,19 @@ $(document).ready(function(){
 				stringDescription = "<p class='text-justify'>"+value['Description']+"</p>";
 			}
 			
-			var stringDescriptionPhoto = " ";
-			if(stringDescription != " " && stringLienPhoto != " "){
-				stringDescriptionPhoto = "<table class='table'><tr><td>"+stringDescription+stringLienPhoto+"</table>";
-			}
+			var stringDescriptionPhoto= " "
+				if(value['Description'] != ""){
+					stringDescription = "<p class='text-justify'>"+value['Description']+"</p>";
+				}
 				
 			var stringTelephoneEtEmail = " ";
 			if(value['telephone'] != "" && value['email'] != ""){
-				stringTelephoneEtEmail = "<li class='list-group-item'>"+"<p class='text-justify'>Informations au "+value['telephone']+" ou par mail "+value['email']+"</p></li>";
+				stringTelephoneEtEmail = "<p class='text-justify'>Informations au "+value['telephone']+" ou par mail "+value['email']+"</p>";
 			}
 			
 			var stringSiteWeb = " ";
 			if(value['siteWeb'] != ""){
-				stringSiteWeb = "<li class='list-group-item'><a class='btn btn-md btn-theme04' href="+value['siteWeb']+" target='blank'>Site internet</a></li>";
+				stringSiteWeb = "<a class='btn btn-md btn-theme04' href="+value['siteWeb']+" target='blank'>Site internet</a>";
 			}
 			
 			var stringNomLieu = " ";
@@ -109,20 +109,6 @@ $(document).ready(function(){
 				stringVille = " "+value['ville']+"</p>";
 			}
 //			
-			var stringViewInfosLieu = " ";
-			var stringTotalEmplacementLieux = stringNomLieu+stringAdresse+stringCodePostal+stringVille;
-			var stringTotalContactLieux = "</li>"+stringTelephoneEtEmail+stringSiteWeb+"</ul>";
-			var stringTotalInfosLieu = stringTotalEmplacementLieux+stringTotalContactLieux;
-			if(stringTotalInfosLieu != " "){
-				stringViewInfosLieu = "<ul class='list-group'><li class='list-group-item'>"+stringTotalInfosLieu;
-			}
-			
-			var stringPanelBody = " ";
-			var stringBodyInfos = stringTotalInfosLieu+stringDescriptionPhoto; 
-			if(stringBodyInfos != " "){
-				stringPanelBody = "<div class='panel-body'>"+stringBodyInfos+"</div>";
-			}
-			
 //			"<div class='col-lg-6 col-md-6 col-sm-6 mb'>"
 //			+ "<div class='product-panel-2 pn' style='padding:0px 25px 0px 25px;'>"
 //				+"<div class='row'>"+stringNomActivite+"</div>"
@@ -140,9 +126,18 @@ $(document).ready(function(){
 			var stringDivActivite = 
 										 "<div class='col-lg-6 col-md-6 col-sm-6 mb'>"
 											+ "<div class='darkblue-panel'>"
-													+"<div class='panel-heading'>"+stringNomActivite+"</div>"
-													+stringPanelBody	
-											+"</div>"
+												+"<div class='panel-heading'>"+stringNomActivite+"</div>"
+													+"<div class='panel-body'>"	
+														+ "<ul class='list-group'>"
+													      	+"<li class='list-group-item'>"+stringNomLieu+stringAdresse+stringCodePostal+stringVille+"</li>"
+													      	+"<li class='list-group-item'>"+stringTelephoneEtEmail+"</li>"
+													      	+"<li class='list-group-item'>"+stringSiteWeb+"</li>"
+													    +"</ul>"
+													    +"<table class='table'>"
+													    	+"<tr><td>"+stringDescription+"</td><td>"+stringLienPhoto+"</td><td></tr>"
+													    +"</table>"
+													+"</div>"
+												+"</div>"
 										+"</div>"
 									
 			;

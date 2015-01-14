@@ -56,14 +56,17 @@ public class RecupererActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		//Recupération du nom de domaine sélectionée dans la page acceil
 		String domaine = request.getParameter("domaine");
 
+		//Récupération des activités du domaine dans la BD 
 		DaoActivite daoA = DaoFabrique.getInstance().createActiviteDao();
 		ArrayList<ActiviteModelBean> allActList = daoA.getActivitebyDomaine(domaine); // passer en parametre le domaine
 		ArrayList listeGeneral = new ArrayList();
 		List<String> nomAct = new ArrayList();
 		
+		//Création d'une liste contenant les noms d'activités recensées 
 		for (Iterator<ActiviteModelBean> actIter = allActList.iterator(); actIter.hasNext();)
 		{
 			ActiviteModelBean current = actIter.next();
@@ -72,8 +75,9 @@ public class RecupererActiviteServlet extends HttpServlet {
 				nomAct.add(current.getNomActivite());
 				//System.out.println(" nom d'act :" + current.getNomActivite() + " ");
 			}
-		} //cree une liste avec tout les noms d'activites du domaine
+		} 
 		
+		//Création d'une liste d'ActiviteModelBean triées par nom d'activité
 		for(int i = 0; i< nomAct.size(); i++)
 		{
 			ArrayList<ActiviteModelBean> liste  = new ArrayList<ActiviteModelBean>();
@@ -88,12 +92,13 @@ public class RecupererActiviteServlet extends HttpServlet {
 			listeGeneral.add(liste);
 		}
 		
-
+		//Ininitialisation de l'envoi du tableau de json vers transportScript.js
 		response.setContentType("application/json");
 		JSONArray arrayActiviteList;
 		PrintWriter out = response.getWriter();
 		
 		try {
+			//Remplissage du tableau avec la liste d'ActiviteModelBean créée précédemment
 			arrayActiviteList = createJSONtoSend(listeGeneral);
 			out.write(arrayActiviteList.toString());
 			System.out.println(arrayActiviteList);
@@ -115,14 +120,13 @@ public class RecupererActiviteServlet extends HttpServlet {
 //		
 	}
 	
-
+	//Fonction remplissant le tableau de structures JSON avec des couples clé/valeur correspondant aux noms de colonnes de la BD avec leur valaurs correspondantes
 	public JSONArray createJSONtoSend(ArrayList<ArrayList> listActivite) throws JSONException{
 
 		JSONArray arrayResponse = new JSONArray();
 		Iterator<ArrayList> iterator = listActivite.iterator();
 
 		
-		//for (ActiviteModelBean activite : listActivite) {
 		while(iterator.hasNext()) {
 	
 			Iterator<ActiviteModelBean> itActivite = iterator.next().iterator();
