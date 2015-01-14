@@ -84,6 +84,7 @@ public class AdminActiviteServlet extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
+		out.close();
 
 	}
 
@@ -114,6 +115,7 @@ public class AdminActiviteServlet extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
+		out.close();
 	}
 
 }

@@ -55,7 +55,7 @@ public class CreerActiviteServlet extends HttpServlet {
 				value = "non";
 			}
 		}
-		else //Peu provable
+		else //Peu probable
 		{
 			value = "non";
 		}
@@ -76,6 +76,8 @@ public class CreerActiviteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		
+		//Récupération des champs envoyés depuis le formulaire HTML
 		String domaine = request.getParameter("domaine");
 		String activite = request.getParameter("activite");
 		String lieu = request.getParameter("lieu");
@@ -89,8 +91,10 @@ public class CreerActiviteServlet extends HttpServlet {
 		String lienPhoto = request.getParameter("lienPhoto");
 		String importance = request.getParameter("importance");
 
+		//Parse l'importance en integer
 		int importanceInteger = Integer.parseInt(importance);
 
+		//Ajout de l'activité en base de données
 		ActiviteModelBean newActivite = new ActiviteModelBean(activite,
 				description, lieu, adresse, ville, codePostal, siteWeb,
 				telephone, email, domaine, lienPhoto, importanceInteger);
@@ -107,6 +111,7 @@ public class CreerActiviteServlet extends HttpServlet {
 		// Send the Json object to the web browser
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
+		out.close();
 	}
 
 }

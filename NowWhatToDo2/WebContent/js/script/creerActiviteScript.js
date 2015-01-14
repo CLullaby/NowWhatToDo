@@ -1,111 +1,115 @@
 //Verifie l'authentication au chargement de la page
-function verifAuthentication()
-{
+function verifAuthentication() {
 	$.ajax({
-        url: '../../CreerActivite',
-        data: {
-        },
-        async: false,
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-        	//Verifie le log
-        	if(data.connecte == "non")
-        	{
-        		location.href = "loginAdmin.html";
-    		}	
-        }
-    });
+		url : '../../CreerActivite',
+		data : {},
+		async : false,
+		type : 'GET',
+		dataType : 'json',
+		success : function(data) {
+			// Verifie le log
+			if (data.connecte == "non") {
+				location.href = "loginAdmin.html";
+			}
+		}
+	});
 }
 
-//Envoi du formulaire 
-function envoyerFormulaire() {
+// Envoi du formulaire
+// function envoyerFormulaire() {
 
-	// Récupération de l'id dans l'URL si existant
-	var idActivite = getUrlParameter('id');
+$("#buttonSend").click(
+				function() {
+					
+					//On vérifie que le formulaire est correctement rempli avant envoi
+					if($("form")[0].checkValidity()) {
+					// Récupération de l'id dans l'URL si existant
+					var idActivite = getUrlParameter('id');
 
-	// Récupération des valeurs du formulaire
-	var domaine = document.getElementById("domaine").value;
-	var activite = document.getElementById("activite").value;
-	var lieu = document.getElementById("lieu").value;
-	var adresse = document.getElementById("adresse").value;
-	var ville = document.getElementById("ville").value;
-	var codePostal = document.getElementById("codePostal").value;
-	var siteWeb = document.getElementById("siteWeb").value;
-	var telephone = document.getElementById("telephone").value;
-	var email = document.getElementById("email").value;
-	var description = document.getElementById("description").value;
-	var lienPhoto = document.getElementById("lienPhoto").value;
-	var importance = document.getElementById("importance").value;
-	
-	// Si on crée une activité
-	if (idActivite == null) {
-	
-		//if(domaine != "" && activite !="" && lieu !="" && adresse !=""  && ville !="" && codePostal !="" && siteWeb !="" && telephone !="" && email !="" && lienPhoto !="" && importance !=""){
-		$.ajax({
-					url : '../../CreerActivite',
-					data : {
-						domaine : domaine,
-						activite : activite,
-						lieu : lieu,
-						adresse : adresse,
-						ville : ville,
-						codePostal : codePostal,
-						siteWeb : siteWeb,
-						telephone : telephone,
-						email : email,
-						description : description,
-						lienPhoto : lienPhoto,
-						importance : importance
-					},
-					async : false,
-					type : 'POST',
-					dataType : 'json',
-					success : function(data) {
-						alert("Activité créee avec succès");
-						location.href = "adminActivite.html";
-					},
-					error : function(data) {
-						alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+					// Récupération des valeurs du formulaire
+					var domaine = document.getElementById("domaine").value;
+					var activite = document.getElementById("activite").value;
+					var lieu = document.getElementById("lieu").value;
+					var adresse = document.getElementById("adresse").value;
+					var ville = document.getElementById("ville").value;
+					var codePostal = document.getElementById("codePostal").value;
+					var siteWeb = document.getElementById("siteWeb").value;
+					var telephone = document.getElementById("telephone").value;
+					var email = document.getElementById("email").value;
+					var description = document.getElementById("description").value;
+					var lienPhoto = document.getElementById("lienPhoto").value;
+					var importance = document.getElementById("importance").value;
+
+					// Si on crée une activité
+					if (idActivite == null) {
+
+						$.ajax({
+									url : '../../CreerActivite',
+									data : {
+										domaine : domaine,
+										activite : activite,
+										lieu : lieu,
+										adresse : adresse,
+										ville : ville,
+										codePostal : codePostal,
+										siteWeb : siteWeb,
+										telephone : telephone,
+										email : email,
+										description : description,
+										lienPhoto : lienPhoto,
+										importance : importance
+									},
+									async : false,
+									type : 'POST',
+									dataType : 'json',
+									success : function(data) {
+										alert("Activité créee avec succès");
+										location.href = "adminActivite.html";
+									},
+									error : function(data) {
+										alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+									}
+								});
+						// }
+					}
+
+					// Si on veut modifier une activité
+					else {
+						$.ajax({
+									url : '../../ModifierActivite',
+									data : {
+										id : idActivite,
+										domaine : domaine,
+										activite : activite,
+										lieu : lieu,
+										adresse : adresse,
+										ville : ville,
+										codePostal : codePostal,
+										siteWeb : siteWeb,
+										telephone : telephone,
+										email : email,
+										description : description,
+										lienPhoto : lienPhoto,
+										importance : importance
+									},
+									async : false,
+									type : 'POST',
+									dataType : 'json',
+									success : function(data) {
+										alert("Activité modifiée avec succès");
+										location.href = "adminActivite.html";
+									},
+									error : function(data) {
+										alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+									}
+								});
+					}
+					} 
+					//Si le formulaire est mal rempli, pas d'envoi du formulaire et messages d'erreur HTML5
+					else{
+						console.log("INVALID FORM!")
 					}
 				});
-		//}
-	}
-	
-	
-	// Si on veut modifier une activité
-	else{
-		$.ajax({
-			url : '../../ModifierActivite',
-			data : {
-				id : idActivite,
-				domaine : domaine,
-				activite : activite,
-				lieu : lieu,
-				adresse : adresse,
-				ville : ville,
-				codePostal : codePostal,
-				siteWeb : siteWeb,
-				telephone : telephone,
-				email : email,
-				description : description,
-				lienPhoto : lienPhoto,
-				importance : importance
-			},
-			async : false,
-			type : 'POST',
-			dataType : 'json',
-			success : function(data) {
-				alert("Activité modifiée avec succès");
-				location.href = "adminActivite.html";
-			},
-			error : function(data) {
-				alert("Un problème est survenu, veuillez réessayer ultérieurement.");
-			}
-		});
-	}
-
-}
 
 // Vérifie si le formulaire sert pour la création ou la modification d'activité
 // (paramètre "id" dans l'url pour les modifications)
@@ -117,15 +121,15 @@ function verifierAction() {
 	// modifier
 	if (idActivite != null) {
 		recupererActivite(idActivite);
-		
+
 		// Modification du texte dans le bouton d'envoi
 		var boutonEnvoi = document.getElementById("buttonSend");
 		boutonEnvoi.innerHTML = "Modifier l'activité";
-		
-		//Modification du titre du formulaire
+
+		// Modification du titre du formulaire
 		var titreFormulaire = document.getElementById("titleForm");
 		titreFormulaire.innerHTML = "Modifier l'activité"
-		}
+	}
 
 }
 // Récupéré sur

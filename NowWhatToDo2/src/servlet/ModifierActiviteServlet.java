@@ -64,6 +64,7 @@ public class ModifierActiviteServlet extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
+		out.close();
 	}
 
 	/**
@@ -111,6 +112,7 @@ public class ModifierActiviteServlet extends HttpServlet {
 		// Send the Json object to the web browser
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
+		out.close();
 		
 	}
 

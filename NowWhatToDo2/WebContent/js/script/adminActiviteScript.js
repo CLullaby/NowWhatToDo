@@ -100,6 +100,9 @@ function getActivites() {
 							// Fermeture de la balise ligne
 							tableauHtml.innerHTML += "</tr>";
 						}
+						
+//						//Trigger pour avertir de l'ajout dynamique de lignes dans le tableau
+//						$('.tablesorter').trigger('update');
 					}
 					else
 					{
@@ -110,6 +113,7 @@ function getActivites() {
 					alert("Les activités n'ont pas pu être chargées correctement.");
 				}
 			});
+//	triTableau();
 }
 
 function supprimerActivite(idActivite) {
@@ -141,23 +145,12 @@ function supprimerActivite(idActivite) {
 function modifierActivite(idActivite) {
 	console.log("modif");
 	
-//	$.ajax({
-//        url: '../../vues/Admin/creerActivite.html',
-//        data: {
-//			action : "modifier",
-//			id : idActivite
-//        },
-//        async: false,
-//        type: 'GET',
-//        dataType: 'json',
-//        success: function (data) {
-//        	alert("Activité modifiée avec succès");
-//        	location.href = "creerActivite.html";
-//        },
-//        error: function (data) {
-//        	alert("Un problème est survenu, veuillez réessayer ultérieurement.");
-//        }
-//    });
 	//Renvoi vers le formulaire de modification d'activité avec l'id de l'activité en paramètre
 	location.href="creerActivite.html?id="+idActivite;
 }
+
+
+////Fonction qui permet le tri du tableau par paramètre
+//function triTableau(){
+//	$("#tableauActivites").tablesorter();
+//}
