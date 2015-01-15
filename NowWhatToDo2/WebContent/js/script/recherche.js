@@ -20,7 +20,7 @@ function lancerRecherche()
 	        		
 	        		$('#messageVide').addClass('messageVide');
 	        		var span = document.createElement("p");
-	        		var text = document.createTextNode("Mot introuvable");
+	        		var text = document.createTextNode("Aucun résultat.");
 	        		span.appendChild(text);	
 	            	//Permet de supprimer si un message est déja présent
 	            	var elm = document.getElementById('messageVide');
@@ -51,18 +51,12 @@ function lancerRecherche()
 			        	activite['lienPhoto'] = jsonActivite.lienPhoto;
 			        	activite['importance'] = jsonActivite.importance;
 		        		
-		        		activiteTable.push(activite);
-		        		
-	        		
+		        		activiteTable.push(activite);	
 	        		}
 	        		
 	        		//Affichage du résultat de la recherche dans le div 
 	        		afficherHtmlActivite($("#resultatRecherche"), activiteTable, cheminImage/*, arraySizeImages*/);
-	        		
-	        		
 	        	}
-	        	
-	        	
 	        }
 	    });
 	}
