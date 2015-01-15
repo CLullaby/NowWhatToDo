@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,10 +17,8 @@ import org.json.JSONObject;
 import org.json.simple.JSONArray;
 
 import model.ActiviteModelBean;
-import model.AvancementActiviteModelBean;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;
-import dao.instance.DaoAvancement;
 
 /**
  * Servlet implementation class RecupererActiviteServlet
