@@ -8,7 +8,7 @@ Simplifier les requetes
 
 Mail Service : a déployer + mettre le mdp + idendifiant du serveur
 
-Recherche par mot clé : ok pour des caras qui se suivent peut importe la casse (mais pas l'oubli de lettre )
+Recherche par mot clé : ok pour des caracteres qui se suivent, peut importe la casse (mais pas l'oubli de lettre )
 
 --------------------- Model ------------------------
 
@@ -17,7 +17,7 @@ Recherche par mot clé : ok pour des caras qui se suivent peut importe la casse (
 
 Compte: faire un choix au niveau de la sélection de domaine. Sélection faite au préalable ou via une liste déroulante dans la page compte qui permet de chager le contenu associé automatiquement
 
-Form Bootstrap : supprimer l'action entréé / modif qui rafraichi le formulaire
+Form Bootstrap : supprimer l'action entréé du clavier
 
 Page Accueil + aide user + aide admin
 
@@ -29,5 +29,4 @@ Un admin possedera un seul compte pour manager et parcourir l'appli/site.
 Il aura accès a toutes les fonctionnalités + pourra manager le contenu du site en allant dans Menu -> Autres -> Administration
 
 Css:Pour bootstrap chercher "modif" permet de retrouver le css modifié.
-
 
