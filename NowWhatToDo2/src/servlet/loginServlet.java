@@ -82,8 +82,7 @@ public class loginServlet extends HttpServlet {
 	    	mdp =  (String) values.get(MOT_DE_PASSE_LABEL);
 		}
    
-	   //if(daoCompte.checkUtilisateur(login, mdp))
-	   if(login.equals("aaa"))
+	   if(daoCompte.checkUtilisateur(login, mdp))
 	   {		
 		   HttpSession session = request.getSession();
 		   if(session != null)

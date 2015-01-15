@@ -24,12 +24,13 @@ import dao.instance.DaoAvancement;
 @WebServlet("/RecupererActivite")
 public class RecupererActiviteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private DaoActivite daoA;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public RecupererActiviteServlet() {
         super();
+        daoA = DaoFabrique.getInstance().createActiviteDao();
         // TODO Auto-generated constructor stub
     }
 
@@ -37,13 +38,15 @@ public class RecupererActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//recuperation du parametre
 		String domaine = request.getParameter("domaine");
 		
-		DaoActivite daoA = DaoFabrique.getInstance().createActiviteDao();
+		//declaration de listes
 		ArrayList<ActiviteModelBean> allActList = daoA.getActivitebyDomaine(domaine); // passer en parametre le domaine
 		ArrayList listeGeneral = new ArrayList();
 		List<String> nomAct = new ArrayList();
 		
+		//initialisation de la liste en recuperant tout les nom d'activite dans le domaine recupere
 		for (Iterator<ActiviteModelBean> actIter = allActList.iterator(); actIter.hasNext();)
 		{
 			ActiviteModelBean current = actIter.next();
@@ -52,19 +55,23 @@ public class RecupererActiviteServlet extends HttpServlet {
 				nomAct.add(current.getNomActivite());
 				System.out.println(" nom d'act :" + current.getNomActivite() + " ");
 			}
-		} //cree une liste avec tout les noms d'activites du domaine
+		}
 		
 		for(int i = 0; i< nomAct.size(); i++)
 		{
+			//chaque itteration correspond a une nouvelle activite
 			ArrayList<ActiviteModelBean> liste  = new ArrayList<ActiviteModelBean>();
 			for (Iterator<ActiviteModelBean> actIter = allActList.iterator(); actIter.hasNext();)
-			{		
+			{	
+				//si le nom de l'activite courrante correspond au nom de l'activite de l'element courant
+				//on ajoute le bean dans la liste courante 
 				ActiviteModelBean current = actIter.next();
 				if(current.getNomActivite().equals(nomAct.get(i)))
 				{
 					liste.add(current);
 				}
 			}
+			//pour ne pas perdre les listes on les mets dans une liste de liste
 			listeGeneral.add(liste);
 		}
 		

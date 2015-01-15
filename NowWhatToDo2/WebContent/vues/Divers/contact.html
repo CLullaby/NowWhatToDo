@@ -29,28 +29,28 @@
 		<div class="col-lg-6 col-md-6 col-xs-12">
 	       <div class="form-panel">
 	       	  <h4 class="mb centered">Nous contacter</h4>
-	           <form class="form-horizontal style-form" method="post" action="">
+	           <form id=contactForm" class="form-horizontal style-form" method="post" action="SendMail">
 	               <div class="form-group">
 	                   <label class="col-sm-2 control-label">Nom</label>
 	                   <div class="col-sm-10">
-	                       <input type="text" class="form-control" placeholder="Nom"/>
+	                       <input type="text" name="nom" class="form-control" placeholder="Nom"/>
 	                   </div>
 	               </div>
 	               <div class="form-group">
 	                   <label class="col-sm-2 control-label">Adresse mail</label>
 	                   <div class="col-sm-10">
-	                       <input type="email" class="form-control" placeholder="Adresse mail" />
+	                       <input type="email" name="to" class="form-control" placeholder="Adresse mail" />
 	                   </div>
 	               </div>
 	               <div class="form-group">
 	                   <label class="col-sm-2 control-label">Message</label>
 	                   <div class="col-sm-10">
-	                   	   <textarea rows="8" class="form-control" placeholder="Message"></textarea>
+	                   	   <textarea rows="8" name="message" class="form-control" placeholder="Message"></textarea>
 	                   </div>
 	               </div>
 	               <div class="form-group centered">
 	                   <div class="col-sm-12">
-	                       <input type="submit" class="form-control btn btn-success" value="Envoyer" />
+	                       <input id="sendMail" type="submit" class="form-control btn btn-success" value="Envoyer" />
 	                   </div>
 	               </div>
 	           </form>
@@ -66,5 +66,18 @@
 	    	</div>
 	    </div>
     </div>
+    <!-- js placed at the end of the document so the pages load faster -->
+
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="../../js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="../../js/jquery.scrollTo.min.js"></script>
+    <script src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="../../js/jquery.sparkline.js"></script>
+
+    <!--common script for all pages-->
+    <script src="../../js/common-scripts.js"></script>
+     <script src="../../js/script/sendMailScript.js"></script>
 </body>
 </html>

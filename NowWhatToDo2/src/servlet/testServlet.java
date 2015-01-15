@@ -13,11 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
 import model.ActiviteModelBean;
 import model.AvancementActiviteModelBean;
 import model.CompteModelBean;
 //import model.DomaineModelBean;
 import model.LoginBean;
+import model.MsgSend;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;
 import dao.instance.DaoAvancement;
@@ -54,12 +57,18 @@ public class testServlet extends HttpServlet {
 		DaoCompte dao = DaoFabrique.getInstance().createUserDao();
 		DaoAvancement daoA = DaoFabrique.getInstance().createAvancementDao();
 		
-		LoginBean test = new LoginBean("bla", "bla", false);
-		if (dao.checkUtilisateur("bla", "bla"))
-		{
-			System.out.println("utilisateur dans BD");
-		}
-		System.out.println(dao.hasher(test.getMotDePasse()));
+		MsgSend mail = new MsgSend();
+		
+		boolean resMail;
+		resMail = mail.envoiMail();
+		System.out.println(resMail);
+//		
+//		LoginBean test = new LoginBean("bla", "bla", false);
+//		if (dao.checkUtilisateur("bla", "bla"))
+//		{
+//			System.out.println("utilisateur dans BD");
+//		}
+//		System.out.println(dao.hasher(test.getMotDePasse()));
 		
 //		CompteModelBean user = new CompteModelBean();
 //		user.setNom("blabla");
@@ -86,33 +95,33 @@ public class testServlet extends HttpServlet {
 //		
 //		dao.addUtilisateur(user2);
 		
-		AvancementActiviteModelBean act = new AvancementActiviteModelBean();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		act.setAvancement(10);
-		act.setDateDebut("30-09-09");
-		act.setDateFin("02-02-10");
-		act.setCeCompte(1);
-		act.setCeActivite(2);
-		daoA.deleteAvancementActivite(3);
-		AvancementActiviteModelBean act2 = new AvancementActiviteModelBean();
+//		AvancementActiviteModelBean act = new AvancementActiviteModelBean();
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//		act.setAvancement(10);
+//		act.setDateDebut("30-09-09");
+//		act.setDateFin("02-02-10");
+//		act.setCeCompte(1);
+//		act.setCeActivite(2);
+//		daoA.deleteAvancementActivite(3);
+//		AvancementActiviteModelBean act2 = new AvancementActiviteModelBean();
 		//SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		act2.setAvancement(7);
-		act2.setDateDebut("02-06-06");
-		act2.setDateFin("05-06-07");
-		act2.setCeCompte(3);
-		act2.setCeActivite(4);
+//		act2.setAvancement(7);
+//		act2.setDateDebut("02-06-06");
+//		act2.setDateFin("05-06-07");
+//		act2.setCeCompte(3);
+//		act2.setCeActivite(4);
+//		
+//		daoA.updateAvancement(50, act2);
 		
-		daoA.updateAvancement(50, act2);
 		
-		
-		ArrayList<AvancementActiviteModelBean> userList = daoA.getAvancementActiviteByAvancement(50);
-		for(AvancementActiviteModelBean user: userList)
-		{
-			System.out.println(user.getAvancement() + " "+ user.getDateDebut());
-		}
-		
-		System.out.println("hello je suis cense avoir ecrit");
-		
+//		ArrayList<AvancementActiviteModelBean> userList = daoA.getAvancementActiviteByAvancement(50);
+//		for(AvancementActiviteModelBean user: userList)
+//		{
+//			System.out.println(user.getAvancement() + " "+ user.getDateDebut());
+//		}
+//		
+//		System.out.println("hello je suis cense avoir ecrit");
+//		
 		
 		//Tests création - mise à jour d'activités et domaines
 		//Attention créer les domaines avant les activités (contrainte de clé etrangère)
