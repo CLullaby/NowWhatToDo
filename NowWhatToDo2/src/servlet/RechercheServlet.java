@@ -45,7 +45,7 @@ public class RechercheServlet extends HttpServlet {
 	//Renvoie le résultat de la recherche
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String motCle = request.getParameter("motCle");
-		motCle.toLowerCase();
+		motCle = motCle.toLowerCase();
 		ArrayList<ActiviteModelBean> liste = DaoActivite.RechercheParMotCle(motCle);
 		
 		for( Iterator<ActiviteModelBean> listIter = liste.iterator(); listIter.hasNext();){
