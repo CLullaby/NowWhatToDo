@@ -91,6 +91,10 @@ public class CreerActiviteServlet extends HttpServlet {
 		String lienPhoto = request.getParameter("lienPhoto");
 		String importance = request.getParameter("importance");
 
+		//Passer le domaine et l'activité en minuscule (pour faciliter la recherche par mot clé par la suite)
+		domaine = domaine.toLowerCase();
+		activite = activite.toLowerCase();	
+		
 		//Parse l'importance en integer
 		int importanceInteger = Integer.parseInt(importance);
 

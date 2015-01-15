@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,9 +45,12 @@ public class RechercheServlet extends HttpServlet {
 	//Renvoie le résultat de la recherche
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String motCle = request.getParameter("motCle");
-		
+		motCle.toLowerCase();
 		ArrayList<ActiviteModelBean> liste = DaoActivite.RechercheParMotCle(motCle);
 		
+		for( Iterator<ActiviteModelBean> listIter = liste.iterator(); listIter.hasNext();){
+				System.out.println("resultat recherche "+ listIter.next().getNomActivite() +" ");
+		}
 		
 		JSONObject jsonToSend = new JSONObject();
 		

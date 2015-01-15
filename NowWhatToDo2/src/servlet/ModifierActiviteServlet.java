@@ -45,10 +45,16 @@ public class ModifierActiviteServlet extends HttpServlet {
 		DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
 		ActiviteModelBean activite = dao.getActiviteById(id);
 
+		//Passer le domaine et l'activité en minuscule (pour faciliter la recherche par mot clé par la suite)
+		String domaine = activite.getDomaine();
+		domaine = domaine.toLowerCase();
+		String nomActivite = activite.getNomActivite();
+		nomActivite = nomActivite.toLowerCase();
+		
 		// Créer un json contenant le JsonArray
 		JSONObject jsonToSend = new JSONObject();
-		jsonToSend.put("domaine", activite.getDomaine());
-		jsonToSend.put("nomActivite", activite.getNomActivite());
+		jsonToSend.put("domaine", domaine);
+		jsonToSend.put("nomActivite", nomActivite);
 		jsonToSend.put("nomLieu",activite.getNomLieu());
 		jsonToSend.put("adresse", activite.getAdresse());
 		jsonToSend.put("ville", activite.getVille());

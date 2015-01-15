@@ -88,6 +88,7 @@ public class loginServlet extends HttpServlet {
 		   if(session != null)
 		   {
 			   session.setAttribute("connecte", login);
+			   
 		   }
 		   value = "oui";
 	   }
