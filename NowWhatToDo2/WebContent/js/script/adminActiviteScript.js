@@ -35,7 +35,7 @@ function getActivites() {
 							var domaine = activiteJson.domaine;
 							var lienPhoto = activiteJson.lienPhoto;
 							var importance = activiteJson.importance;
-	
+													
 							// Récupération du tableau dans la page HTML
 							var tableauHtml = document
 									.getElementById("tableauActivites");

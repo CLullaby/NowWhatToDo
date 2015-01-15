@@ -128,7 +128,7 @@ public class DaoActivite {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
 					+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 			query = connection.createStatement();
-			ResultSet resultat = query.executeQuery("SELECT * FROM Activite");
+			ResultSet resultat = query.executeQuery("SELECT * FROM Activite ORDER BY Domaine");
 			// Extraction des données
 			while (resultat.next()) {
 				ActiviteModelBean model = new ActiviteModelBean();
