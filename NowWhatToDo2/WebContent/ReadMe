@@ -6,6 +6,9 @@ Dans phpMyAdmin,
 ---------------------- DAO ---------------------
 Simplifier les requetes
 
+Mail Service : a déployer + mettre le mdp + idendifiant du serveur
+
+Recherche par mot clé : ok pour des caras qui se suivent peut importe la casse (mais pas l'oubli de lettre )
 
 --------------------- Model ------------------------
 
@@ -16,12 +19,14 @@ Compte: faire un choix au niveau de la sélection de domaine. Sélection faite au 
 
 Form Bootstrap : supprimer l'action entréé / modif qui rafraichi le formulaire
 
+Page Accueil + aide user + aide admin
+
+Gamification page compte
 
 ----------------- Général ------------------------
 Administration :
 Un admin possedera un seul compte pour manager et parcourir l'appli/site.
 Il aura accès a toutes les fonctionnalités + pourra manager le contenu du site en allant dans Menu -> Autres -> Administration
-
 
 Css:Pour bootstrap chercher "modif" permet de retrouver le css modifié.
 
