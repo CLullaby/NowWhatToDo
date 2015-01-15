@@ -93,8 +93,14 @@ function afficherHtmlActivite(elmToAppend, activiteTable, cheminImage/*, arraySi
 		
 		var stringLienPhoto = "";
 		if(value['lienPhoto'] != ""){
-			stringLienPhoto = "<img src='" + cheminImage + value['lienPhoto'] + "' width='50%' height='50%' style='max-heigth: 100px; max-width: 100px;' alt='Image activite'/>"
+			stringLienPhoto = "<img src='" + cheminImage + value['lienPhoto'] + "' width='50%' height='50%' style='max-heigth: 100px; max-width: 100px;' alt='Image activite'/>";
 			/*stringLienPhoto = "<img src='"+cheminImage+value['lienPhoto']+"' width='"+arraySizeImages['SNCF']['width']+"' height='"+arraySizeImages['SNCF']['height']+"' alt='image'/></td></tr>";*/
+		}
+		
+		var stringImportance ="";
+		if(value['importance'] != "")
+		{
+			stringImportance = value['importance'];
 		}
 		
 		var stringDivActivite = 			

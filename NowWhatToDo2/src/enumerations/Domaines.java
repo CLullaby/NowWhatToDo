@@ -1,7 +1,7 @@
 package enumerations;
 
 public enum Domaines {
-	Administration("Administration"), Travail("Travail"), Transport("Transport"), Alimentation("Alimentation"), Sante("Sante"), Services("Services"), Logement("Logement"), Loisir("Loisir");
+	Administration("administration"), Travail("travail"), Transport("transport"), Alimentation("alimentation"), Sante("sante"), Services("services"), Logement("logement"), Loisir("loisir");
 	
 	private String value;
 	

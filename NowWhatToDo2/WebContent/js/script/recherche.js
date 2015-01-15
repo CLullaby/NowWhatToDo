@@ -2,6 +2,7 @@ function lancerRecherche()
 {
 	var activiteTable = [];
 	var motCle = document.getElementById("inputMotCle").value;
+	 var cheminImage = "../../img/";
 	if(motCle.match(/^[A-Za-z0-9_-]{3,30}$/) && motCle != "")
 	{
 		$.ajax({
@@ -13,14 +14,13 @@ function lancerRecherche()
 	        type: 'POST',
 	        dataType: 'json',
 	        success: function (data) {
-	        	//Pensez a dire si la liste est vide ici ou dans le JS
 	        	
-	        	//data.liste
+	        	//Message qui s'affiche si aucun résultat n'est trouvé soit quand data est vide
 	        	if(jQuery.isEmptyObject(data)){
 	        		
 	        		$('#messageVide').addClass('messageVide');
 	        		var span = document.createElement("p");
-	        		var text = document.createTextNode("Mot introuvable");
+	        		var text = document.createTextNode("Aucun résultat.");
 	        		span.appendChild(text);	
 	            	//Permet de supprimer si un message est déja présent
 	            	var elm = document.getElementById('messageVide');
@@ -32,40 +32,37 @@ function lancerRecherche()
 	        	}
 	        	else{
 	        		
+	        		//On construit une liste de tableaux d'activité
 	        		for(var i=0; i<data.length; i++){
 	    	        	
 		        		var activite = [];
 		        		var jsonActivite = data[i];
 		        		
-		        		//alert(jsonActivite);
+			        	activite['nomActivite'] = jsonActivite.nomActivite;
+			        	activite['Description'] = jsonActivite.Description;
+			        	activite['nomLieu'] = jsonActivite.nomLieu;
+			        	activite['adresse'] = jsonActivite.adresse;
+			        	activite['ville'] = jsonActivite.ville;
+			        	activite['codePostal'] = jsonActivite.codePostal;
+			        	activite['siteWeb'] = jsonActivite.siteWeb;
+			        	activite['telephone'] = jsonActivite.telephone;
+			        	activite['email'] = jsonActivite.email;
+			        	activite['domaine'] = jsonActivite.domaine;
+			        	activite['lienPhoto'] = jsonActivite.lienPhoto;
+			        	activite['importance'] = jsonActivite.importance;
 		        		
-		        		activite['nomActivite'] = jsonActivite.nomActivite;
-		        		activite['Description'] = jsonActivite.Description;
-		        		activite['nomLieu'] = jsonActivite.nomLieu;
-		        		activite['adresse'] = jsonActivite.adresse;
-		        		activite['ville'] = jsonActivite.ville;
-		        		activite['codePostal'] = jsonActivite.codePostal;
-		        		activite['siteWeb'] = jsonActivite.siteWeb;
-		        		activite['telephone'] = jsonActivite.telephone;
-		        		activite['email'] = jsonActivite.email;
-		        		activite['domaine'] = jsonActivite.domaine;
-		        		activite['lienPhoto'] = jsonActivite.lienPhoto;
-		        		activite['importance'] = jsonActivite.importance;
-		        		
-		        		activiteTable.push(activite);
-		        		
-	        		
+		        		activiteTable.push(activite);	
 	        		}
 	        		
-	        		displayActivite(activiteTable,cheminImage,arraySizeImages);
+	        		//Affichage du résultat de la recherche dans le div 
+	        		afficherHtmlActivite($("#resultatRecherche"), activiteTable, cheminImage/*, arraySizeImages*/);
 	        	}
-	        	
-	        	
 	        }
 	    });
 	}
 	else
 	{
+		//Message d'erreur si mauvaise saisie du mot
 		$('#messageErreur').addClass('messageErreur');
 		var span = document.createElement("span");
 		var text = document.createTextNode("Veuillez rentrez un mot clé d'au moins 3 caractères avant de lancer la recherche !");
@@ -80,38 +77,5 @@ function lancerRecherche()
 
 }
 
-function displayActivite(activiteTable,cheminImage,arraySizeImages){
-	
-	$.each(activiteTable,function(key,value){	
-		
-		var stringNomActivite = value['nomActivite'];
-		var stringNomLieu = value['nomLieu'];
-		var stringAdresse = value['adresse'];
-		var stringCodePostal = value['codePostal'];
-		var stringVille = value['ville'];
-		var stringTelephone = value['telephone'];
-		var stringEmail = value['email'];
-		var stringTelephoneEtEmail = "<p>"+stringTelephone+" et "+stringEmail;
-		var stringSiteWeb = value['siteWeb'];
-		var stringDescription = value['Description'];
-		var stringLienPhoto = value['lienPhoto'];
-		
-		
-		var stringDivActivite = 
-									 
-											+"<p>"+stringNomActivite+"</p>"
-													+ "<ul class='list-group'>"
-												      	+"<li class='list-group-item'>"+stringNomLieu+stringAdresse+stringCodePostal+stringVille+"</li>"
-												      	+"<li class='list-group-item'>"+stringTelephoneEtEmail+"</li>"
-												      	+"<li class='list-group-item'>"+stringSiteWeb+"</li>"
-												    +"</ul>"
-												    +"<p>"+stringDescription+"</p>"
-												    +"<p>"+stringLienPhoto+"</p>"
-												    
-								
-		;
-		$(".resultatRecherche").append(stringDivActivite);
-	});
 
-}
 	

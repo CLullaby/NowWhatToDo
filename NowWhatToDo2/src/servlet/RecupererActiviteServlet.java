@@ -104,7 +104,7 @@ public class RecupererActiviteServlet extends HttpServlet {
 			//Remplissage du tableau avec la liste d'ActiviteModelBean créée précédemment
 			arrayActiviteList = createJSONtoSend(listeGeneral);
 			out.write(arrayActiviteList.toString());
-			System.out.println(arrayActiviteList);
+			//System.out.println(arrayActiviteList);
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -153,14 +153,10 @@ public class RecupererActiviteServlet extends HttpServlet {
 				jsonActivite.put(IMPORTANCE_LABEL,activite.getImportance());
 
 				arrayResponse.add(jsonActivite);
-			}
-			
+			}	
 		}
-
 		return arrayResponse;
 	}
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -168,5 +164,4 @@ public class RecupererActiviteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
-
 }
