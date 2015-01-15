@@ -39,25 +39,131 @@ function lancerRecherche()
 		        		
 		        		//alert(jsonActivite);
 		        		
-		        		activite['nomActivite'] = jsonActivite.nomActivite;
-		        		activite['Description'] = jsonActivite.Description;
-		        		activite['nomLieu'] = jsonActivite.nomLieu;
-		        		activite['adresse'] = jsonActivite.adresse;
-		        		activite['ville'] = jsonActivite.ville;
-		        		activite['codePostal'] = jsonActivite.codePostal;
-		        		activite['siteWeb'] = jsonActivite.siteWeb;
-		        		activite['telephone'] = jsonActivite.telephone;
-		        		activite['email'] = jsonActivite.email;
-		        		activite['domaine'] = jsonActivite.domaine;
-		        		activite['lienPhoto'] = jsonActivite.lienPhoto;
-		        		activite['importance'] = jsonActivite.importance;
+//		        		if(jQuery.isEmptyObject(jsonActivite.nomActivite)){
+//			        		activite['nomActivite'] = jsonActivite.nomActivite;
+//		        		}
+//		        		else{
+//		        			activite['nomActivite'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.Description)){
+//			        		activite['Description'] = jsonActivite.Description;
+//		        		}
+//		        		else{
+//		        			activite['Description'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.nomLieu)){
+//			        		activite['nomLieu'] = jsonActivite.nomLieu;
+//		        		}
+//		        		else{
+//		        			activite['nomLieu'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.adresse)){
+//			        		activite['adresse'] = jsonActivite.adresse;
+//		        		}
+//		        		else{
+//		        			activite['adresse'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.ville)){
+//			        		activite['ville'] = jsonActivite.ville;
+//		        		}
+//		        		else{
+//		        			activite['ville'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.codePostal)){
+//			        		activite['codePostal'] = jsonActivite.codePostal;
+//		        		}
+//		        		else{
+//		        			activite['codePostal'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.siteWeb)){
+//			        		activite['siteWeb'] = jsonActivite.siteWeb;
+//		        		}
+//		        		else{
+//		        			activite['siteWeb'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.telephone)){
+//			        		activite['telephone'] = jsonActivite.telephone;
+//		        		}
+//		        		else{
+//		        			activite['telephone'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.email)){
+//			        		activite['email'] = jsonActivite.email;
+//		        		}
+//		        		else{
+//		        			activite['email'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.domaine)){
+//			        		activite['domaine'] = jsonActivite.domaine;
+//		        		}
+//		        		else{
+//		        			activite['domaine'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.lienPhoto)){
+//			        		activite['lienPhoto'] = jsonActivite.lienPhoto;
+//		        		}
+//		        		else{
+//		        			activite['lienPhoto'] = "";
+//		        		}
+//		        		
+//		        		if(jQuery.isEmptyObject(jsonActivite.importance)){
+//			        		activite['importance'] = jsonActivite.importance;
+//		        		}
+//		        		else{
+//		        			activite['importance'] = "";
+//		        		}
+//		        		
+//		        		activiteTable.push(activite);
+//		        	
+//	        		}
+	        		
+	        		
+			        		activite['nomActivite'] = jsonActivite.nomActivite;
+			        		activite['Description'] = jsonActivite.Description;
+			        		activite['nomLieu'] = jsonActivite.nomLieu;
+			        		activite['adresse'] = jsonActivite.adresse;
+			        		activite['ville'] = jsonActivite.ville;
+			        		activite['codePostal'] = jsonActivite.codePostal;
+			        		activite['siteWeb'] = jsonActivite.siteWeb;
+			        		activite['telephone'] = jsonActivite.telephone;
+			        		activite['email'] = jsonActivite.email;
+			        		activite['domaine'] = jsonActivite.domaine;
+			        		activite['lienPhoto'] = jsonActivite.lienPhoto;
+			        		activite['importance'] = jsonActivite.importance;
 		        		
 		        		activiteTable.push(activite);
 		        		
 	        		
 	        		}
 	        		
-	        		displayActivite(activiteTable,cheminImage,arraySizeImages);
+	        		for(var k=0; k<activiteTable.length; k++){
+	        			
+	        				alert(k+" "+activiteTable[k]['nomActivite']);
+	        				alert(k+" "+activiteTable[k]['Description']);
+	        				alert(k+" "+activiteTable[k]['nomLieu']);
+	        				alert(k+" "+activiteTable[k]['adresse']);
+	        				alert(k+" "+activiteTable[k]['ville']);
+	        				alert(k+" "+activiteTable[k]['codePostal']);
+	        				alert(k+" "+activiteTable[k]['siteWeb']);
+	        				alert(k+" "+activiteTable[k]['telephone']);
+	        				alert(k+" "+activiteTable[k]['email']);
+	        				alert(k+" "+activiteTable[k]['domaine']);
+	        				alert(k+" "+activiteTable[k]['lienPhoto']);
+	        				alert(k+" "+activiteTable[k]['importance']);
+	        			
+	        		}
+	        		
+	        		
 	        	}
 	        	
 	        	
@@ -80,38 +186,5 @@ function lancerRecherche()
 
 }
 
-function displayActivite(activiteTable,cheminImage,arraySizeImages){
-	
-	$.each(activiteTable,function(key,value){	
-		
-		var stringNomActivite = value['nomActivite'];
-		var stringNomLieu = value['nomLieu'];
-		var stringAdresse = value['adresse'];
-		var stringCodePostal = value['codePostal'];
-		var stringVille = value['ville'];
-		var stringTelephone = value['telephone'];
-		var stringEmail = value['email'];
-		var stringTelephoneEtEmail = "<p>"+stringTelephone+" et "+stringEmail;
-		var stringSiteWeb = value['siteWeb'];
-		var stringDescription = value['Description'];
-		var stringLienPhoto = value['lienPhoto'];
-		
-		
-		var stringDivActivite = 
-									 
-											+"<p>"+stringNomActivite+"</p>"
-													+ "<ul class='list-group'>"
-												      	+"<li class='list-group-item'>"+stringNomLieu+stringAdresse+stringCodePostal+stringVille+"</li>"
-												      	+"<li class='list-group-item'>"+stringTelephoneEtEmail+"</li>"
-												      	+"<li class='list-group-item'>"+stringSiteWeb+"</li>"
-												    +"</ul>"
-												    +"<p>"+stringDescription+"</p>"
-												    +"</p>"stringLienPhoto+"</p>"
-												    
-								
-		;
-		$(".resultatRecherche").append(stringDivActivite);
-	});
 
-}
 	
