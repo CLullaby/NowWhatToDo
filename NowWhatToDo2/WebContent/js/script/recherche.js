@@ -106,7 +106,7 @@ function displayActivite(activiteTable,cheminImage,arraySizeImages){
 												      	+"<li class='list-group-item'>"+stringSiteWeb+"</li>"
 												    +"</ul>"
 												    +"<p>"+stringDescription+"</p>"
-												    +"</p>"stringLienPhoto+"</p>"
+												    +"<p>"+stringLienPhoto+"</p>"
 												    
 								
 		;

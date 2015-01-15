@@ -250,7 +250,7 @@ public class DaoActivite {
 							+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 					query = connection.createStatement();
 					ResultSet resultat = query
-							.executeQuery("SELECT * FROM Activite WHERE NomActivite LIKE '" + "%"+ motCle +"%'");
+							.executeQuery("SELECT * FROM Activite WHERE NomActivite LIKE '" + "%"+ motCle +"%' OR Domaine LIKE '" + "%"+ motCle +"%'");
 					// Extraction des données '%motCle%'
 					while (resultat.next()) {
 						ActiviteModelBean model = new ActiviteModelBean();
