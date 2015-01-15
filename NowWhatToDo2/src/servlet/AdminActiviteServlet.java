@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,28 +40,50 @@ public class AdminActiviteServlet extends HttpServlet {
 	 */
 	// GET : Récupération de toutes les activités en base de données
 	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+		HttpServletResponse response) throws ServletException, IOException {
 
-		DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
-		List<ActiviteModelBean> listeActivites = dao.getAllActivite();
-
-		// Créer un JsonArray comprenant toutes les activités
-		JSONArray jsonArray = new JSONArray();
-		jsonArray.put(listeActivites);
-
-		// Créer un json contenant le JsonArray
 		JSONObject jsonToSend = new JSONObject();
-		try {
-			jsonToSend.put("listeActivites", jsonArray.get(0));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String value ="";
+		
+		//Vérifie si l'admin est connecté
+		HttpSession session = request.getSession();
+		if(session != null)
+		{
+			String login = (String) session.getAttribute("connecteAdmin");
+			if(login != null && login != "")
+			{	
+				//Va chercher les données
+				DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
+				List<ActiviteModelBean> listeActivites = dao.getAllActivite();
+		
+				// Créer un JsonArray comprenant toutes les activités
+				JSONArray jsonArray = new JSONArray();
+				jsonArray.put(listeActivites);
+		
+				// Créer un json contenant le JsonArray
+				try {
+					jsonToSend.put("listeActivites", jsonArray.get(0));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				value = "oui";
 
-		// Envoyer le Json contenant le JsonArray
+			
+			}
+			else //Redirection
+			{
+				value = "non";
+			}
+		}
+		
+		// Envoyer le Json contenant le JsonArray + si admin est connecte
+		jsonToSend.put("connecte",value);
+		
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
+		out.close();
 
 	}
 
@@ -91,6 +114,7 @@ public class AdminActiviteServlet extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
+		out.close();
 	}
 
 }

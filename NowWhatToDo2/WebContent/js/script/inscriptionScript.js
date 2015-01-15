@@ -82,7 +82,7 @@ function ajaxInscription()
 	        dataType: 'json',
 	        success: function (data) {
 	        	alert("Votre compte a été crée avec success");
-	        	location.href = "login.html";
+	        	location.href = "../accueil/accueil.html";
 	        },
 	        error: function (data) {
 	        	alert("Un problème est survenu, veuillez réessayer ultérieurement.");

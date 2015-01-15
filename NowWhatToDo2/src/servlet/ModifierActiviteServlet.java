@@ -8,26 +8,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 
+import model.ActiviteModelBean;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;
-import model.ActiviteModelBean;
 
 /**
- * Servlet implementation class CreerActiviteServlet
+ * Servlet implementation class ModifierActiviteServlet
  */
-@WebServlet("/CreerActivite")
-public class CreerActiviteServlet extends HttpServlet {
+@WebServlet("/ModifierActivite")
+public class ModifierActiviteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreerActiviteServlet() {
+	public ModifierActiviteServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,33 +35,33 @@ public class CreerActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	//Permet de verifier l'authentification sur la page creerActiviteAdmin
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		String value = "";
-		//Vérifie si l'admin est connecté
-		HttpSession session = request.getSession();
-		if(session != null)
-		{
-			String login = (String) session.getAttribute("connecteAdmin");
-			if(login != null && login != "")
-			{
-				value = "oui";
-			}
-			else
-			{
-				value = "non";
-			}
-		}
-		else //Peu probable
-		{
-			value = "non";
-		}
-		
-		response.setContentType("application/json");
+		// Récupération de l'id de l'activité à modifier
+		String idString = request.getParameter("id");
+		int id = Integer.parseInt(idString);
+
+		// Récupération des informations de l'activité concernée
+		DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
+		ActiviteModelBean activite = dao.getActiviteById(id);
+
+		// Créer un json contenant le JsonArray
 		JSONObject jsonToSend = new JSONObject();
-		jsonToSend.put("connecte", value);
+		jsonToSend.put("domaine", activite.getDomaine());
+		jsonToSend.put("nomActivite", activite.getNomActivite());
+		jsonToSend.put("nomLieu",activite.getNomLieu());
+		jsonToSend.put("adresse", activite.getAdresse());
+		jsonToSend.put("ville", activite.getVille());
+		jsonToSend.put("codePostal", activite.getCodePostal());
+		jsonToSend.put("siteWeb", activite.getSiteWeb());
+		jsonToSend.put("telephone", activite.getTelephone());
+		jsonToSend.put("email", activite.getEmail());
+		jsonToSend.put("description",activite.getDescription());
+		jsonToSend.put("lienPhoto", activite.getLienPhoto());
+		jsonToSend.put("importance", activite.getImportance());
+
+		// Envoyer le Json contenant le JsonArray
+		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
 		out.close();
@@ -72,12 +71,11 @@ public class CreerActiviteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	//Renvoie le formulaire
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		
-		//Récupération des champs envoyés depuis le formulaire HTML
+		//Récupération des données entrées en formulaire HTML
+		String idString = request.getParameter("id");
 		String domaine = request.getParameter("domaine");
 		String activite = request.getParameter("activite");
 		String lieu = request.getParameter("lieu");
@@ -89,17 +87,20 @@ public class CreerActiviteServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String description = request.getParameter("description");
 		String lienPhoto = request.getParameter("lienPhoto");
-		String importance = request.getParameter("importance");
+		String importanceString = request.getParameter("importance");
 
-		//Parse l'importance en integer
-		int importanceInteger = Integer.parseInt(importance);
+		//Parse en INT
+		int id = Integer.parseInt(idString);
+		int importance = Integer.parseInt(importanceString);
 
-		//Ajout de l'activité en base de données
+		//Création de l'activité avec les données modifiées
 		ActiviteModelBean newActivite = new ActiviteModelBean(activite,
 				description, lieu, adresse, ville, codePostal, siteWeb,
-				telephone, email, domaine, lienPhoto, importanceInteger);
+				telephone, email, domaine, lienPhoto, importance);
+		
+		
 		DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
-		dao.addActivite(newActivite);
+		dao.updateActivite(id, newActivite);
 
 		// Renvoyer une trame HTTP sous forme de JSON
 		// Format the answer
@@ -112,6 +113,7 @@ public class CreerActiviteServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.write(jsonToSend.toString());
 		out.close();
+		
 	}
 
 }

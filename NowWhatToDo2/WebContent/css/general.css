@@ -14,3 +14,7 @@
 .cache {
 	display : none;
 }
+
+.curseurMain {
+	cursor: pointer;
+}

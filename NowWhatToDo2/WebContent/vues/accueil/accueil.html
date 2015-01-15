@@ -72,12 +72,17 @@
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Domaines</span>
-                          <i class="fa fa-chevron-down"></i>
+                          <i class="fa fa-chevron-down pull-right"></i>
                       </a>
                       <ul class="sub">
-                          <li><a  href="../Domaines/administration.html">Administration</a></li>
-                          <li><a  href="../Domaines/transport.html">Transport</a></li>
-                          <li><a  href="../Domaines/travail.html">Travail</a></li>
+                          <li><a href="../Domaines/administration.html">Administration</a></li>
+                          <li><a href="../Domaines/alimentation.html">Alimentation</a></li>
+                          <li><a href="../Domaines/logement.html">Logement</a></li>
+                          <li><a href="../Domaines/loisir.html">Loisir</a></li>
+                          <li><a href="../Domaines/sante.html">Santé</a></li>
+                          <li><a href="../Domaines/services.html">Services</a></li>
+                          <li><a href="../Domaines/transport.html">Transport</a></li>
+                          <li><a href="../Domaines/travail.html">Travail</a></li>
                       </ul>
                   </li>    
                   <li class="mt">
@@ -87,24 +92,25 @@
                       </a>
                   </li>                 
                   <li class="mt">
-                      <!-- <a class="" href="../Compte/compte.html">
+                      <a class="curseurMain" onclick="cheatAppelCompteServlet();">
                           <i class="fa fa-user"></i>
                           <span>Compte</span>
-                      </a>-->
-                      <form action="Accueil" method="get">
-                      	<button type="submit"><i class="fa fa-user"></i><span>Compte</span></button>
+                      </a>
+                      <!-- Ce formulaire permet d'appeler la servlet Accueil avant d'aller sur compte -> vérification du log de l'utilisateur  -->
+                      <form action="Accueil" method="get" id="formCompte" >
+                      	<!-- <button type="submit" style="border: 0px;"><i class="fa fa-user"></i><span>Compte</span></button>-->
                       </form>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
                           <span>Autres</span>
-                          <i class="fa fa-chevron-down"></i>
+                          <i class="fa fa-chevron-down pull-right"></i>
                       </a>
                       <ul class="sub">
+                          <li><a href="../Divers/aide.html">Aide</a></li>
                           <li><a href="../Divers/contact.html">Contact</a></li>
                           <li><a href="#">Conviction</a></li>
-                          <li><a href="../Divers/aide.html">Aide</a></li>
                           <li><a href="../Admin/loginAdmin.html">Administration</a></li>
                       </ul>
                   </li>                 
@@ -173,6 +179,13 @@
 
     <!--common script for all pages-->
     <script src="../../js/common-scripts.js"></script>
-    	
+    
+    <script type="text/javascript">
+    	//Cette fonction envoie le formulaire pour appeler la servlet Accueil avant d'aller sur compte -> vérification du log de l'utilisateur 
+    	function cheatAppelCompteServlet()
+    	{
+    		document.getElementById("formCompte").submit();
+    	}
+    </script>
   </body>
 </html>

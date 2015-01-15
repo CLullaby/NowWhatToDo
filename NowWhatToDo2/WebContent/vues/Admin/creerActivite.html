@@ -24,7 +24,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body onload="verifierAction()">
 
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
@@ -112,10 +112,10 @@
 					<div class="row mt">
 			<div class="col-lg-12">
 				<div class="form-panel">
-					<h4 class="mb centered">Créer une nouvelle activité</h4>
-					<form class="form-horizontal" role="form">
+					<h4 class="mb centered" id="titleForm">Créer une nouvelle activité</h4>
+					<form class="form-horizontal" role="form" id="form">
 						<div class="form-group">
-							<label for="domaine" class="col-sm-2 control-label">Domaine</label>
+							<label for="domaine" class="col-sm-2 control-label">Domaine*</label>
 							<div class="col-sm-10">
 								<select id="domaine" class="form-control" required  >
 								<option>Administratif</option>
@@ -130,74 +130,74 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="activite" class="col-sm-2 control-label">Activité</label>
+							<label for="activite" class="col-sm-2 control-label">Activité*</label>
 							<div class="col-sm-10">
-								<input id="activite" type="text" class="form-control" placeholder="Activite" required ></input>
+								<input id="activite" type="text" class="form-control" placeholder="Activite (requis)" required ></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="lieu" class="col-sm-2 control-label">Lieu</label>
+							<label for="lieu" class="col-sm-2 control-label">Lieu*</label>
 							<div class="col-sm-10">
-								<input id="lieu" type="text" class="form-control" placeholder="Lieu" required ></input>
+								<input id="lieu" type="text" class="form-control" placeholder="Lieu (requis)" required ></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="adresse" class="col-sm-2 control-label">Adresse</label>
+							<label for="adresse" class="col-sm-2 control-label">Adresse*</label>
 							<div class="col-sm-10">
-								<input id="adresse" type="text" class="form-control" placeholder="Adresse" required ></input>
+								<input id="adresse" type="text" class="form-control" placeholder="Adresse (requis)" required ></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="ville" class="col-sm-2 control-label">Ville</label>
+							<label for="ville" class="col-sm-2 control-label">Ville*</label>
 							<div class="col-sm-10">
-								<input id="ville" type="text" class="form-control" placeholder="Ville" required></input>
+								<input id="ville" type="text" class="form-control" placeholder="Ville (requis)" required></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="codePostal" class="col-sm-2 control-label">Code Postal</label>
+							<label for="codePostal" class="col-sm-2 control-label">Code Postal*</label>
 							<div class="col-sm-10">
-								<input id="codePostal" type="text" class="form-control" placeholder="Code Postal" required></input>
+								<input id="codePostal" type="text" class="form-control" placeholder="Code Postal (requis)" required></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="siteWeb" class="col-sm-2 control-label">Site Web</label>
+							<label for="siteWeb" class="col-sm-2 control-label">Site Web*</label>
 							<div class="col-sm-10">
-								<input id="siteWeb" type="text" class="form-control" placeholder="Site Web" required ></input>
+								<input id="siteWeb" type="url" class="form-control" placeholder="Site Web (ex : http://www.cpe.fr -- REQUIS)" required ></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="telephone" class="col-sm-2 control-label">Telephone</label>
+							<label for="telephone" class="col-sm-2 control-label">Telephone*</label>
 							<div class="col-sm-10">
-								<input id="telephone" type="text" class="form-control" placeholder="Telephone" required  ></input>
+								<input id="telephone" type="text" class="form-control" placeholder="Telephone (requis)" required  ></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="email" class="col-sm-2 control-label">E-mail</label>
 							<div class="col-sm-10">
-								<input id="email" type="email" class="form-control" placeholder="E-mail" required ></input>
+								<input id="email" type="email" class="form-control" placeholder="E-mail (optionnel)" ></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="description" class="col-sm-2 control-label">Description</label>
 							<div class="col-sm-10">
-								<input id="description" type="text" class="form-control" placeholder="Description" required ></input>
+								<input id="description" type="text" class="form-control" placeholder="Description (optionnelle)" ></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lienPhoto" class="col-sm-2 control-label">Lien photo</label>
 							<div class="col-sm-10">
-								<input id="lienPhoto" type="text" class="form-control" placeholder="Lien vers la photo" required ></input>
+								<input id="lienPhoto" type="text" class="form-control" placeholder="Lien vers la photo (ex : Bureau/img.jpg  -- OPTIONNEL)" ></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="importance" class="col-sm-2 control-label">Importance</label>
+							<label for="importance" class="col-sm-2 control-label">Importance*</label>
 							<div class="col-sm-10">
-								<input id="importance" type="text" class="form-control" placeholder="Importance" required></input>
+								<input id="importance" type="number" class="form-control" placeholder="Importance (Nombre entre 1 et 5  -- REQUIS)" min="1" max="5" required></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<button type="button" class="btn btn-success pull-right" style="margin: 0 20px 0 0;" onclick="envoyerFormulaire();">Créer l'activité</button>
-							<a href="../Admin/adminActivite.html"><button type="submit" class="btn btn-default pull-right" style="margin: 0 20px 0 0;">Annuler</button></a>
+							<button type="submit" class="btn btn-success pull-right" style="margin: 0 20px 0 0;" id="buttonSend">Créer l'activité</button>
+							<a href="../Admin/adminActivite.html"><button type="button" class="btn btn-default pull-right" style="margin: 0 20px 0 0;">Annuler</button></a>
 						</div>
 					</form>
 				</div>
@@ -222,9 +222,6 @@
 			</div>
 		</div>
 	</section>
-	
-	<!-- Script JS pour la page -->
-	<script src="../../js/script/creerActiviteScript.js"></script>
 
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="../../js/jquery.js"></script>
@@ -238,5 +235,13 @@
 
 	<!--common script for all pages-->
 	<script src="../../js/common-scripts.js"></script>
+	
+	<!-- Script JS pour la page -->
+	<script src="../../js/script/creerActiviteScript.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			verifAuthentication();
+		});
+	</script>
 </body>
 </html>
