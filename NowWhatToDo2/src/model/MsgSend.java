@@ -74,8 +74,26 @@ public class MsgSend {
 	private String to;
 	private String from;
 	private String host;
+	private String identif;
+	private String mdp;
 	
-    public String getMsgText() {
+    public String getIdentif() {
+		return identif;
+	}
+
+	public void setIdentif(String identif) {
+		this.identif = identif;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+	public String getMsgText() {
 		return msgText;
 	}
 
@@ -133,12 +151,14 @@ public class MsgSend {
         props.put("mail.smtp.ssl.enable", "true");
 		props.put("mail.smtp.port", "587");
 		
+		
+		// attention a l'identifiant, adresse mail ou identif plus mdp
 		// Setup authentication, get session
 	      Session emailSession = Session.getInstance(props,
 	         new javax.mail.Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {
 	               return new PasswordAuthentication(
-	                  "toto@gmail.com", "123");
+	                  identif, mdp);
 	            }
 	         });
        

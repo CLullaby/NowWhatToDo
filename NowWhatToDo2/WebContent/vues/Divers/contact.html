@@ -29,28 +29,28 @@
 		<div class="col-lg-6 col-md-6 col-xs-12">
 	       <div class="form-panel">
 	       	  <h4 class="mb centered">Nous contacter</h4>
-	           <form id=contactForm" class="form-horizontal style-form" method="post" action="SendMail">
+	           <form id=contactForm" class="form-horizontal style-form">
 	               <div class="form-group">
 	                   <label class="col-sm-2 control-label">Nom</label>
 	                   <div class="col-sm-10">
-	                       <input type="text" name="nom" class="form-control" placeholder="Nom"/>
+	                       <input id="contactNom" type="text" name="nom" class="form-control" placeholder="Nom"/>
 	                   </div>
 	               </div>
 	               <div class="form-group">
 	                   <label class="col-sm-2 control-label">Adresse mail</label>
 	                   <div class="col-sm-10">
-	                       <input type="email" name="to" class="form-control" placeholder="Adresse mail" />
+	                       <input id="contactTo" type="email" name="to" class="form-control" placeholder="Adresse mail" />
 	                   </div>
 	               </div>
 	               <div class="form-group">
 	                   <label class="col-sm-2 control-label">Message</label>
 	                   <div class="col-sm-10">
-	                   	   <textarea rows="8" name="message" class="form-control" placeholder="Message"></textarea>
+	                   	   <textarea id="contactMsg" rows="8" name="message" class="form-control" placeholder="Message"></textarea>
 	                   </div>
 	               </div>
 	               <div class="form-group centered">
 	                   <div class="col-sm-12">
-	                       <input id="sendMail" type="submit" class="form-control btn btn-success" value="Envoyer" />
+	                       <input id="sendMail" type="button" class="form-control btn btn-success" value="Envoyer" />
 	                   </div>
 	               </div>
 	           </form>
@@ -78,6 +78,6 @@
 
     <!--common script for all pages-->
     <script src="../../js/common-scripts.js"></script>
-     <script src="../../js/script/sendMailScript.js"></script>
+     <script src="../../js/script/sendMail.js"></script>
 </body>
 </html>

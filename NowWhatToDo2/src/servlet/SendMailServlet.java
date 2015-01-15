@@ -17,12 +17,13 @@ import org.json.simple.JSONValue;
 
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoCompte;
+import model.CompteModelBean;
 import model.MsgSend;
 
 /**
  * Servlet implementation class SendMailServlet
  */
-@WebServlet("/SendMailServlet")
+@WebServlet("/SendMail")
 public class SendMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte daoCompte;
@@ -78,12 +79,22 @@ public class SendMailServlet extends HttpServlet {
 		MsgSend mail = new MsgSend();
 		
 		//recuperer l'adresse mail de l'utilisateur qui est connecte 
+		HttpSession session = request.getSession();
+		String identifiant = (String) session.getAttribute("connecte");
 		
+		CompteModelBean user = daoCompte.getUserLogin(identifiant);
+		String emailUser = user.getEmail();
+		String mdp = user.getMotDePasse();
 		
-		//mail.setFrom(from);
+		System.out.println("emailUser:"+ emailUser);
+		
+		mail.setFrom(emailUser);
 		mail.setTo(to);
 		mail.setMsgText(msg);
+		mail.setIdentif(identifiant);
+		mail.setMdp(mdp);
 		mail.envoiMail();
+		
 		
 	}
 
