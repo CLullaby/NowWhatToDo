@@ -71,6 +71,7 @@ public class DaoAvancement {
 		}
 	}
 	
+	/*Rajouter par rapport à l'id de l'activité sinon cette requete updateAvancement() modifie plusieurs lignes.*/
 	public void updateAvancement(int avancement, AvancementActiviteModelBean activite)
 	{
 		java.sql.Statement query;
