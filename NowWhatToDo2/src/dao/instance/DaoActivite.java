@@ -41,27 +41,27 @@ public class DaoActivite {
 
 			// Executer puis parcourir les résultats
 			String sql = "INSERT INTO nowwhattodo.activite (NomActivite, Description, NomLieu, Adresse, Ville, CodePostal, SiteWeb, Tel, Email, Domaine, LienPhoto, Importance) VALUES ('"
-					+ activite.getNomActivite()
+					+ activite.getNomActivite().replace("'","\\'")
 					+ "', '"
-					+ activite.getDescription()
+					+ activite.getDescription().replace("'","\\'")
 					+ "', '"
-					+ activite.getNomLieu()
+					+ activite.getNomLieu().replace("'","\\'")
 					+ "', '"
-					+ activite.getAdresse()
+					+ activite.getAdresse().replace("'","\\'")
 					+ "', '"
-					+ activite.getVille()
+					+ activite.getVille().replace("'","\\'")
 					+ "', '"
-					+ activite.getCodePostal()
+					+ activite.getCodePostal().replace("'","\\'")
 					+ "', '"
-					+ activite.getSiteWeb()
+					+ activite.getSiteWeb().replace("'","\\'")
 					+ "', '"
 					+ activite.getTelephone()
 					+ "', '"
 					+ activite.getEmail()
 					+ "', '"
-					+ activite.getDomaine()
+					+ activite.getDomaine().replace("'","\\'")
 					+ "', '"
-					+ activite.getLienPhoto()
+					+ activite.getLienPhoto().replace("'","\\'")
 					+ "', '"
 					+ activite.getImportance() + "')";
 
