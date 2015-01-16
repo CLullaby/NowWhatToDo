@@ -8,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class LoginBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String identifiant;
 	private String motDePasse;
 	private boolean connected;

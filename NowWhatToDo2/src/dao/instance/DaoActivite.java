@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.ActiviteModelBean;
-import model.CompteModelBean;
 
 public class DaoActivite {
 
@@ -66,7 +65,7 @@ public class DaoActivite {
 					+ "', '"
 					+ activite.getImportance() + "')";
 
-			int rs = query.executeUpdate(sql);
+			query.executeUpdate(sql);
 			query.close();
 			connection.close();
 		} catch (SQLException e) {

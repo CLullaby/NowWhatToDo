@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -9,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class AvancementActiviteModelBean implements Serializable {
-	
+	private static final long serialVersionUID = 1L;
 	private int idAvancement;
 	private int avancement;
 	private String dateDebut;

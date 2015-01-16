@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import model.AvancementActiviteModelBean;
-import model.CompteModelBean;
 
 public class DaoAvancement {
 	
@@ -42,7 +40,7 @@ public class DaoAvancement {
 			// Executer puis parcourir les résultats				
 			String sql = "INSERT INTO nowwhattodo.avancement (Avancement, DateDebut, DateFin, CECompte, CEActivite) VALUES ('" +activite.getAvancement()+"', '"+activite.getDateDebut()+"', '"+activite.getDateFin()+"', '"+activite.getCeCompte()+"', '"+activite.getCeActivite()+"')";
 
-			int rs = query.executeUpdate(sql);
+			query.executeUpdate(sql);
 			query.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -65,7 +63,7 @@ public class DaoAvancement {
 			// Executer puis parcourir les résultats				
 			String sql = "UPDATE Avancement SET Avancement = '" +updateActivite.getAvancement() + "', DateDebut = '" +updateActivite.getDateDebut() + "', DateFin = '" +updateActivite.getDateFin() + "', CECompte = '" +updateActivite.getCeCompte() + "', CEActivite = '" +updateActivite.getCeActivite() + "' WHERE Avancement = '" +activite.getAvancement() + "' AND DateDebut = '" +activite.getDateDebut() + "' AND DateFin = '" +activite.getDateFin() + "' AND CECompte = '" +activite.getCeCompte() + "' AND CEActivite = '" +activite.getCeActivite() + "'";
 			
-			int rs = query.executeUpdate(sql);
+			query.executeUpdate(sql);
 			query.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -88,7 +86,7 @@ public class DaoAvancement {
 			// Executer puis parcourir les résultats				
 			String sql = "UPDATE Avancement SET Avancement = '" +avancement + "' WHERE Avancement = '" +activite.getAvancement() + "'";
 			
-			int rs = query.executeUpdate(sql);
+			query.executeUpdate(sql);
 			query.close();
 			connection.close();
 		} catch (SQLException e) {

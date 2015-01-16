@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import model.CompteModelBean;
-import model.LoginBean;
 
 import enumerations.Roles;
 
@@ -49,7 +48,7 @@ public class DaoCompte {
 				// Executer puis parcourir les résultats				
 				String sql = "INSERT INTO nowwhattodo.compte (Nom, Prenom, Identifiant, MotDePasse, Email, Age, LienPhoto, Adresse, CodePostal, Tel, Role) VALUES ('" +user.getNom()+"', '"+user.getPrenom()+"', '"+user.getIdentifiant()+"', '"+user.getMotDePasse()+"', '"+user.getEmail()+"', '"+user.getAge()+"', '"+user.getLienPhoto()+"', '"+user.getAdresse()+"', '"+user.getCodePostal()+"', '"+user.getTel()+"', '"+user.getRole()+"')";
 
-				int rs = query.executeUpdate(sql);
+				query.executeUpdate(sql);
 				query.close();
 				connection.close();
 			} catch (SQLException e) {

@@ -54,6 +54,15 @@ function lancerRecherche()
 		        		activiteTable.push(activite);	
 	        		}
 	        		
+		        	//Enlève pour pb lors du second affichage ( addition des recherches par défault)
+		        	/*Cissou*/
+	        		var elm = $("#resultatRecherche");
+		        	while (elm.children != null) { 
+		        		  elm.removeChild(elm.firstChild);
+		        		}
+		        	elm.appendChild(span);
+	        		/*Cissou*/
+		        	
 	        		//Affichage du résultat de la recherche dans le div 
 	        		afficherHtmlActivite($("#resultatRecherche"), activiteTable, cheminImage/*, arraySizeImages*/);
 	        	}
