@@ -139,6 +139,7 @@ public class RecupererActiviteServlet extends HttpServlet {
 				JSONObject jsonActivite = new JSONObject();
 				ActiviteModelBean activite =  itActivite.next();
 				
+				jsonActivite.put("id", activite.getId());
 				jsonActivite.put(NOM_ACTIVITE_LABEL,activite.getNomActivite());
 				jsonActivite.put(DESCRIPTION_LABEL,activite.getDescription());
 				jsonActivite.put(NOM_LIEU_LABEL,activite.getNomLieu());

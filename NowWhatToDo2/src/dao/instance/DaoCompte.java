@@ -132,6 +132,7 @@ public class DaoCompte {
 				while (resultat.next())
 				{
 					CompteModelBean model = new CompteModelBean();
+					model.setId(resultat.getInt("Id"));
 					model.setNom(resultat.getString("Nom"));
 					model.setPrenom(resultat.getString("Prenom"));
 					model.setIdentifiant(resultat.getString("Identifiant"));
@@ -169,6 +170,7 @@ public class DaoCompte {
 				while (resultat.next())
 				{
 					CompteModelBean model = new CompteModelBean();
+					model.setId(resultat.getInt("Id"));
 					model.setNom(resultat.getString("Nom"));
 					model.setPrenom(resultat.getString("Prenom"));
 					model.setIdentifiant(resultat.getString("Identifiant"));
@@ -208,6 +210,7 @@ public class DaoCompte {
 				while (resultat.next())
 				{
 					CompteModelBean model = new CompteModelBean();
+					model.setId(resultat.getInt("Id"));
 					model.setNom(resultat.getString("Nom"));
 					model.setPrenom(resultat.getString("Prenom"));
 					model.setIdentifiant(resultat.getString("Identifiant"));

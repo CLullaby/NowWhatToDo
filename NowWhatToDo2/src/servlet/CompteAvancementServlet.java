@@ -1,13 +1,21 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
+import model.ActiviteModelBean;
+import model.AvancementActiviteModelBean;
+import model.CompteModelBean;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;
 import dao.instance.DaoAvancement;
@@ -16,7 +24,7 @@ import dao.instance.DaoCompte;
 /**
  * Servlet implementation class CompteAvancementServlet
  */
-@WebServlet("/CompteAvancementServlet")
+@WebServlet("/CompteAvancement")
 public class CompteAvancementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoActivite daoActivite;
@@ -50,14 +58,56 @@ public class CompteAvancementServlet extends HttpServlet {
 	 */
 	//Permet de mettre a jour, l'avancement d'un utilisateur
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Return value
+		response.setContentType("application/json");
+		JSONObject jsonToSend = new JSONObject();
+		
 		//Parametres
+		int idActivite = 0;
+		String stringIdActivite = request.getParameter("idActivite");
+		try {
+			idActivite = Integer.parseInt(stringIdActivite);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		//Si catch -> erreur -> message erreur dans le else
 		
 		//Verifier log
+		HttpSession session = request.getSession();
+		if(session != null)
+		{
+			String login = (String) session.getAttribute("connecte");
+			if(login != null && login != "")
+			{				
+				CompteModelBean compte = daoCompte.getUserLogin(login);
+				ActiviteModelBean activiteModel = daoActivite.getActiviteById(idActivite);
+				
+				if(compte != null && activiteModel != null)
+				{
+					Date date = new Date();
+					AvancementActiviteModelBean activiteAvancementModel = new AvancementActiviteModelBean(0, date.toString(), "", compte.getId(), activiteModel.getId());
+					daoAvancement.addAvancementActivite(activiteAvancementModel);
+					jsonToSend.put("etat", "ok");
+				}	
+				else
+				{
+					jsonToSend.put("etat", "pb");
+				}
+			}
+			else
+			{
+				jsonToSend.put("etat", "nonLoge");
+			}
+		}
+		else
+		{
+			jsonToSend.put("etat", "nonLoge");
+		}
 		
-		//Demander le log , redirige si nécessaire
-		
-		//Requeter
-		
+		PrintWriter out = response.getWriter();
+		out.write(jsonToSend.toString());
+		out.close();	
 	}
-
 }

@@ -301,6 +301,4 @@ public class DaoAvancement {
 		}
 		return list; 
 	}	
-	
-
 }
