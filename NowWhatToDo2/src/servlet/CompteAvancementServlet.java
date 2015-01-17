@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -46,11 +47,58 @@ public class CompteAvancementServlet extends HttpServlet {
 	 */
     //Permet de rechercher l'avancement d'un utilisateur
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Aller cherhcer dans la session le nom de la personne loge
+		response.setContentType("application/json");
+		JSONObject jsonToSend = new JSONObject();
 		
-		//Requete la DAO
+		//Aller chercher dans la session le nom de la personne loge -> elle est forcement loge !!
+		HttpSession session = request.getSession();
+		if(session != null)
+		{
+			String login = (String) session.getAttribute("connecte");
+			if(login != null && login != "") //-> elle est forcement loge mais par surete
+			{				
+				//Requete la DAO
+				CompteModelBean compte = daoCompte.getUserLogin(login);
+				
+				ArrayList<AvancementActiviteModelBean> listeAvancementActivite = daoAvancement.getAvancementActiviteByCompte(compte.getId());
+				
+				ArrayList<AvancementActiviteModelBean> listeTerminee = new ArrayList<AvancementActiviteModelBean>();
+				ArrayList<AvancementActiviteModelBean> listeEnCours = new ArrayList<AvancementActiviteModelBean>();
+				ArrayList<AvancementActiviteModelBean> listePasCommencee = new ArrayList<AvancementActiviteModelBean>();
+				
+				//Cree 3 listes selon l'avancement termine/enCours/pasCommence
+				for(int i=0; i < listeAvancementActivite.size(); i++)
+				{
+					AvancementActiviteModelBean avancementActiviteModelBean = listeAvancementActivite.get(i);
+					
+					if(avancementActiviteModelBean.getAvancement() == 0)
+					{
+						listePasCommencee.add(avancementActiviteModelBean);
+					} else if(avancementActiviteModelBean.getAvancement() == 1)
+					{
+						listeEnCours.add(avancementActiviteModelBean);
+					} else if(avancementActiviteModelBean.getAvancement() == 2)
+					{
+						listeTerminee.add(avancementActiviteModelBean);
+					}
+					jsonToSend.put("termine", listeTerminee);
+					jsonToSend.put("enCours", listeEnCours);
+					jsonToSend.put("pasCommence", listePasCommencee);
+				}
+			}
+			else
+			{
+				jsonToSend.put("etat", "nonLoge");
+			}
+		}
+		else
+		{
+			jsonToSend.put("etat", "nonLoge");
+		}
 		
-		//JSON de retour
+		PrintWriter out = response.getWriter();
+		out.write(jsonToSend.toString());
+		out.close();	
 	}
 
 	/**
