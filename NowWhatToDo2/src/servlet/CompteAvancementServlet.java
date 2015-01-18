@@ -147,8 +147,28 @@ public class CompteAvancementServlet extends HttpServlet {
 			{				
 				//Requete la DAO
 				CompteModelBean compte = daoCompte.getUserLogin(login);
-				
+					
 				ArrayList<AvancementActiviteModelBean> listeAvancementActivite = daoAvancement.getAvancementActiviteByCompte(compte.getId());
+				
+				/*Cherche les 3 infos complementaires : domaine, activite, description*/
+				ArrayList<ActiviteModelBean> listeActivite = daoActivite.getAllActivite();		
+				for(int i=0; i < listeAvancementActivite.size(); i++)
+				{
+					AvancementActiviteModelBean avancementActivite = listeAvancementActivite.get(i);
+					
+					for(int j=0; j < listeActivite.size(); j++)
+					{
+						ActiviteModelBean activite = listeActivite.get(j);
+						if(activite.getId() == avancementActivite.getCeActivite())
+						{
+							avancementActivite.setNomDomaine(activite.getDomaine());
+							avancementActivite.setNomActivite(activite.getNomActivite());
+							avancementActivite.setDescriptionActivite(activite.getDescription());
+						}
+					}
+					listeAvancementActivite.set(i, avancementActivite);
+				}
+				/*Fin*/
 				
 				ArrayList<AvancementActiviteModelBean> listeTerminee = new ArrayList<AvancementActiviteModelBean>();
 				ArrayList<AvancementActiviteModelBean> listeEnCours = new ArrayList<AvancementActiviteModelBean>();
