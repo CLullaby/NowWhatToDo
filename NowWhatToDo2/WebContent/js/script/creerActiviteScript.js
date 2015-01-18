@@ -15,6 +15,7 @@ function verifAuthentication() {
 	});
 }
 
+
 // Envoi du formulaire
 // function envoyerFormulaire() {
 
@@ -65,12 +66,12 @@ $("#buttonSend").click(
 									success : function(data) {
 										alert("Activité créee avec succès");
 										location.href = "adminActivite.html";
+										
 									},
 									error : function(data) {
 										alert("Un problème est survenu, veuillez réessayer ultérieurement.");
 									}
 								});
-						// }
 					}
 
 					// Si on veut modifier une activité
@@ -107,6 +108,7 @@ $("#buttonSend").click(
 					} 
 					//Si le formulaire est mal rempli, pas d'envoi du formulaire et messages d'erreur HTML5
 					else{
+						alert("Un champ du formulaire est mal rempli");
 						console.log("INVALID FORM!")
 					}
 				});

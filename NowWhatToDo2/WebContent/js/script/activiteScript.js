@@ -21,6 +21,7 @@ function recupererActivite(domaine, elmToAppend)
 	        		var activite = [];
 	        		var jsonActivite = data[i];
 	        		
+	        		activite['id'] = jsonActivite.id;
 	        		activite['nomActivite'] = jsonActivite.nomActivite;
 	        		activite['description'] = jsonActivite.Description;
 	        		activite['nomLieu'] = jsonActivite.nomLieu;
@@ -106,12 +107,12 @@ function afficherHtmlActivite(elmToAppend, activiteTable, cheminImage/*, arraySi
 		var stringDivActivite = 			
 			"<div class='col-lg-6 col-md-6 col-sm-6 mb'>"
 				+ "<div class='product-panel-2 pn' style='padding: 5px;'>"
-					+"<h2>" + stringNomActivite + "</h2>"
+					+"<h2>" + stringNomActivite + "<button class='btn btn-md btn-theme pull-right' type='button' onclick='selectionActivite(" + value['id'] + ");' >A faire</button></h2>"
 					+"<p class='text-justify'>" + stringNomLieu + stringAdresse + stringCodePostal + stringVille + "</p>"
 					+"<p class='text-justify'>" + stringTelephone + stringEmail + "</p>"
 					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringSiteWeb + "</div>"
 					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringLienPhoto + "</div>"
-					+"<p class='text-justify'>" + stringDescription + "</p>"				
+					+"<div class='col-lg-12 col-md-12 col-sm-12'><p class='text-justify'>" + stringDescription + "</p></div>"				
 				+"</div>"
 			+"</div>";
 		
@@ -132,3 +133,36 @@ function buildArraySizeImages(){
 	 
 	 return arraySizeImages;
 }*/
+
+/*Lors du clic sur le bouton avancement d'une activité, permet l'appel de la Servlet pour enregistrer l'activité selectionnée dans la BD*/
+function selectionActivite(idActivite)
+{
+	$.ajax({
+        url: '../../CompteAvancement',
+        data: {
+        	idActivite: idActivite
+        },
+        async: true,
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+        	if(data.etat == "ok")
+    		{
+        		alert("Cette activité a été ajoutée à votre liste d'activité.");
+    		}
+        	else if(data.etat == "pb")
+    		{
+        		alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+    		}
+        	else
+    		{
+        		alert("Vous devez vous connecter pour ajouter cette activité à votre liste d'activité.");
+        		//Il est mal venu de rediriger....
+            	//location.href = "../compte/login.html";
+    		}
+        },
+        error: function (data) {
+        	alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+        }
+    });
+}

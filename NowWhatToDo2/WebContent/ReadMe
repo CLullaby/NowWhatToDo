@@ -12,6 +12,25 @@ Recherche par mot clé : ok pour des caracteres qui se suivent, peut importe la c
 
 --------------------- Model ------------------------
 
+----------------------- Servlet ----------------------
+
+
+AdminActiviteServlet :
+CreerActiviteServlet :
+ModifierActiviteServlet :
+
+CompteAvancementServlet : Recherche les avancements d'un utilisateur pour afficher dans la page compte + L'utilisateur a selectionne une activite a faire, création d'une ligne dans la BD pour avancementActivite
+CompteAvancementServletBis :
+CompteServlet : Modifie le formulaire d'infos + verifie le log sur la page compte
+InscriptionServlet : Vérifie unicité du login + envoie du formulaire d'inscription
+loginServlet : Formulaire de log de l'user + admin
+RechercheServlet : Gere la recherche par mot cle
+RecupererActiviteServlet : Permet d'afficher les activite adéquates selon la page d'activité 
+SendMailServlet : Pour envoyer un mail -> Non fonctionnel
+VerificationConnexionServlet : verifie le log avant d'envoyer sur la page compte apres clic dans le menu + 
+
+
+
 
 ------------------ Vue ---------------------------
 

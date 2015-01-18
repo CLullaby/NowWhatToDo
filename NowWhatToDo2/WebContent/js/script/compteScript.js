@@ -79,7 +79,7 @@ function getDonnees()
         		inputCodePostal.value = data.codePostal;
         		inputTel.value = data.tel;
         		
-        		
+        		recupererAvancementActivite();        		
         	}
         	else
     		{
@@ -90,4 +90,53 @@ function getDonnees()
         	alert("Un problème est survenu, veuillez recharger la page.");
         }
     });
+}
+
+//Récupération de la structure tableau de json depuis la servlet CompteAvancement pour afficher les tâches dans compte suivant leur avancement
+function recupererAvancementActivite(){
+
+	$.ajax({
+        url: '../../CompteAvancement',
+//        data: {
+//        	domaine : "administration"
+//        },
+        async: true,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+        	
+	        		
+	        		var arrayTermine = data[0].termine;
+	        		for(var j=0; j<arrayTermine.length; j++){
+	        			$("#blocTacheDone").append(getStringBlocTache(arrayTermine[j].nomActivite,arrayTermine[j].domaine,arrayTermine[j].description));
+	        		}
+	        		
+	        		var arrayEnCours = data[1].enCours;
+	        		for(var j=0; j<arrayEnCours.length; j++){
+	        			$("#blocTacheCours").append(getStringBlocTache(arrayEnCours[j].nomActivite,arrayEnCours[j].domaine,arrayEnCours[j].description));
+	        		}
+	        		
+	        		var arrayPasCommence = data[2].pasCommence;
+	        		for(var j=0; j<arrayPasCommence.length; j++){
+	    
+	        			$("#blocTacheToDo").append(getStringBlocTache(arrayPasCommence[j].nomActivite,arrayPasCommence[j].domaine,arrayPasCommence[j].description));
+	        		}
+	        		
+	        		
+        	}
+        
+    });
+};
+
+
+//Fonction retournant la string html contenant les informations sur l'activité: nom, domaine et description
+function getStringBlocTache(nomActivite,nomDomaine,descriptif){
+	
+	var stringBlocTache = "<p><b id='nomActivite'>Activité: "
+		+nomActivite+"</b></p>"
+		+"<p id='nomDomaine'>Domaine: "+nomDomaine+"</p>"
+		+"<p id='descriptif'>"+descriptif+"</p>" 
+	;	  
+	
+	return stringBlocTache;
 }
