@@ -20,9 +20,9 @@ import javax.servlet.http.HttpSession;
 
 
 import org.json.JSONException;
-import org.json.JSONObject;
+//import org.json.JSONObject;
 import org.json.simple.JSONArray;
-
+import org.json.simple.JSONObject;
 
 import model.ActiviteModelBean;
 import model.AvancementActiviteModelBean;
@@ -46,6 +46,8 @@ public class CompteAvancementServlet extends HttpServlet {
 	private final static String NOM_TACHE_LABEL = "nomTache";
 	private final static String NOM_DOMAINE_LABEL = "domaine";
 	private final static String DESCRIPTION_LABEL = "dscription";
+	
+	private String etat;
 	
        
     /**
@@ -169,19 +171,21 @@ public class CompteAvancementServlet extends HttpServlet {
 					{
 						listeTerminee.add(avancementActiviteModelBean);
 					}
-					jsonToSend.put("termine", listeTerminee);
-					jsonToSend.put("enCours", listeEnCours);
-					jsonToSend.put("pasCommence", listePasCommencee);
+//					jsonToSend.put("termine", listeTerminee);
+//					jsonToSend.put("enCours", listeEnCours);
+//					jsonToSend.put("pasCommence", listePasCommencee);
 				}
 			}
 			else
 			{
-				jsonToSend.put("etat", "nonLoge");
+				//jsonToSend.put("etat", "nonLoge");
+				etat =  "nonLoge";
 			}
 		}
 		else
 		{
-			jsonToSend.put("etat", "nonLoge");
+			//jsonToSend.put("etat", "nonLoge");
+			etat =  "nonLoge";
 		}
 		
 		PrintWriter out = response.getWriter();
@@ -194,7 +198,7 @@ public class CompteAvancementServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	//Permet de mettre a jour, l'avancement d'un utilisateur
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//Return value
 		response.setContentType("application/json");
 		JSONObject jsonToSend = new JSONObject();
@@ -249,29 +253,46 @@ public class CompteAvancementServlet extends HttpServlet {
 	}
 
 	
-	public JSONArray createJSONtoSend(ArrayList<ArrayList> listActivite) throws JSONException{
-
+	public JSONArray createJSONtoSend(ArrayList<AvancementActiviteModelBean> listeTerminee, ArrayList<AvancementActiviteModelBean> listeEnCours, 
+			ArrayList<AvancementActiviteModelBean> listePasCommencee, String etat){
+		
 		JSONArray arrayResponse = new JSONArray();
-		Iterator<ArrayList> iterator = listActivite.iterator();
+		
+		Iterator<AvancementActiviteModelBean> iteratorTerminee = listeTerminee.iterator();
+		Iterator<AvancementActiviteModelBean> iteratorEnCours = listeTerminee.iterator();
+		Iterator<AvancementActiviteModelBean> iteratorPasCommencee = listeTerminee.iterator();
 
 		
-		while(iterator.hasNext()) {
-	
-			Iterator<ActiviteModelBean> itActivite = iterator.next().iterator();
+		JSONObject jsonConnection = new JSONObject();
+		jsonConnection.put("etat", etat);
+		arrayResponse.add(jsonConnection);
+		
+		
+		while(iteratorTerminee.hasNext()){
 			
-			while(itActivite.hasNext()){			
+			JSONObject jsonTerminee = new JSONObject();
+			AvancementActiviteModelBean avancement = iteratorTerminee.next(); 
 			
-				JSONObject jsonActivite = new JSONObject();
-				ActiviteModelBean activite =  itActivite.next();
-				
-				jsonActivite.put(NOM_DOMAINE_LABEL,activite.getNomActivite());
-				jsonActivite.put(NOM_DOMAINE_LABEL, activite.getDomaine());
-				jsonActivite.put(DESCRIPTION_LABEL, activite.getDescription());
-				
-
-				arrayResponse.add(jsonActivite);
-			}	
 		}
+		
+		
+		//while(iterator.hasNext()) {
+	
+			//Iterator<ActiviteModelBean> itActivite = iterator.next().iterator();
+			
+//			while(itActivite.hasNext()){			
+//			
+//				JSONObject jsonActivite = new JSONObject();
+//				ActiviteModelBean activite =  itActivite.next();
+//				
+//				jsonActivite.put(NOM_DOMAINE_LABEL,activite.getNomActivite());
+//				jsonActivite.put(NOM_DOMAINE_LABEL, activite.getDomaine());
+//				jsonActivite.put(DESCRIPTION_LABEL, activite.getDescription());
+//				
+//
+//				arrayResponse.add(jsonActivite);
+//			}	
+//		}
 		return arrayResponse;
 	}
 
