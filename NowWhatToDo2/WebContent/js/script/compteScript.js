@@ -1,4 +1,4 @@
-$(document).ready(function(){
+function recupererAvancementActivite(){
 
 	$.ajax({
         url: '../../CompteAvancement',
@@ -27,7 +27,10 @@ $(document).ready(function(){
         	}
         
     });
-});
+};
+
+
+
 
 function afficherBlocsTache(divTacheDone,divTacheCours,divTacheCours,activiteTable){
 	
@@ -120,6 +123,8 @@ function getDonnees()
         		inputAdresse.value = data.adresse;
         		inputCodePostal.value = data.codePostal;
         		inputTel.value = data.tel;
+        		
+        		recupererAvancementActivite();
         		
         		
         	}
