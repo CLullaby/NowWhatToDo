@@ -20,7 +20,8 @@ body {
 }
 
 ul li {
-    list-style: none;
+	/*modif*/
+    /*list-style: none;*/
 }
 
 a, a:hover, a:focus {

@@ -1,5 +1,7 @@
+
+
 //Au chargement de la page, affiche les activités sur la page d'administration
-function afficherActivites() {
+function afficherActivites() {	
 	getActivites();
 
 }
@@ -79,15 +81,11 @@ function getActivites() {
 							colonneTelephone.innerHTML += "<td>" + telephone
 									+ "</td>";
 	
-							var colonneEmail = ligne.insertCell(8);
-							colonneEmail.innerHTML += "<td>" + email + "</td>";
-	
-	
-							var colonneImportance = ligne.insertCell(9);
+							var colonneImportance = ligne.insertCell(8);
 							colonneImportance.innerHTML += "<td>" + importance
 									+ "</td>";
 	
-							var colonneBoutons = ligne.insertCell(10);
+							var colonneBoutons = ligne.insertCell(9);
 							colonneBoutons.innerHTML += "<td>"
 									+ "<button type=\"submit\" class =\"btn btn-danger btn-sm\" onclick=\"supprimerActivite("+ id +")\">"
 									+ "<span class=\"glyphicon glyphicon-remove\">"
