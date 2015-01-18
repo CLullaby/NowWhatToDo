@@ -1,3 +1,45 @@
+$(document).ready(function(){
+
+	$.ajax({
+        url: '../../CompteAvancement',
+        data: {
+        	domaine : "administration"
+        },
+        async: true,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+        	
+        		var activiteTable=[]
+        		
+        		//On construit une liste de tableaux d'activité
+        		for(var i=0; i<data.length; i++){
+    	        	
+	        		var activite = [];
+	        		var jsonActivite = data[i];
+	        		
+	        		
+	        		activiteTable.push(activite);	
+        		}
+        		
+        		//Affichage du résultat de la recherche dans le div 
+        		afficherBlocsTache($("#blocTacheDone"),$("#blocTacheCours"),$("#blocTacheToDo"),activiteTable);
+        	}
+        
+    });
+});
+
+function afficherBlocsTache(divTacheDone,divTacheCours,divTacheCours,activiteTable){
+	
+	
+	
+	
+	
+	
+	
+	
+};
+
 //Met a jour les données du formulaire
 function ajaxMiseAJour()
 {
@@ -91,3 +133,4 @@ function getDonnees()
         }
     });
 }
+
