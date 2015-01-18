@@ -16,86 +16,62 @@ public class AvancementActiviteModelBean implements Serializable {
 	private int ceCompte;
 	private int ceActivite;
 	
-	
-	
 	public AvancementActiviteModelBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
+	
+	public AvancementActiviteModelBean(int avancement, String dateDebut, String dateFin, int ceCompte, int ceActivite) {
+		this.avancement = avancement;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.ceCompte = ceCompte;
+		this.ceActivite = ceActivite;
+	}
 
 	public int getIdAvancement() {
 		return idAvancement;
 	}
 
-
-
-	public void setIdAvancement(int idAvancement) {
-		this.idAvancement = idAvancement;
-	}
-
-
-
 	public int getAvancement() {
 		return avancement;
 	}
-
-
 
 	public void setAvancement(int avancement) {
 		this.avancement = avancement;
 	}
 
-
-
 	public String getDateDebut() {
 		return dateDebut;
 	}
-
-
 
 	public void setDateDebut(String dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-
-
 	public String getDateFin() {
 		return dateFin;
 	}
-
-
 
 	public void setDateFin(String dateFin) {
 		this.dateFin = dateFin;
 	}
 
-
-
 	public int getCeCompte() {
 		return ceCompte;
 	}
-
-
 
 	public void setCeCompte(int ceCompte) {
 		this.ceCompte = ceCompte;
 	}
 
-
-
 	public int getCeActivite() {
 		return ceActivite;
 	}
 
-
-
 	public void setCeActivite(int ceActivite) {
 		this.ceActivite = ceActivite;
 	}
-
-
 
 	@Override
 	public String toString() {

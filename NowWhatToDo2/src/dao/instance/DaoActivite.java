@@ -242,39 +242,80 @@ public class DaoActivite {
 		ArrayList<ActiviteModelBean> listeRetour = new ArrayList<ActiviteModelBean>();
 		
 		// Création de la requête
-				java.sql.Statement query;
-				try {
-					// create connection
-					connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
-							+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
-					query = connection.createStatement();
-					ResultSet resultat = query
-							.executeQuery("SELECT * FROM Activite WHERE NomActivite LIKE '" + "%"+ motCle +"%' OR Domaine LIKE '" + "%"+ motCle +"%'");
-					// Extraction des données '%motCle%'
-					while (resultat.next()) {
-						ActiviteModelBean model = new ActiviteModelBean();
+		java.sql.Statement query;
+		try {
+			// create connection
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
+					+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			query = connection.createStatement();
+			ResultSet resultat = query
+					.executeQuery("SELECT * FROM Activite WHERE NomActivite LIKE '" + "%"+ motCle +"%' OR Domaine LIKE '" + "%"+ motCle +"%'");
+			// Extraction des données '%motCle%'
+			while (resultat.next()) {
+				ActiviteModelBean model = new ActiviteModelBean();
 
-						model.setId(resultat.getInt("Id"));
-						model.setNomActivite(resultat.getString("NomActivite"));
-						model.setDescription(resultat.getString("Description"));
-						model.setNomLieu(resultat.getString("NomLieu"));
-						model.setAdresse(resultat.getString("Adresse"));
-						model.setVille(resultat.getString("Ville"));
-						model.setCodePostal(resultat.getString("CodePostal"));
-						model.setSiteWeb(resultat.getString("SiteWeb"));
-						model.setTelephone(resultat.getString("Tel"));
-						model.setEmail(resultat.getString("Email"));
-						model.setDomaine(resultat.getString("Domaine"));
-						model.setLienPhoto(resultat.getString("LienPhoto"));
-						model.setImportance(resultat.getInt("Importance"));
+				model.setId(resultat.getInt("Id"));
+				model.setNomActivite(resultat.getString("NomActivite"));
+				model.setDescription(resultat.getString("Description"));
+				model.setNomLieu(resultat.getString("NomLieu"));
+				model.setAdresse(resultat.getString("Adresse"));
+				model.setVille(resultat.getString("Ville"));
+				model.setCodePostal(resultat.getString("CodePostal"));
+				model.setSiteWeb(resultat.getString("SiteWeb"));
+				model.setTelephone(resultat.getString("Tel"));
+				model.setEmail(resultat.getString("Email"));
+				model.setDomaine(resultat.getString("Domaine"));
+				model.setLienPhoto(resultat.getString("LienPhoto"));
+				model.setImportance(resultat.getInt("Importance"));
 
-						listeRetour.add(model);
-					}
-					resultat.close();
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				listeRetour.add(model);
+			}
+			resultat.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listeRetour;
+	}
+	
+	//Renvoie toutes les activites obligatoires
+	public ArrayList<ActiviteModelBean> getAllActiviteObligatoires()
+	{
+		ArrayList<ActiviteModelBean> listeRetour = new ArrayList<ActiviteModelBean>();
+		
+		java.sql.Statement query;
+		try {
+			// create connection
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
+					+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
+			query = connection.createStatement();
+			ResultSet resultat = query
+					.executeQuery("SELECT * FROM Activite WHERE Importance = 1");
+			while (resultat.next()) {
+				ActiviteModelBean model = new ActiviteModelBean();
+
+				model.setId(resultat.getInt("Id"));
+				model.setNomActivite(resultat.getString("NomActivite"));
+				model.setDescription(resultat.getString("Description"));
+				model.setNomLieu(resultat.getString("NomLieu"));
+				model.setAdresse(resultat.getString("Adresse"));
+				model.setVille(resultat.getString("Ville"));
+				model.setCodePostal(resultat.getString("CodePostal"));
+				model.setSiteWeb(resultat.getString("SiteWeb"));
+				model.setTelephone(resultat.getString("Tel"));
+				model.setEmail(resultat.getString("Email"));
+				model.setDomaine(resultat.getString("Domaine"));
+				model.setLienPhoto(resultat.getString("LienPhoto"));
+				model.setImportance(resultat.getInt("Importance"));
+
+				listeRetour.add(model);
+			}
+			resultat.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return listeRetour;
 	}

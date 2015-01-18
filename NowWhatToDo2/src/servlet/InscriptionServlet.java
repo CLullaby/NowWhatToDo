@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ActiviteModelBean;
+import model.AvancementActiviteModelBean;
 import model.CompteModelBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import enumerations.Roles;
+import dao.instance.DaoActivite;
+import dao.instance.DaoAvancement;
 import dao.instance.DaoCompte;
 import dao.fabrique.DaoFabrique;
 /**
@@ -24,12 +30,16 @@ import dao.fabrique.DaoFabrique;
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte DaoCompte;
+	private DaoAvancement daoAvancement;
+	private DaoActivite daoActivite;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public InscriptionServlet() {
         super();
         this.DaoCompte = DaoFabrique.getInstance().createUserDao();
+        this.daoAvancement = DaoFabrique.getInstance().createAvancementDao();
+        this.daoActivite = DaoFabrique.getInstance().createActiviteDao();
         // TODO Auto-generated constructor stub
     }
 	
@@ -104,6 +114,10 @@ public class InscriptionServlet extends HttpServlet {
 				CompteModelBean compte = new CompteModelBean(nom, prenom, login, mdp, email, age, "", adresse, codePostal, telephone, Roles.Utilisateur.returnValue());
 				//Appel a la DAO + ajout dans le BD
 				DaoCompte.addUtilisateur(compte);
+				
+				//On associe a ce compte les activites par default
+				int idCompte = DaoCompte.getUserLogin(login).getId();
+				addActiviteObligatoires(idCompte);
 			}
 			else
 			{
@@ -118,6 +132,20 @@ public class InscriptionServlet extends HttpServlet {
 			
 		}
 
+	}
+	
+	//Fonction pour ajouter les activites par default
+	public void addActiviteObligatoires(int ceCompte)
+	{
+		//int avancement, String dateDebut, String dateFin, int ceCompte, int ceActivite
+		ArrayList<ActiviteModelBean> listeActiviteObligatoire = daoActivite.getAllActiviteObligatoires();
+		Date date = new Date();
+		String dateString = date.toString();
+		for(int i=0; i < listeActiviteObligatoire.size(); i++)
+		{
+			AvancementActiviteModelBean avancementActiviteModel = new AvancementActiviteModelBean(0, dateString, "", ceCompte, listeActiviteObligatoire.get(i).getId());
+			daoAvancement.addAvancementActivite(avancementActiviteModel);
+		}
 	}
 
 }

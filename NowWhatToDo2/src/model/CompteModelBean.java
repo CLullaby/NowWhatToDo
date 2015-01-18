@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CompteModelBean implements Serializable{
 	private static final long serialVersionUID = 1L;
+	private int id;
 	private String nom;
 	private String prenom;
 	private String identifiant;
@@ -51,6 +52,14 @@ public class CompteModelBean implements Serializable{
 				+ codePostal + ", tel=" + tel + ", role=" + role + "]";
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getCodePostal() {
 		return codePostal;
 	}

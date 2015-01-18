@@ -20,25 +20,7 @@ $(document).ready(function(){
 					 }
 					 
 					jsonTable.push(identificationForm);
-					
-					 //méthode envoie et retour de tableau de json
-					/*$.post("../../Login",
-							{
-								identificationForm: JSON.stringify(jsonTable)
-							},
-							function(data){						
-								//alert(data[0].resultat);
-								if(data[0].resultat == "succes"){
-									location.href = "compte.html";
-									//window.location.replace("http://localhost:8080/NowWhatToDo2/vues/Compte/compte.html");
-								}
-								else(data[0].resultat == "echec")
-								{									
-									alert("Mauvaise authentification");
-								}
-							}
-							//Pensez a renvoyer le type d'erreur si l'authentification est false									
-					);*/
+					 
 					 $.ajax({
 					        url: '../../Login',
 					        data: {
@@ -49,7 +31,7 @@ $(document).ready(function(){
 					        dataType: 'json',
 					        success: function (data) {
 					        	if(data.connecte == "oui"){
-									location.href = "compte.html";
+									location.href = "../accueil/accueil.html";
 								}
 								else
 								{									

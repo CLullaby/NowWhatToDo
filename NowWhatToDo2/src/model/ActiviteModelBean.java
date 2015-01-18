@@ -7,7 +7,7 @@ public class ActiviteModelBean {
 	}
 	private int id;
 	private String nomActivite;
-	private String Description;
+	private String description;
 	private String nomLieu;
 	private String adresse;
 	private String ville;
@@ -27,7 +27,7 @@ public class ActiviteModelBean {
 			String lienPhoto, int importance) {
 		super();
 		this.nomActivite = nomActivite;
-		Description = description;
+		this.description = description;
 		this.nomLieu = nomLieu;
 		this.adresse = adresse;
 		this.ville = ville;
@@ -52,10 +52,10 @@ public class ActiviteModelBean {
 		this.nomActivite = nomActivite;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 	public String getNomLieu() {
 		return nomLieu;
