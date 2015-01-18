@@ -65,79 +65,7 @@ public class CompteAvancementServlet extends HttpServlet {
     //Permet de rechercher l'avancement d'un utilisateur
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
-//		//Aller cherhcer dans la session le nom de la personne loge
-//		HttpSession session = request.getSession();
-//		String nomUtilisateur = (String) session.getAttribute("connecte");
-//		//Requete la DAO
-//		
-//		//JSON de retour
-//		
-//		
-//		//Recupération du nom de domaine sélectionée dans la page acceil
-//				String domaine = request.getParameter("domaine");
-//
-//				//Récupération des activités du domaine dans la BD 
-//				ArrayList<ActiviteModelBean> allActList = daoActivite.getActivitebyDomaine(domaine);
-//				ArrayList listeGeneral = new ArrayList();
-//				List<String> nomAct = new ArrayList();
-//				
-//				//initialisation de la liste en recuperant tout les nom d'activite dans le domaine recupere
-//				//Création d'une liste contenant les noms d'activités recensées 
-//				for (Iterator<ActiviteModelBean> actIter = allActList.iterator(); actIter.hasNext();)
-//				{
-//					ActiviteModelBean current = actIter.next();
-//					if(!nomAct.contains(current.getNomActivite()))
-//					{
-//						nomAct.add(current.getNomActivite());
-//						//System.out.println(" nom d'act :" + current.getNomActivite() + " ");
-//					}
-//				}
-//
-//				
-//				//Création d'une liste d'ActiviteModelBean triées par nom d'activité
-//				for(int i = 0; i< nomAct.size(); i++)
-//				{
-//					//chaque itteration correspond a une nouvelle activite
-//					ArrayList<ActiviteModelBean> liste  = new ArrayList<ActiviteModelBean>();
-//					for (Iterator<ActiviteModelBean> actIter = allActList.iterator(); actIter.hasNext();)
-//					{	
-//						//si le nom de l'activite courrante correspond au nom de l'activite de l'element courant
-//						//on ajoute le bean dans la liste courante 
-//						ActiviteModelBean current = actIter.next();
-//						if(current.getNomActivite().equals(nomAct.get(i)))
-//						{
-//							liste.add(current);
-//						}
-//					}
-//					//pour ne pas perdre les listes on les mets dans une liste de liste
-//					listeGeneral.add(liste);
-//				}
-//				
-//				//Ininitialisation de l'envoi du tableau de json vers transportScript.js
-//				response.setContentType("application/json");
-//				JSONArray arrayActiviteList;
-//				PrintWriter out = response.getWriter();
-//				
-//				try {
-//					//Remplissage du tableau avec la liste d'ActiviteModelBean créée précédemment
-//					arrayActiviteList = createJSONtoSend(listeGeneral);
-//					out.write(arrayActiviteList.toString());
-//					System.out.println(arrayActiviteList);
-//					
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				
-//				out.close();
-//		
-//		
-//		
-		
-
 		response.setContentType("application/json");
-		JSONObject jsonToSend = new JSONObject();
 		
 		//Aller chercher dans la session le nom de la personne loge -> elle est forcement loge !!
 		HttpSession session = request.getSession();
@@ -189,28 +117,18 @@ public class CompteAvancementServlet extends HttpServlet {
 					} else if(avancementActiviteModelBean.getAvancement() == 2)
 					{
 						listeTerminee.add(avancementActiviteModelBean);
-					}
-//					jsonToSend.put("termine", listeTerminee);
-//					jsonToSend.put("enCours", listeEnCours);
-//					jsonToSend.put("pasCommence", listePasCommencee);
+					}						
 				}
+				
+				
+				JSONArray arrayResponse = createJSONtoSend( listeTerminee, listeEnCours, listePasCommencee);
+				PrintWriter out = response.getWriter();
+				out.write(arrayResponse.toString());
+				out.close();	
+				
+				//System.out.println(arrayResponse);
 			}
-			else
-			{
-				//jsonToSend.put("etat", "nonLoge");
-				etat =  "nonLoge";
-			}
-		}
-		else
-		{
-			//jsonToSend.put("etat", "nonLoge");
-			etat =  "nonLoge";
-		}
-		
-		PrintWriter out = response.getWriter();
-		out.write(jsonToSend.toString());
-		out.close();	
-
+		}	
 	}
 
 	/**
@@ -272,46 +190,69 @@ public class CompteAvancementServlet extends HttpServlet {
 	}
 
 	
+	//Cree le json d'AvancementActiviteModelBean
+	public JSONObject getJSONavancement(AvancementActiviteModelBean avancement){
+		
+		JSONObject json = new JSONObject();
+		
+		json.put("domaine", avancement.getNomDomaine());
+		json.put("nomActivite", avancement.getNomActivite());
+		json.put("description", avancement.getDescriptionActivite());
+		
+		return json;
+	}
+	
+	//Revoie un tableau contenant 3 json pour chaque type d'avancement et chacun contenant un array de jsons d'AvancementActiviteModelBean
+	//Ex: [{"termine":[]},{"enCours":[]},{"pasCommence":[{"nomActivite":"carte d'identité","domaine":"administration","description":""},{"nomActivite":"actes de naissance","domaine":"administration","description":""}]}]
 	public JSONArray createJSONtoSend(ArrayList<AvancementActiviteModelBean> listeTerminee, ArrayList<AvancementActiviteModelBean> listeEnCours, 
-			ArrayList<AvancementActiviteModelBean> listePasCommencee, String etat){
+			ArrayList<AvancementActiviteModelBean> listePasCommencee){
 		
 		JSONArray arrayResponse = new JSONArray();
 		
 		Iterator<AvancementActiviteModelBean> iteratorTerminee = listeTerminee.iterator();
-		Iterator<AvancementActiviteModelBean> iteratorEnCours = listeTerminee.iterator();
-		Iterator<AvancementActiviteModelBean> iteratorPasCommencee = listeTerminee.iterator();
+		Iterator<AvancementActiviteModelBean> iteratorEnCours = listeEnCours.iterator();
+		Iterator<AvancementActiviteModelBean> iteratorPasCommencee = listePasCommencee.iterator();
 
 		
-		JSONObject jsonConnection = new JSONObject();
-		jsonConnection.put("etat", etat);
-		arrayResponse.add(jsonConnection);
-		
-		
+		JSONObject jsonListTerminee = new JSONObject();
+		JSONArray arrayListTerminee = new JSONArray();
 		while(iteratorTerminee.hasNext()){
 			
-			JSONObject jsonTerminee = new JSONObject();
 			AvancementActiviteModelBean avancement = iteratorTerminee.next(); 
+			JSONObject jsonTerminee =  getJSONavancement(avancement);
+			arrayListTerminee.add(jsonTerminee);
 			
 		}
+		jsonListTerminee.put("termine", arrayListTerminee);
+		arrayResponse.add(jsonListTerminee);
 		
 		
-		//while(iterator.hasNext()) {
-	
-			//Iterator<ActiviteModelBean> itActivite = iterator.next().iterator();
+		JSONObject jsonListEnCours = new JSONObject();
+		JSONArray arrayListEnCours = new JSONArray();
+		while(iteratorEnCours.hasNext()){
 			
-//			while(itActivite.hasNext()){			
-//			
-//				JSONObject jsonActivite = new JSONObject();
-//				ActiviteModelBean activite =  itActivite.next();
-//				
-//				jsonActivite.put(NOM_DOMAINE_LABEL,activite.getNomActivite());
-//				jsonActivite.put(NOM_DOMAINE_LABEL, activite.getDomaine());
-//				jsonActivite.put(DESCRIPTION_LABEL, activite.getDescription());
-//				
-//
-//				arrayResponse.add(jsonActivite);
-//			}	
-//		}
+			AvancementActiviteModelBean avancement = iteratorEnCours.next(); 
+			JSONObject jsonEnCours =  getJSONavancement(avancement);
+			arrayListEnCours.add(jsonEnCours);
+			
+		}
+		jsonListEnCours.put("enCours", arrayListEnCours);
+		arrayResponse.add(jsonListEnCours);
+		
+		
+		JSONObject jsonListPasCommencee = new JSONObject();
+		JSONArray arrayListPasCommencee = new JSONArray();
+		while(iteratorPasCommencee.hasNext()){
+			
+			AvancementActiviteModelBean avancement = iteratorPasCommencee.next(); 
+			JSONObject jsonPasCommencee =  getJSONavancement(avancement);
+			arrayListPasCommencee.add(jsonPasCommencee);
+			
+		}
+		jsonListPasCommencee.put("pasCommence", arrayListPasCommencee);
+		arrayResponse.add(jsonListPasCommencee);
+		
+		
 		return arrayResponse;
 	}
 
