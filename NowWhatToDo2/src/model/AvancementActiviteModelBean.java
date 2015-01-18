@@ -47,7 +47,11 @@ public class AvancementActiviteModelBean implements Serializable {
 	public int getIdAvancement() {
 		return idAvancement;
 	}
-
+	
+	public void setIdAvancement(int idAvancement) {
+		this.idAvancement = idAvancement;
+	}
+	
 	public int getAvancement() {
 		return avancement;
 	}

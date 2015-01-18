@@ -75,7 +75,6 @@ public class DaoAvancement {
 	public void updateAvancement(int avancement, AvancementActiviteModelBean activite)
 	{
 		java.sql.Statement query;
-
 		try {
 			// create connection
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"
@@ -85,7 +84,7 @@ public class DaoAvancement {
 			query = connection.createStatement();
 			
 			// Executer puis parcourir les résultats				
-			String sql = "UPDATE Avancement SET Avancement = '" +avancement + "' WHERE Avancement = '" +activite.getAvancement() + "'";
+			String sql = "UPDATE Avancement SET Avancement = '" +avancement + "' WHERE IdAvancement = '" +activite.getIdAvancement() + "'";
 			
 			query.executeUpdate(sql);
 			query.close();
@@ -93,7 +92,6 @@ public class DaoAvancement {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void deleteAvancementActivite(int id)
@@ -125,6 +123,7 @@ public class DaoAvancement {
 			while (resultat.next())
 			{
 				AvancementActiviteModelBean model = new AvancementActiviteModelBean();
+				model.setIdAvancement(resultat.getInt("IdAvancement"));
 				model.setAvancement(resultat.getInt("Avancement"));
 				model.setDateDebut(resultat.getString("DateDebut"));
 				model.setDateFin(resultat.getString("DateFin"));
@@ -157,6 +156,7 @@ public class DaoAvancement {
 			while (resultat.next())
 			{
 				AvancementActiviteModelBean model = new AvancementActiviteModelBean();
+				model.setIdAvancement(resultat.getInt("IdAvancement"));
 				model.setAvancement(resultat.getInt("Avancement"));
 				model.setDateDebut(resultat.getString("DateDebut"));
 				model.setDateFin(resultat.getString("DateFin"));
@@ -189,6 +189,7 @@ public class DaoAvancement {
 			while (resultat.next())
 			{
 				AvancementActiviteModelBean model = new AvancementActiviteModelBean();
+				model.setIdAvancement(resultat.getInt("IdAvancement"));
 				model.setAvancement(resultat.getInt("Avancement"));
 				model.setDateDebut(resultat.getString("DateDebut"));
 				model.setDateFin(resultat.getString("DateFin"));
@@ -221,6 +222,7 @@ public class DaoAvancement {
 			while (resultat.next())
 			{
 				AvancementActiviteModelBean model = new AvancementActiviteModelBean();
+				model.setIdAvancement(resultat.getInt("IdAvancement"));
 				model.setAvancement(resultat.getInt("Avancement"));
 				model.setDateDebut(resultat.getString("DateDebut"));
 				model.setDateFin(resultat.getString("DateFin"));
@@ -253,6 +255,7 @@ public class DaoAvancement {
 			while (resultat.next())
 			{
 				AvancementActiviteModelBean model = new AvancementActiviteModelBean();
+				model.setIdAvancement(resultat.getInt("IdAvancement"));
 				model.setAvancement(resultat.getInt("Avancement"));
 				model.setDateDebut(resultat.getString("DateDebut"));
 				model.setDateFin(resultat.getString("DateFin"));
@@ -285,6 +288,7 @@ public class DaoAvancement {
 			while (resultat.next())
 			{
 				AvancementActiviteModelBean model = new AvancementActiviteModelBean();
+				model.setIdAvancement(resultat.getInt("IdAvancement"));
 				model.setAvancement(resultat.getInt("Avancement"));
 				model.setDateDebut(resultat.getString("DateDebut"));
 				model.setDateFin(resultat.getString("DateFin"));
