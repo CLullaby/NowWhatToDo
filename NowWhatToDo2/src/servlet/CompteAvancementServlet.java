@@ -35,8 +35,7 @@ import dao.instance.DaoCompte;
  * Servlet implementation class CompteAvancementServlet
  */
 @WebServlet("/CompteAvancement")
-public class CompteAvancementServlet extends HttpServlet {
-	
+public class CompteAvancementServlet extends HttpServlet {	
 	private static final long serialVersionUID = 1L;
 	private DaoActivite daoActivite;
 	private DaoCompte daoCompte;
@@ -44,10 +43,7 @@ public class CompteAvancementServlet extends HttpServlet {
 	
 	private final static String NOM_TACHE_LABEL = "nomTache";
 	private final static String NOM_DOMAINE_LABEL = "domaine";
-	private final static String DESCRIPTION_LABEL = "dscription";
-	
-	private String etat;
-	
+	private final static String DESCRIPTION_LABEL = "dscription";	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -67,7 +63,8 @@ public class CompteAvancementServlet extends HttpServlet {
 
 		response.setContentType("application/json");
 		
-		//Aller chercher dans la session le nom de la personne loge -> elle est forcement loge !!
+		//Aller chercher dans la session le nom de la personne loge -> elle est forcement loge car on apelle cette fonction ajax juste apres celle qui ca chercher
+		//les infos pour remplir les input de données personnelles dans CompteServlet!!
 		HttpSession session = request.getSession();
 		if(session != null)
 		{
@@ -134,7 +131,7 @@ public class CompteAvancementServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	//Permet de mettre a jour, l'avancement d'un utilisateur
+	//L'utilisateur a selectionne une activite a faire, création d'une ligne dans la BD por avancementActivite
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//Return value
 		response.setContentType("application/json");
@@ -165,6 +162,7 @@ public class CompteAvancementServlet extends HttpServlet {
 				if(compte != null && activiteModel != null)
 				{
 					Date date = new Date();
+					//0 pour que l'activite soit en pas commencée
 					AvancementActiviteModelBean activiteAvancementModel = new AvancementActiviteModelBean(0, date.toString(), "", compte.getId(), activiteModel.getId());
 					daoAvancement.addAvancementActivite(activiteAvancementModel);
 					jsonToSend.put("etat", "ok");
