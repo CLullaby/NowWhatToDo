@@ -141,6 +141,37 @@ public class DaoAvancement {
 		return list; 
 	}	
 	
+	public AvancementActiviteModelBean getAvancementActiviteById(int idAvancementActivite)
+	{
+		AvancementActiviteModelBean model = new AvancementActiviteModelBean();
+		// Création de la requête 
+		java.sql.Statement query; 
+		try { 
+			// create connection 
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
+			query = connection.createStatement();
+			ResultSet resultat = query.executeQuery("SELECT * FROM Avancement WHERE idAvancement = '" + idAvancementActivite + "'");
+			//Extraction des données	
+			while (resultat.next())
+			{
+				model.setIdAvancement(resultat.getInt("IdAvancement"));
+				model.setAvancement(resultat.getInt("Avancement"));
+				model.setDateDebut(resultat.getString("DateDebut"));
+				model.setDateFin(resultat.getString("DateFin"));
+				model.setCeCompte(resultat.getInt("CECompte"));
+				model.setCeActivite(resultat.getInt("CEActivite"));
+				
+			}
+			resultat.close();
+			connection.close(); 
+			}
+		catch (SQLException e) 
+		{
+			e.printStackTrace(); 
+		}
+		return model; 
+	}	
+	
 	public ArrayList<AvancementActiviteModelBean> getAvancementActiviteByCompte(int idCompte)
 	{
 		//return value 

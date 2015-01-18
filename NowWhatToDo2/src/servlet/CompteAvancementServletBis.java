@@ -1,12 +1,21 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.ActiviteModelBean;
+import model.AvancementActiviteModelBean;
+import model.CompteModelBean;
+
+import org.json.simple.JSONObject;
 
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;
@@ -45,9 +54,24 @@ public class CompteAvancementServletBis extends HttpServlet {
 	 */
 	//Met a jour l'avancement d'une activite d'un utilisateur
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//int idActivite = request.getParameter("idActivite");
 		
-		
+		//Le parametre est forcement un int
+		int idAvancementActivite = 0;
+		String stringIdAvancementActivite = request.getParameter("idAvancementActivite");
+		try {
+			idAvancementActivite = Integer.parseInt(stringIdAvancementActivite);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+			
+		AvancementActiviteModelBean avancementActiviteModel = daoAvancement.getAvancementActiviteById(idAvancementActivite);
+		int newAvancement = avancementActiviteModel.getAvancement() + 1;
+		if(newAvancement < 2)
+		{
+			daoAvancement.updateAvancement(newAvancement, avancementActiviteModel);
+		}
 	}
-
+	
 }
