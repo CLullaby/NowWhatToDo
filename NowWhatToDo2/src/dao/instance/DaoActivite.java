@@ -83,17 +83,17 @@ public class DaoActivite {
 					+ dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD);
 			query = connection.createStatement();
 			query.executeUpdate("UPDATE Activite SET NomActivite = '"
-					+ updateActivite.getNomActivite() + "', Description = '"
-					+ updateActivite.getDescription() + "', NomLieu = '"
-					+ updateActivite.getNomLieu() + "', Adresse = '"
-					+ updateActivite.getAdresse() + "', Ville = '"
-					+ updateActivite.getVille() + "', CodePostal = '"
+					+ updateActivite.getNomActivite().replace("'","\\'") + "', Description = '"
+					+ updateActivite.getDescription().replace("'","\\'") + "', NomLieu = '"
+					+ updateActivite.getNomLieu().replace("'","\\'") + "', Adresse = '"
+					+ updateActivite.getAdresse().replace("'","\\'") + "', Ville = '"
+					+ updateActivite.getVille().replace("'","\\'") + "', CodePostal = '"
 					+ updateActivite.getCodePostal() + "', SiteWeb = '"
-					+ updateActivite.getSiteWeb() + "', Tel = '"
+					+ updateActivite.getSiteWeb().replace("'","\\'") + "', Tel = '"
 					+ updateActivite.getTelephone() + "', Email = '"
 					+ updateActivite.getEmail() + "', Domaine = '"
-					+ updateActivite.getDomaine() + "', LienPhoto = '"
-					+ updateActivite.getLienPhoto() + "', Importance = '"
+					+ updateActivite.getDomaine().replace("'","\\'") + "', LienPhoto = '"
+					+ updateActivite.getLienPhoto().replace("'","\\'") + "', Importance = '"
 					+ updateActivite.getImportance() + "'" + "WHERE id= '" + idActivite +"'");
 
 			connection.close();
