@@ -108,6 +108,20 @@ public class DaoAvancement {
 		}
 	}
 	
+	//Supprime les avancements liés à une activité
+	public void deleteAvancementByActivite(int idActivite){
+		java.sql.Statement query; 
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + dB_HOST + ":" + dB_PORT + "/" + dB_NAME, dB_USER, dB_PWD); 
+			query = connection.createStatement(); 
+			query.executeUpdate("DELETE FROM Avancement WHERE CEActivite = '" +idActivite + "'");
+			connection.close();
+		} catch (SQLException e) 
+		{
+			e.printStackTrace(); 
+		}
+	}
+	
 	public ArrayList<AvancementActiviteModelBean> getAllAvancementActivite()
 	{
 		//return value 

@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 import model.ActiviteModelBean;
 import dao.fabrique.DaoFabrique;
 import dao.instance.DaoActivite;
+import dao.instance.DaoAvancement;
 
 /**
  * Servlet implementation class AdminActiviteServlet
@@ -102,7 +103,11 @@ public class AdminActiviteServlet extends HttpServlet {
 		String idString = request.getParameter("id");
 		int id = Integer.parseInt(idString);
 
-		//Suppression dans la base de données
+		//Suppression des avancements liés à l'activité que l'on veut supprimer (Contrainte clé étrangère)
+		DaoAvancement daoAvancement = DaoFabrique.getInstance().createAvancementDao();
+		daoAvancement.deleteAvancementByActivite(id);
+		
+		//Suppression de l'activité dans la base de données
 		DaoActivite dao = DaoFabrique.getInstance().createActiviteDao();
 		dao.deleteActivite(id);
 		
