@@ -31,29 +31,29 @@ package model;
  */
 
 import java.util.*;
-import java.io.*;
+//import java.io.*;
 
 import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
+//import javax.mail.internet.*;
+//import javax.activation.*;
 
-import java.io.UnsupportedEncodingException;  
+//import java.io.UnsupportedEncodingException;  
 import java.util.Properties;  
-import java.util.logging.Level;  
-import java.util.logging.Logger;  
+//import java.util.logging.Level;  
+//import java.util.logging.Logger;  
 
 import javax.mail.Authenticator;  
 import javax.mail.Message;  
 import javax.mail.MessagingException;  
-import javax.mail.NoSuchProviderException;
+//import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;  
 import javax.mail.Session;  
 import javax.mail.Transport;  
 import javax.mail.internet.InternetAddress;  
 import javax.mail.internet.MimeMessage;
-import javax.mail.Authenticator;
+//import javax.mail.Authenticator;
 
-import com.sun.mail.smtp.SMTPTransport;
+//import com.sun.mail.smtp.SMTPTransport;
 
 /**
  * msgsendsample creates a very simple text/plain message and sends it.
