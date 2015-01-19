@@ -31,7 +31,8 @@ public class LoginBisServlet extends HttpServlet {
 	 */
     //Permet de verifier si l'user est loge pour afficher le bouton logout
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
 	}
 
 	/**
