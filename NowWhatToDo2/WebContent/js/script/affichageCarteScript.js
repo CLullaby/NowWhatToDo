@@ -1,19 +1,21 @@
 
 var geocoder;
 var map;
+var lyon = new google.maps.LatLng(45.767, 4.833); //Coordonnées de Lyon
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(45.767, 4.833); //Coordonnées de Lyon
+  var latlng = lyon; 
   var mapOptions = {
     zoom: 15,
     center: latlng
   }
+  placerMarqueur();
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
 
-//Place un marqueur sur la carte pour marquer l'adresse recherchée
-	function placerMarqueur(){
+//Place un marqueur sur la carte pour marquer l'adresse de l'activité
+function placerMarqueur(){
 	
 		//Récupération des paramètres dans l'url
 	var adresse = getUrlParameter('adresse');
@@ -23,10 +25,6 @@ function initialize() {
 	adresse = decodeURI(adresse);
 	
 	var recherche = adresse + " " + codePostal;
-	
-	console.log(recherche);
-	
-	
 	geocoder.geocode ({"address" : recherche}, function (results, status){
 		
 		if(status == google.maps.GeocoderStatus.OK){
@@ -34,6 +32,7 @@ function initialize() {
 			
 			var marker = new google.maps.Marker({
 				map : map,
+				animation: google.maps.Animation.DROP,
 				position : results[0].geometry.location
 			});
 		} else{
