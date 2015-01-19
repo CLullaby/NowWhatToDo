@@ -115,9 +115,9 @@ function afficherHtmlActivite(elmToAppend, activiteTable, cheminImage/*, arraySi
 					+"<h2>" + stringNomActivite + "<button class='btn btn-sm btn-theme pull-right' type='button' onclick='selectionActivite(" + value['id'] + ");' >A faire</button></h2>"
 					+"<p class='text-justify'>" + stringNomLieu + stringAdresse + stringCodePostal + stringVille + "</p>"
 					+"<p class='text-justify'>" + stringTelephone + stringEmail + "</p>"
-					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringSiteWeb + "</div>"
-					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringCarte + "</div>"
-					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringLienPhoto + "</div>"
+					+"<div class='col-lg-4 col-md-4 col-sm-4 centered'>" + stringSiteWeb + "</div>"
+					+"<div class='col-lg-4 col-md-4 col-sm-4 centered'>" + stringCarte + "</div>"
+					+"<div class='col-lg-4 col-md-4 col-sm-4 centered'>" + stringLienPhoto + "</div>"
 					+"<div class='col-lg-12 col-md-12 col-sm-12'><p class='text-justify'>" + stringDescription + "</p></div>"				
 				+"</div>"
 			+"</div>";
