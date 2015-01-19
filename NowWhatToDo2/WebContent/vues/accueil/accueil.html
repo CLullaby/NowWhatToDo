@@ -41,13 +41,7 @@
             <!--logo end-->
             
             <!-- Pour la connexion -->
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-            		<li><a class="logout" href="../Compte/inscription.html" style="margin-bottom: 10px;">Inscription</a></li>
-            	</ul>
-            	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="../Compte/login.html" style="margin-bottom: 10px;">Connexion</a></li>
-            	</ul>
+            <div id="connexionDeconnexion" class="top-menu">
             </div>
         </header>
       <!--header end-->
@@ -98,7 +92,6 @@
                       </a>
                       <!-- Ce formulaire permet d'appeler la servlet Accueil avant d'aller sur compte -> vérification du log de l'utilisateur  -->
                       <form action="../../VerificationConnexion" method="get" id="formCompte" >
-                      	<!-- <button type="submit" style="border: 0px;"><i class="fa fa-user"></i><span>Compte</span></button>-->
                       </form>
                   </li>
                   <li class="sub-menu">
@@ -236,12 +229,22 @@
     <!--common script for all pages-->
     <script src="../../js/common-scripts.js"></script>
     
+    <script src="../../js/script/loginBisScript.js"></script>        
     <script type="text/javascript">
     	//Cette fonction envoie le formulaire pour appeler la servlet Accueil avant d'aller sur compte -> vérification du log de l'utilisateur 
     	function cheatAppelCompteServlet()
     	{
     		document.getElementById("formCompte").submit();
     	}
+    	
+    	//Appelle la Servlet loginBis pour deconnecter l'utilisateur
+    	function cheatDeconnexion()
+    	{
+    		document.getElementById("formDeconnexion").submit();
+    	}
+    	
+    	//Verifie le log pour le menu et le bouton connexion/deconnexion
+    	afficherConnexionDeconnexion();
     </script>
   </body>
 </html>
