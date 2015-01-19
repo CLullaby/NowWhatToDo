@@ -19,7 +19,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 @WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+public class loginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private final static String IDENTIFICATION_RESULT_LABEL = "identificationForm";
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 	private final static String MOT_DE_PASSE_LABEL = "motDePasse";
 	private DaoCompte daoCompte;
 	
-    public LoginServlet() {
+    public loginServlet() {
         super();
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
     }

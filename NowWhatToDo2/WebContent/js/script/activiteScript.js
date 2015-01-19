@@ -82,6 +82,11 @@ function afficherHtmlActivite(elmToAppend, activiteTable, cheminImage/*, arraySi
 			stringSiteWeb = "<a class='btn btn-md btn-theme' href=" + value['siteWeb'] + " target='blank'>Site internet</a>";
 		}
 		
+		var stringCarte = "";
+		if((value['adresse'] !="") && (value['codePostal'] != "")){
+			stringCarte = "<a class = 'btn btn-md btn-theme' href='affichageCarte.html?adresse=" +value['adresse'] +"&codePostal="+ value['codePostal']+"' target='blank'> Carte </a>";
+		}
+		
 		var stringTelephone = "";
 		if(value['telephone'] != ""){
 			stringTelephone = "Informations au : " + value['telephone'] + ",";
@@ -107,10 +112,11 @@ function afficherHtmlActivite(elmToAppend, activiteTable, cheminImage/*, arraySi
 		var stringDivActivite = 			
 			"<div class='col-lg-6 col-md-6 col-sm-6 mb'>"
 				+ "<div class='product-panel-2 pn' style='padding: 5px;'>"
-					+"<h2>" + stringNomActivite + "<button class='btn btn-md btn-theme pull-right' type='button' onclick='selectionActivite(" + value['id'] + ");' >A faire</button></h2>"
+					+"<h2>" + stringNomActivite + "<button class='btn btn-sm btn-theme pull-right' type='button' onclick='selectionActivite(" + value['id'] + ");' >A faire</button></h2>"
 					+"<p class='text-justify'>" + stringNomLieu + stringAdresse + stringCodePostal + stringVille + "</p>"
 					+"<p class='text-justify'>" + stringTelephone + stringEmail + "</p>"
 					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringSiteWeb + "</div>"
+					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringCarte + "</div>"
 					+"<div class='col-lg-6 col-md-6 col-sm-6 centered'>" + stringLienPhoto + "</div>"
 					+"<div class='col-lg-12 col-md-12 col-sm-12'><p class='text-justify'>" + stringDescription + "</p></div>"				
 				+"</div>"
@@ -166,3 +172,4 @@ function selectionActivite(idActivite)
         }
     });
 }
+
