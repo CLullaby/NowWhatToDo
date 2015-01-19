@@ -10,19 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
 
-import model.LoginBean;
 import dao.instance.DaoCompte;
 import dao.fabrique.DaoFabrique;
 
-import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 @WebServlet("/Login")
-public class loginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private final static String IDENTIFICATION_RESULT_LABEL = "identificationForm";
@@ -30,7 +27,7 @@ public class loginServlet extends HttpServlet {
 	private final static String MOT_DE_PASSE_LABEL = "motDePasse";
 	private DaoCompte daoCompte;
 	
-    public loginServlet() {
+    public LoginServlet() {
         super();
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
     }
