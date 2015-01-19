@@ -68,7 +68,7 @@ public class CompteAvancementServletBis extends HttpServlet {
 			
 		AvancementActiviteModelBean avancementActiviteModel = daoAvancement.getAvancementActiviteById(idAvancementActivite);
 		int newAvancement = avancementActiviteModel.getAvancement() + 1;
-		if(newAvancement < 2)
+		if(newAvancement < 3)
 		{
 			daoAvancement.updateAvancement(newAvancement, avancementActiviteModel);
 		}

@@ -106,27 +106,32 @@ function recupererAvancementActivite(){
         success: function (data) {      		
 	        		var arrayTermine = data[0].termine;
 	        		for(var j=0; j<arrayTermine.length; j++){
-	        			$("#blocTacheDone").append(getStringBlocTache(arrayTermine[j].nomActivite, arrayTermine[j].domaine, arrayTermine[j].description));
+	        			$("#blocTacheDone").append(getStringBlocTache(arrayTermine[j].nomActivite, arrayTermine[j].domaine, arrayTermine[j].description, arrayTermine[j].id, arrayTermine[j].avancement));
 	        		}
 	        		
 	        		var arrayEnCours = data[1].enCours;
 	        		for(var j=0; j<arrayEnCours.length; j++){
-	        			$("#blocTacheCours").append(getStringBlocTache(arrayEnCours[j].nomActivite, arrayEnCours[j].domaine, arrayEnCours[j].description));
+	        			$("#blocTacheCours").append(getStringBlocTache(arrayEnCours[j].nomActivite, arrayEnCours[j].domaine, arrayEnCours[j].description, arrayEnCours[j].id, arrayEnCours[j].avancement));
 	        		}
 	        		
 	        		var arrayPasCommence = data[2].pasCommence;
 	        		for(var j=0; j<arrayPasCommence.length; j++){
-	        			$("#blocTacheToDo").append(getStringBlocTache(arrayPasCommence[j].nomActivite, arrayPasCommence[j].domaine, arrayPasCommence[j].description));
+	        			$("#blocTacheToDo").append(getStringBlocTache(arrayPasCommence[j].nomActivite, arrayPasCommence[j].domaine, arrayPasCommence[j].description, arrayPasCommence[j].id, arrayPasCommence[j].avancement));
 	        		}
         	}
     });
 };
 
 //Fonction retournant la string html contenant les informations sur l'activité: nom, domaine et description
-function getStringBlocTache(nomActivite, nomDomaine, descriptif)
+function getStringBlocTache(nomActivite, nomDomaine, descriptif, id, avancement)
 {	
+	var chainechangerAvancementActivite = "";
+	if(avancement < 2)
+	{
+		chainechangerAvancementActivite = "<button class='btn btn-md btn-theme pull-right' type='button' onclick='changerAvancementActivite(" + id + ");' >Avancer la tâche</button>"
+	}
 	var stringBlocTache = "<p><b>Activité: "
-		+nomActivite+"</b></p>"
+		+nomActivite+"</b>" + chainechangerAvancementActivite + "</p>"
 		+"<p>Domaine: "+nomDomaine+"</p>"
 		+"<p>"+descriptif+"</p>" 
 	;	  
@@ -136,5 +141,19 @@ function getStringBlocTache(nomActivite, nomDomaine, descriptif)
 //Permet de surclasser l'avancement de l'activité
 function changerAvancementActivite(idAvancementActivite)
 {
-	
+	$.ajax({
+        url: '../../CompteAvancementBis',
+        data: {
+        	idAvancementActivite : idAvancementActivite
+        },
+        async: false,
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+        	location.href = "compte.html";
+        },
+        error: function (data) {
+        	alert("Un problème est survenu, veuillez recharger la page.");
+        }
+    });
 }

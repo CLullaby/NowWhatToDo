@@ -193,6 +193,8 @@ public class CompteAvancementServlet extends HttpServlet {
 		
 		JSONObject json = new JSONObject();
 		
+		json.put("id", avancement.getIdAvancement());
+		json.put("avancement", avancement.getAvancement());
 		json.put("domaine", avancement.getNomDomaine());
 		json.put("nomActivite", avancement.getNomActivite());
 		json.put("description", avancement.getDescriptionActivite());
