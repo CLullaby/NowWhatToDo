@@ -20,10 +20,11 @@ CreerActiviteServlet :
 ModifierActiviteServlet :
 
 CompteAvancementServlet : Recherche les avancements d'un utilisateur pour afficher dans la page compte + L'utilisateur a selectionne une activite a faire, création d'une ligne dans la BD pour avancementActivite
-CompteAvancementServletBis :
+CompteAvancementServletBis : Met a jour l'avancement d'une activite d'un utilisateur par clic sur "avancer activite" dans compte
 CompteServlet : Modifie le formulaire d'infos + verifie le log sur la page compte
 InscriptionServlet : Vérifie unicité du login + envoie du formulaire d'inscription
 loginServlet : Formulaire de log de l'user + admin
+loginBisServlet : Deconnexion processus + verif du log pour afficher bouton connexion/deconnexion
 RechercheServlet : Gere la recherche par mot cle
 RecupererActiviteServlet : Permet d'afficher les activite adéquates selon la page d'activité 
 SendMailServlet : Pour envoyer un mail -> Non fonctionnel
@@ -35,12 +36,8 @@ VerificationConnexionServlet : verifie le log avant d'envoyer sur la page compte
 ------------------ Vue ---------------------------
 
 Compte: faire un choix au niveau de la sélection de domaine. Sélection faite au préalable ou via une liste déroulante dans la page compte qui permet de chager le contenu associé automatiquement
-
-Form Bootstrap : supprimer l'action entréé du clavier
-
-Page Accueil + aide user + aide admin
-
 Gamification page compte
+
 
 ----------------- Général ------------------------
 Administration :
