@@ -14,8 +14,8 @@
     <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet" />  
     
     <!-- Custom styles for this template -->
-    <link href="../../css/style-responsive.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet">
 
     <link href="../../css/general.css" type="text/css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -25,7 +25,7 @@
     <![endif]-->
 </head>
 <body>
-<section id="container">
+  <section id="container">
 	  <!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
@@ -40,13 +40,7 @@
             <!--logo end-->
             
             <!-- Pour la connexion -->
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-            		<li><a class="logout" href="../Compte/inscription.html" style="margin-bottom: 10px;">Inscription</a></li>
-            	</ul>
-            	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="../Compte/login.html" style="margin-bottom: 10px;">Connexion</a></li>
-            	</ul>
+            <div id="connexionDeconnexion" class="top-menu">
             </div>
         </header>
       <!--header end-->
@@ -59,7 +53,6 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-              
               	  <h5 class="centered">Menu</h5>
               	  	
                   <li class="mt">
@@ -72,12 +65,17 @@
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Domaines</span>
-                          <i class="fa fa-chevron-down"></i>
+                          <i class="fa fa-chevron-down pull-right"></i>
                       </a>
                       <ul class="sub">
-                          <li><a  href="../Domaines/administration.html">Administration</a></li>
-                          <li><a  href="../Domaines/transport.html">Transport</a></li>
-                          <li><a  href="../Domaines/travail.html">Travail</a></li>
+                          <li><a href="../Domaines/administration.html">Administration</a></li>
+                          <li><a href="../Domaines/alimentation.html">Alimentation</a></li>
+                          <li><a href="../Domaines/logement.html">Logement</a></li>
+                          <li><a href="../Domaines/loisir.html">Loisir</a></li>
+                          <li><a href="../Domaines/sante.html">Santé</a></li>
+                          <li><a href="../Domaines/services.html">Services</a></li>
+                          <li><a href="../Domaines/transport.html">Transport</a></li>
+                          <li><a href="../Domaines/travail.html">Travail</a></li>
                       </ul>
                   </li>    
                   <li class="mt">
@@ -87,22 +85,25 @@
                       </a>
                   </li>                 
                   <li class="mt">
-                      <a class="" href="../Compte/compte.html">
+                      <a class="curseurMain" onclick="cheatAppelCompteServlet();">
                           <i class="fa fa-user"></i>
                           <span>Compte</span>
                       </a>
+                      <!-- Ce formulaire permet d'appeler la servlet Accueil avant d'aller sur compte -> vérification du log de l'utilisateur  -->
+                      <form action="../../VerificationConnexion" method="get" id="formCompte" >
+                      </form>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
                           <span>Autres</span>
-                          <i class="fa fa-chevron-down"></i>
+                          <i class="fa fa-chevron-down pull-right"></i>
                       </a>
                       <ul class="sub">
-                          <li><a href="../Divers/contact.html">Contact</a></li>
-                          <li><a href="#">Conviction</a></li>
                           <li><a href="../Divers/aide.html">Aide</a></li>
-                          <li><a href="../Admin/loginAdmin.html">Admin</a></li>
+                          <li><a href="../Divers/contact.html">Contact</a></li>
+                          <li><a href="../Divers/conviction.html">Nos convictions</a></li>
+                          <li><a href="../Admin/loginAdmin.html">Administrateur</a></li>
                       </ul>
                   </li>                 
               </ul>
@@ -120,28 +121,8 @@
 	   <!-- **********************************************************************************************************************************************************
 		Debut du code interessant
       *********************************************************************************************************************************************************** -->  
+		
 					<div id="activites">				
-			<!-- 		<div class="row"> -->
-			<!-- 				<div class="col-lg-4 col-md-4 col-sm-4 mb"> -->
-			<!-- 					<div class="product-panel-2 pn"> -->
-			<!-- 						<div class="badge badge-hot">TCL</div> -->
-			<!-- 						<img src="../../img/tcl_lyon.png" width="180" alt=""/> -->
-			<!-- 						<h5 class="mt">Transport en commun de Lyon</h5> -->
-			<!-- 						<h6>Information au 04 26 10 12 12</h6> -->
-			<!-- 						<a class="btn btn-small btn-theme04" href="http://www.tcl.fr" target="blank">Site internet</a> -->
-			<!-- 					</div> -->
-			<!-- 				</div> -->
-			<!-- 				<div class="col-lg-4 col-md-4 col-sm-4 mb"> -->
-			<!-- 					<div class="product-panel-2 pn"> -->
-			<!-- 						<div class="badge badge-hot">SYTRAL</div> -->
-			<!-- 						<img src="../../img/sytral.png" width="180" alt=""/> -->
-			<!-- 						<h5 class="mt">Syndicat Mixte pour le Transport</h5> -->
-			<!-- 						<h5> dans le Rhône et l'Agglomération Lyonnaise</h5> -->
-			<!-- 						<h6>21 Bd Marius Vivier Merle Lyon 3, tel 04 72 84 58 00</h6> -->
-			<!-- 						<a class="btn btn-small btn-theme04" href="http://www.sytral.fr" target="blank">Site internet</a> -->
-			<!-- 					</div> -->
-			<!-- 				</div> -->
-			<!-- 		</div> -->
 					</div>
 	<!-- **********************************************************************************************************************************************************
 		Fin du code interessant
@@ -150,14 +131,14 @@
 			</section>
 		</section>
 	
-	<div class="site-footer">
-         <div class="text-center">
-              Copyright &copy; 2014 CABROL-HU-JUAN-ONDE | Now What To Do
-             <a href="#main-content" class="go-top">
-                 <i class="fa fa-angle-up"></i>
-             </a>
-         </div>
-     </div>   
+		<div class="site-footer">
+	         <div class="text-center">
+	              Copyright &copy; 2014 CABROL-HU-JUAN-ONDE | Now What To Do
+	             <a href="#main-content" class="go-top">
+	                 <i class="fa fa-angle-up"></i>
+	             </a>
+	         </div>
+	     </div>   
 	</section>
 
     <!-- js placed at the end of the document so the pages load faster -->
@@ -171,8 +152,25 @@
 
     <!--common script for all pages-->
     <script src="../../js/common-scripts.js"></script>
+    <script src="../../js/script/loginBisScript.js"></script>        
+    <script type="text/javascript">
+    	//Cette fonction envoie le formulaire pour appeler la servlet Compte avant d'aller sur compte -> vérification du log de l'utilisateur 
+    	function cheatAppelCompteServlet()
+    	{
+    		document.getElementById("formCompte").submit();
+    	}
+    	
+    	//Appelle la Servlet loginBis pour deconnecter l'utilisateur
+    	function cheatDeconnexion()
+    	{
+    		document.getElementById("formDeconnexion").submit();
+    	}
+    	
+    	//Verifie le log pour le menu et le bouton connexion/deconnexion
+    	afficherConnexionDeconnexion();
+    </script>
+    
     <script src="../../js/script/activiteScript.js"></script>
-
 	<script type="text/javascript">
 		$(document).ready(function(){
 			recupererActivite("transport", $("#activites"));

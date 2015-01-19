@@ -35,7 +35,7 @@
 					<div class="form-group">
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control" name="identifiant" placeholder="Login" required  onblur="verifNom(this);"/>
+                            <input id="inputLogin" type="text" class="form-control" name="identifiant" placeholder="Login" required  onblur="verifNom(this);"/>
                         </div>
                     </div>
                          
@@ -104,7 +104,12 @@
 	<!--Script ajouté  -->
 	<script src="../../js/script/verificationFonctionScript.js"></script>
 	<script src="../../js/script/loginScript.js"></script>	
-	
+    <script type="text/javascript">
+    	//Focus par défault sur le champ input
+         window.onload = function () {
+             document.getElementById('inputLogin').focus();
+         };
+    </script>
 
 </body>
 </html>
