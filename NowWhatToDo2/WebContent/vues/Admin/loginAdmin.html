@@ -29,7 +29,7 @@
 	<div id="login-page">
 		<div class="container">
 
-			<form class="form-login">
+			<form id="formulaire" class="form-login">
 				<h2 class="form-login-heading">Connexion Administrateur</h2>
 				<div class="login-wrap">
 					<div id="messageErreur"></div>					
@@ -100,6 +100,15 @@
 	<!--Script ajouté  -->
 	<script src="../../js/script/verificationFonctionScript.js"></script>
 	<script src="../../js/adminScript/adminLoginScript.js"></script>
-
+	<script>
+        //Enleve le comportement par default de l'envoi du formulaire en get apres clic sur la touche entree
+        //et appelle la fonction pour envoyer le formulaire
+        $('#formulaire').bind('keydown', function(e) {
+       	    if (e.keyCode == 13) {
+       	        e.preventDefault();
+       	     	ajaxLoginAdmin();
+       	    }
+       	});
+    </script>
 </body>
 </html>

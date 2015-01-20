@@ -126,7 +126,7 @@
 					<div class="col-lg-6 col-md-12 col-xs-12">
 				       <div class="form-panel">
 				       	  <h4 class="mb centered">Recherche par mot cle</h4>
-				           <form class="form-horizontal style-form">
+				           <form id="formulaire" class="form-horizontal style-form">
 				           	   <div id="messageErreur"></div>
 				           	   <div id="messageVide"></div>
 				               <div class="form-group">
@@ -191,6 +191,15 @@
     	
     	//Verifie le log pour le menu et le bouton connexion/deconnexion
     	afficherConnexionDeconnexion();
+    	
+        //Enleve le comportement par default de l'envoi du formulaire en get apres clic sur la touche entree
+        //et appelle la fonction pour envoyer le formulaire
+        $('#formulaire').bind('keydown', function(e) {
+       	    if (e.keyCode == 13) {
+       	        e.preventDefault();
+       	     	lancerRecherche();
+       	    }
+       	});
     </script>
     
     <script src="../../js/script/activiteScript.js"></script>

@@ -18,100 +18,98 @@ function verifAuthentication() {
 
 // Envoi du formulaire
 // function envoyerFormulaire() {
+function envoyerFormulaire()
+{					
+		//On vérifie que le formulaire est correctement rempli avant envoi
+		if($("form")[0].checkValidity()) {
+		// Récupération de l'id dans l'URL si existant
+		var idActivite = getUrlParameter('id');
 
-$("#buttonSend").click(
-				function() {
-					
-					//On vérifie que le formulaire est correctement rempli avant envoi
-					if($("form")[0].checkValidity()) {
-					// Récupération de l'id dans l'URL si existant
-					var idActivite = getUrlParameter('id');
+		// Récupération des valeurs du formulaire
+		var domaine = document.getElementById("domaine").value;
+		var activite = document.getElementById("activite").value;
+		var lieu = document.getElementById("lieu").value;
+		var adresse = document.getElementById("adresse").value;
+		var ville = document.getElementById("ville").value;
+		var codePostal = document.getElementById("codePostal").value;
+		var siteWeb = document.getElementById("siteWeb").value;
+		var telephone = document.getElementById("telephone").value;
+		var email = document.getElementById("email").value;
+		var description = document.getElementById("description").value;
+		var lienPhoto = document.getElementById("lienPhoto").value;
+		var importance = document.getElementById("importance").value;
 
-					// Récupération des valeurs du formulaire
-					var domaine = document.getElementById("domaine").value;
-					var activite = document.getElementById("activite").value;
-					var lieu = document.getElementById("lieu").value;
-					var adresse = document.getElementById("adresse").value;
-					var ville = document.getElementById("ville").value;
-					var codePostal = document.getElementById("codePostal").value;
-					var siteWeb = document.getElementById("siteWeb").value;
-					var telephone = document.getElementById("telephone").value;
-					var email = document.getElementById("email").value;
-					var description = document.getElementById("description").value;
-					var lienPhoto = document.getElementById("lienPhoto").value;
-					var importance = document.getElementById("importance").value;
+		// Si on crée une activité
+		if (idActivite == null) {
 
-					// Si on crée une activité
-					if (idActivite == null) {
+			$.ajax({
+						url : '../../CreerActivite',
+						data : {
+							domaine : domaine,
+							activite : activite,
+							lieu : lieu,
+							adresse : adresse,
+							ville : ville,
+							codePostal : codePostal,
+							siteWeb : siteWeb,
+							telephone : telephone,
+							email : email,
+							description : description,
+							lienPhoto : lienPhoto,
+							importance : importance
+						},
+						async : false,
+						type : 'POST',
+						dataType : 'json',
+						success : function(data) {
+							alert("Activité créee avec succès");
+							location.href = "adminActivite.html";
+							
+						},
+						error : function(data) {
+							alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+						}
+					});
+		}
 
-						$.ajax({
-									url : '../../CreerActivite',
-									data : {
-										domaine : domaine,
-										activite : activite,
-										lieu : lieu,
-										adresse : adresse,
-										ville : ville,
-										codePostal : codePostal,
-										siteWeb : siteWeb,
-										telephone : telephone,
-										email : email,
-										description : description,
-										lienPhoto : lienPhoto,
-										importance : importance
-									},
-									async : false,
-									type : 'POST',
-									dataType : 'json',
-									success : function(data) {
-										alert("Activité créee avec succès");
-										location.href = "adminActivite.html";
-										
-									},
-									error : function(data) {
-										alert("Un problème est survenu, veuillez réessayer ultérieurement.");
-									}
-								});
-					}
-
-					// Si on veut modifier une activité
-					else {
-						$.ajax({
-									url : '../../ModifierActivite',
-									data : {
-										id : idActivite,
-										domaine : domaine,
-										activite : activite,
-										lieu : lieu,
-										adresse : adresse,
-										ville : ville,
-										codePostal : codePostal,
-										siteWeb : siteWeb,
-										telephone : telephone,
-										email : email,
-										description : description,
-										lienPhoto : lienPhoto,
-										importance : importance
-									},
-									async : false,
-									type : 'POST',
-									dataType : 'json',
-									success : function(data) {
-										alert("Activité modifiée avec succès");
-										location.href = "adminActivite.html";
-									},
-									error : function(data) {
-										alert("Un problème est survenu, veuillez réessayer ultérieurement.");
-									}
-								});
-					}
-					} 
-					//Si le formulaire est mal rempli, pas d'envoi du formulaire et messages d'erreur HTML5
-					else{
-						alert("Un champ du formulaire est mal rempli");
-						console.log("INVALID FORM!")
-					}
-				});
+		// Si on veut modifier une activité
+		else {
+			$.ajax({
+						url : '../../ModifierActivite',
+						data : {
+							id : idActivite,
+							domaine : domaine,
+							activite : activite,
+							lieu : lieu,
+							adresse : adresse,
+							ville : ville,
+							codePostal : codePostal,
+							siteWeb : siteWeb,
+							telephone : telephone,
+							email : email,
+							description : description,
+							lienPhoto : lienPhoto,
+							importance : importance
+						},
+						async : false,
+						type : 'POST',
+						dataType : 'json',
+						success : function(data) {
+							alert("Activité modifiée avec succès");
+							location.href = "adminActivite.html";
+						},
+						error : function(data) {
+							alert("Un problème est survenu, veuillez réessayer ultérieurement.");
+						}
+					});
+		}
+		} 
+		//Si le formulaire est mal rempli, pas d'envoi du formulaire et messages d'erreur HTML5
+		else{
+			alert("Un champ du formulaire est mal rempli");
+			console.log("INVALID FORM!")
+		}
+}
 
 // Vérifie si le formulaire sert pour la création ou la modification d'activité
 // (paramètre "id" dans l'url pour les modifications)

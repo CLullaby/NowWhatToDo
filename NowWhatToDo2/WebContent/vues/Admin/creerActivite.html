@@ -209,7 +209,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-success pull-right" style="margin: 0 20px 0 0;" id="buttonSend">Créer l'activité</button>
+							<button type="submit" class="btn btn-success pull-right" style="margin: 0 20px 0 0;" id="buttonSend" onclick="envoyerFormulaire();">Créer l'activité</button>
 							<a href="../Admin/adminActivite.html"><button type="button" class="btn btn-default pull-right" style="margin: 0 20px 0 0;">Annuler</button></a>
 						</div>
 					</form>
@@ -263,6 +263,15 @@
     	
     	//Verifie le log pour le menu et le bouton connexion/deconnexion
     	afficherConnexionDeconnexion();
+    	
+    	//Enleve le comportement par default de l'envoi du formulaire en get apres clic sur la touche entree
+        //et appelle la fonction pour envoyer le formulaire
+        $('#form').bind('keydown', function(e) {
+       	    if (e.keyCode == 13) {
+       	        e.preventDefault();
+       	    	envoyerFormulaire();
+       	    }
+       	});
     </script>
 	
 	<!-- Script JS pour la page -->
