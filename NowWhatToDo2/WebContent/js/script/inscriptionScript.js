@@ -1,3 +1,4 @@
+//Verifie en asyn si le login choisi est deja utilise -> unicite du login
 function verifUniciteLogin()
 {
 	var login = document.getElementById("login").value;
@@ -57,6 +58,7 @@ function ajaxInscription()
 	var codePostal = document.getElementById("codePostal").value;
 	var telephone = document.getElementById("telephone").value;
 
+	//Verifie si les champs ont ete remplis
 	if(login != "" && mdp != "" && mdpBis != "" && email != "" && nom != "" && prenom != "" && age != "" && adresse != "" && codePostal != "" && telephone != ""
 		&& verifNom(document.getElementById("login")) && verifMdp(document.getElementById("password")) && verifMdpBis(document.getElementById("passwordBis")) &&
 		verifEmail(document.getElementById("email")) && verifNom(document.getElementById("nom")) && verifNom(document.getElementById("prenom")) &&
@@ -93,20 +95,4 @@ function ajaxInscription()
 	{
 		alert("Veuillez remplir le formulaire !");
 	}
-    /*Non testé mais méthode similaire
-	$.post("../../Inscription",	
-			{
-				login : login,
-				mdp : mdp,
-				mdpBis : mdpBis,
-				email : email,
-				nom : nom,
-				prenom : prenom,
-				adresse : adresse,
-				telephone : telephone
-			},
-			function(data,status){
-				return true;
-			}	
-	);*/
 }

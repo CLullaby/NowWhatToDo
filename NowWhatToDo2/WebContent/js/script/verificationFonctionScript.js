@@ -1,4 +1,4 @@
-//Verifier les champs en js et colorie le champ si incorrect
+//Verifier les champs des formulaires en js et colorie le champ si incorrect 
 function surligne(champ, erreur) {
     if (erreur)
         champ.style.backgroundColor = "#fba";

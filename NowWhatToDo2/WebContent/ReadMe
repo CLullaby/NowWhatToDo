@@ -12,31 +12,36 @@ Recherche par mot clé : ok pour des caracteres qui se suivent, peut importe la c
 
 --------------------- Model ------------------------
 
+
 ----------------------- Servlet ----------------------
+AdminActiviteServlet : Affichage de toutes les activites sur onload de la page
+					   Suppression d'une activite
+CreerActiviteServlet : Verifiaction log sur la page creer activite
+					   Création de l'activite par le formulaire rempli
+ModifierActiviteServlet : Recupere les infos de l'activite pour les renvoyer sur le formulaire lors d'une modification
+						  Met a jour la modification de l'activite
 
-
-AdminActiviteServlet :
-CreerActiviteServlet :
-ModifierActiviteServlet :
-
-CompteAvancementServlet : Recherche les avancements d'un utilisateur pour afficher dans la page compte + L'utilisateur a selectionne une activite a faire, création d'une ligne dans la BD pour avancementActivite
+CompteAvancementServlet : Recherche les avancements d'un utilisateur pour afficher dans la page compte 
+						  L'utilisateur a selectionne une activite a faire, création d'une ligne dans la BD pour avancementActivite
 CompteAvancementServletBis : Met a jour l'avancement d'une activite d'un utilisateur par clic sur "avancer activite" dans compte
-CompteServlet : Modifie le formulaire d'infos + verifie le log sur la page compte
-InscriptionServlet : Vérifie unicité du login + envoie du formulaire d'inscription
-loginServlet : Formulaire de log de l'user + admin
-loginBisServlet : Deconnexion processus + verif du log pour afficher bouton connexion/deconnexion
+CompteServlet : Modifie le formulaire d'infos 
+			    Verifie le log sur la page compte
+InscriptionServlet : Vérifie unicité du login 
+					 Envoie du formulaire d'inscription
+loginServlet : Formulaire de log de l'user
+			   Idem pour admin
+loginBisServlet : Deconnexion processus 
+				  Verif du log pour afficher bouton connexion/deconnexion
 RechercheServlet : Gere la recherche par mot cle
 RecupererActiviteServlet : Permet d'afficher les activite adéquates selon la page d'activité 
 SendMailServlet : Pour envoyer un mail -> Non fonctionnel
-VerificationConnexionServlet : verifie le log avant d'envoyer sur la page compte apres clic dans le menu + 
+VerificationConnexionServlet : verifie le log avant d'envoyer sur la page compte apres clic dans le menu 
 
 
 
 
 ------------------ Vue ---------------------------
-
-Compte: faire un choix au niveau de la sélection de domaine. Sélection faite au préalable ou via une liste déroulante dans la page compte qui permet de chager le contenu associé automatiquement
-Gamification page compte
+Le menu est recopié plusieurs fois (~15 fois) dans chaque page html
 
 
 ----------------- Général ------------------------
@@ -44,5 +49,20 @@ Administration :
 Un admin possedera un seul compte pour manager et parcourir l'appli/site.
 Il aura accès a toutes les fonctionnalités + pourra manager le contenu du site en allant dans Menu -> Autres -> Administration
 
-Css:Pour bootstrap chercher "modif" permet de retrouver le css modifié.
+Css:Pour bootstrap/theme.css chercher "modif" permet de retrouver le css modifié.
+
+---------------- Mise a jour V2 -----------------
+- Sécurite des failles XSS 
+- hash Mdp 
+- challenge/reponse pour les log
+- Dans page compte, un utilisateur peut retrouver l'activite adéquate avec toutes ses infos en cliquant dessus dans l'historique fait/encours/pascommencee
+- Rubrique contact avec envoie de mail
+- Administrateur peut manager les compte
+- Mise en place du role Tuteur (consulte les profils, suit l'avancement des utilisateurs mais ne peut pas creer des activites)
+- Gamification
+- Geolocalisation
+- Phone Gap
+
+
+
 

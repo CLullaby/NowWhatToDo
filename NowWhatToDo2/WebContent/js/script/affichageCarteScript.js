@@ -1,4 +1,4 @@
-
+//Gere l'affichage de la carte
 var geocoder;
 var map;
 var lyon = new google.maps.LatLng(45.767, 4.833); //Coordonnées de Lyon

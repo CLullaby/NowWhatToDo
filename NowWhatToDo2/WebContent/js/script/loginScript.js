@@ -1,3 +1,4 @@
+//Formulaire de login
 function envoieFormulaire()
 {
 	var identifiant = $('#form_login :input[name="identifiant"]').val();

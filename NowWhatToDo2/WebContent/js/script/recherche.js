@@ -1,3 +1,4 @@
+//Recherche par mot cle
 function lancerRecherche()
 {
 	var activiteTable = [];

@@ -1,3 +1,4 @@
+//Function generique qui recupere une liste d'activite selon le domaine
 function recupererActivite(domaine, elmToAppend)
 {
 	 //Tableau listant toutes les champs activité récupérés de la servlet
@@ -45,6 +46,7 @@ function recupererActivite(domaine, elmToAppend)
 }
 	
 
+//Functiuon qui affiche les données en code html
 function afficherHtmlActivite(elmToAppend, activiteTable, cheminImage/*, arraySizeImages*/){	
 	$.each(activiteTable,function(key,value){			
 		var stringNomActivite = "";

@@ -1,3 +1,5 @@
+//Js non utilise mais utile pour la rubrique contatc afin d'envoyer un mail
+
 $(document).ready(function(){
 	
 	$("#sendMail").on('click',function()
