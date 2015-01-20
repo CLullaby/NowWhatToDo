@@ -22,7 +22,6 @@ public class AvancementActiviteModelBean implements Serializable {
 	
 	public AvancementActiviteModelBean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public AvancementActiviteModelBean(int avancement, String dateDebut, String dateFin, int ceCompte, int ceActivite) {

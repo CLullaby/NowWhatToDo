@@ -23,18 +23,12 @@ import dao.instance.DaoCompte;
 public class CompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte DaoCompte;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public CompteServlet() {
         super();
         this.DaoCompte = DaoFabrique.getInstance().createUserDao();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     //Récupére les infos pour afficher la page
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
@@ -76,9 +70,6 @@ public class CompteServlet extends HttpServlet {
 		out.close();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	//Met a jour les champs de la page (pas du mdp)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login"); 

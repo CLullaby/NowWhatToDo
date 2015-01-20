@@ -32,23 +32,15 @@ public class InscriptionServlet extends HttpServlet {
 	private DaoCompte DaoCompte;
 	private DaoAvancement daoAvancement;
 	private DaoActivite daoActivite;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public InscriptionServlet() {
         super();
         this.DaoCompte = DaoFabrique.getInstance().createUserDao();
         this.daoAvancement = DaoFabrique.getInstance().createAvancementDao();
         this.daoActivite = DaoFabrique.getInstance().createActiviteDao();
-        // TODO Auto-generated constructor stub
     }
 	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     //Verifie l'unicité du login
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String login = request.getParameter("login");
 		
 		//Si la fonction renvoie true -> login existe -> message JSON
@@ -66,7 +58,6 @@ public class InscriptionServlet extends HttpServlet {
 		try {
 			jsonToSend.put("texte", value);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		PrintWriter out = response.getWriter();
@@ -76,9 +67,6 @@ public class InscriptionServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Recup des paramètres
 		String login = request.getParameter("login"); //30

@@ -42,18 +42,12 @@ public class RecupererActiviteServlet extends HttpServlet {
 	private final static String LIEN_PHOTO_LABEL = "lienPhoto";
 	private final static String IMPORTANCE_LABEL = "importance";   
 	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public RecupererActiviteServlet() {
         super();
         daoA = DaoFabrique.getInstance().createActiviteDao();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Recupération du nom de domaine sélectionée dans la page acceil
 		String domaine = request.getParameter("domaine");
@@ -159,9 +153,6 @@ public class RecupererActiviteServlet extends HttpServlet {
 		return arrayResponse;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

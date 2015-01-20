@@ -27,18 +27,10 @@ import dao.instance.DaoAvancement;
 public class AdminActiviteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public AdminActiviteServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	// GET : Récupération de toutes les activités en base de données
 	protected void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
@@ -87,11 +79,6 @@ public class AdminActiviteServlet extends HttpServlet {
 		out.close();
 
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 
 	// POST : suppression d'une activité par son ID
 	protected void doPost(HttpServletRequest request,

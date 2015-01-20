@@ -27,27 +27,15 @@ public class SendMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte daoCompte;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public SendMailServlet() {
         super();
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String jsonParam = request.getParameter("identificationForm");
 		
 		Object obj = JSONValue.parse(jsonParam);

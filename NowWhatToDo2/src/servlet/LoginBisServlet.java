@@ -22,17 +22,11 @@ import dao.instance.DaoCompte;
 public class LoginBisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoCompte daoCompte;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public LoginBisServlet() {
         super();
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     //Permet de verifier si l'user est loge pour afficher le bouton logout
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
@@ -64,9 +58,6 @@ public class LoginBisServlet extends HttpServlet {
 		out.close();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session != null)

@@ -23,7 +23,6 @@ public class CompteModelBean implements Serializable{
 	private String role;
 	public CompteModelBean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CompteModelBean(String nom, String prenom, String identifiant,

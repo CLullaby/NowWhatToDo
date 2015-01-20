@@ -28,9 +28,6 @@ public class CompteAvancementServletBis extends HttpServlet {
 	private DaoCompte daoCompte;
 	private DaoAvancement daoAvancement;
     
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
     public CompteAvancementServletBis() {
         super();
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
@@ -38,16 +35,9 @@ public class CompteAvancementServletBis extends HttpServlet {
         this.daoAvancement = DaoFabrique.getInstance().createAvancementDao();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	//Met a jour l'avancement d'une activite d'un utilisateur
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

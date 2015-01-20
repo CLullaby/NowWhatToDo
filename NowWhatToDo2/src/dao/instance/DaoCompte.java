@@ -119,7 +119,7 @@ public class DaoCompte {
 		
 		public ArrayList<CompteModelBean> getAllUser()
 		{
-			//return value 
+			//return tout les utilisateurs 
 			ArrayList<CompteModelBean> userList = new ArrayList<CompteModelBean>();
 			// Création de la requête 
 			java.sql.Statement query; 
@@ -157,7 +157,7 @@ public class DaoCompte {
 		}	
 		public ArrayList<CompteModelBean> getAllUserAdmin()
 		{
-			//return value 
+			//return tout les admins 
 			ArrayList<CompteModelBean> userList = new ArrayList<CompteModelBean>();
 			// Création de la requête 
 			java.sql.Statement query; 
@@ -196,7 +196,7 @@ public class DaoCompte {
 		
 		public CompteModelBean getUserLogin(String login)
 		{
-			//return value 
+			//return l'utilisateur ayant ce login 
 			CompteModelBean userReturn = new CompteModelBean();
 			ArrayList<CompteModelBean> userList=new ArrayList<CompteModelBean>();
 			// Création de la requête 
@@ -273,7 +273,7 @@ public class DaoCompte {
 			return value;
 		}
 		
-		
+		//permet de hash les mdp en SHA-256
 		public String hasher(String toHash) {
 			byte[] hash = null;
 			 
@@ -297,6 +297,7 @@ public class DaoCompte {
 		
 		public boolean checkLoginExiste(String login)
 		{
+			// recherche si le login existe 
 			boolean returnValue = false;
 			ArrayList<CompteModelBean> listeUser = getAllUser();
 			for (CompteModelBean user : listeUser)

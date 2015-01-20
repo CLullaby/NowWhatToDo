@@ -124,7 +124,7 @@ public class DaoAvancement {
 	
 	public ArrayList<AvancementActiviteModelBean> getAllAvancementActivite()
 	{
-		//return value 
+		//return tout les avancements par activites 
 		ArrayList<AvancementActiviteModelBean> list = new ArrayList<AvancementActiviteModelBean>();
 		// Création de la requête 
 		java.sql.Statement query; 
@@ -157,6 +157,7 @@ public class DaoAvancement {
 	
 	public AvancementActiviteModelBean getAvancementActiviteById(int idAvancementActivite)
 	{
+		// return activité sélectionné par l'id 
 		AvancementActiviteModelBean model = new AvancementActiviteModelBean();
 		// Création de la requête 
 		java.sql.Statement query; 
@@ -188,7 +189,7 @@ public class DaoAvancement {
 	
 	public ArrayList<AvancementActiviteModelBean> getAvancementActiviteByCompte(int idCompte)
 	{
-		//return value 
+		//return les avancements d'éctivité par utilisateur 
 		ArrayList<AvancementActiviteModelBean> list = new ArrayList<AvancementActiviteModelBean>();
 		// Création de la requête 
 		java.sql.Statement query; 
@@ -221,7 +222,7 @@ public class DaoAvancement {
 	
 	public ArrayList<AvancementActiviteModelBean> getAvancementActiviteByActivite(int idActivite)
 	{
-		//return value 
+		//return tout les avancements par activité 
 		ArrayList<AvancementActiviteModelBean> list = new ArrayList<AvancementActiviteModelBean>();
 		// Création de la requête 
 		java.sql.Statement query; 
@@ -254,7 +255,7 @@ public class DaoAvancement {
 	
 	public ArrayList<AvancementActiviteModelBean> getAvancementActiviteByAvancement(int avancement)
 	{
-		//return value 
+		//return liste d'avancement d'ativité par avancement 
 		ArrayList<AvancementActiviteModelBean> list = new ArrayList<AvancementActiviteModelBean>();
 		// Création de la requête 
 		java.sql.Statement query; 
@@ -287,7 +288,7 @@ public class DaoAvancement {
 	
 	public ArrayList<AvancementActiviteModelBean> getAvancementActiviteByDateDebut(String dateD)
 	{
-		//return value 
+		//return liste d'avancement d'ativité par date de debut 
 		ArrayList<AvancementActiviteModelBean> list = new ArrayList<AvancementActiviteModelBean>();
 		// Création de la requête 
 		java.sql.Statement query; 
@@ -320,7 +321,7 @@ public class DaoAvancement {
 	
 	public ArrayList<AvancementActiviteModelBean> getAvancementActiviteByDateFin(String dateF)
 	{
-		//return value 
+		//return liste d'avancement d'ativité par date de fin 
 		ArrayList<AvancementActiviteModelBean> list = new ArrayList<AvancementActiviteModelBean>();
 		// Création de la requête 
 		java.sql.Statement query; 

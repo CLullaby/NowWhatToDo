@@ -45,9 +45,6 @@ public class CompteAvancementServlet extends HttpServlet {
 	private final static String NOM_DOMAINE_LABEL = "domaine";
 	private final static String DESCRIPTION_LABEL = "dscription";	
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public CompteAvancementServlet() {
         super();
         this.daoCompte = DaoFabrique.getInstance().createUserDao();
@@ -55,9 +52,6 @@ public class CompteAvancementServlet extends HttpServlet {
         this.daoAvancement = DaoFabrique.getInstance().createAvancementDao();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     //Permet de rechercher l'avancement d'un utilisateur
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -128,9 +122,6 @@ public class CompteAvancementServlet extends HttpServlet {
 		}	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	//L'utilisateur a selectionne une activite a faire, création d'une ligne dans la BD por avancementActivite
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//Return value

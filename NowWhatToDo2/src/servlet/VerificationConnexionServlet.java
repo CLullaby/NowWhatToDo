@@ -15,13 +15,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/VerificationConnexion")
 public class VerificationConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public VerificationConnexionServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     //Vérifie le log avant de renvoyer sur la page compte dans le menu
@@ -46,11 +42,7 @@ public class VerificationConnexionServlet extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }
