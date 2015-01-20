@@ -84,7 +84,7 @@ function afficherHtmlActivite(elmToAppend, activiteTable, cheminImage/*, arraySi
 		
 		var stringCarte = "";
 		if((value['adresse'] !="") && (value['codePostal'] != "")){
-			stringCarte = "<a class = 'btn btn-md btn-theme' href='affichageCarte.html?adresse=" +value['adresse'] +"&codePostal="+ value['codePostal']+"' target='_blank'> Carte </a>";
+			stringCarte = "<a class = 'btn btn-md btn-theme' href='../Domaines/affichageCarte.html?adresse=" +value['adresse'] +"&codePostal="+ value['codePostal']+"' target='_blank'> Carte </a>";
 		}
 		
 		var stringTelephone = "";

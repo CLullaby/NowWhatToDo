@@ -44,7 +44,6 @@ public class RechercheServlet extends HttpServlet {
 	private final static String LIEN_PHOTO_LABEL = "lienPhoto";
 	private final static String IMPORTANCE_LABEL = "importance";   
 	
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -57,7 +56,7 @@ public class RechercheServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -74,96 +73,75 @@ public class RechercheServlet extends HttpServlet {
 		for( Iterator<ActiviteModelBean> listIter = liste.iterator(); listIter.hasNext();){
 				
 			ActiviteModelBean activite =  listIter.next();
-			System.out.println("resultat recherche "+ activite.getNomActivite() +" ");
-			
 			JSONObject jsonActivite = new JSONObject();
-			
 			
 			try {
 				jsonActivite.put(NOM_ACTIVITE_LABEL, activite.getNomActivite());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(DESCRIPTION_LABEL, activite.getDescription());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(ADRESSE_LABEL, activite.getAdresse());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(CODE_POSTAL_LABEL, activite.getCodePostal());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(DOMAINE_LABEL, activite.getDomaine());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(TELEPHONE_LABEL, activite.getTelephone());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(LIEN_PHOTO_LABEL, activite.getLienPhoto());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(VILLE_LABEL, activite.getVille());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(SITE_WEB_LABEL, activite.getSiteWeb());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(NOM_LIEU_LABEL, activite.getNomLieu());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(IMPORTANCE_LABEL, activite.getImportance());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				jsonActivite.put(EMAIL_LABEL, activite.getEmail());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			arrayResponse.add(jsonActivite);
-		
 		}
-		
-		
-		
-		//jsonToSend.put("liste", );
-		//System.out.println(arrayResponse);
+
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(arrayResponse.toString());
 		out.close();
 	}
-
 }
