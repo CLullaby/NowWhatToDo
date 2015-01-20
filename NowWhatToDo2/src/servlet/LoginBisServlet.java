@@ -21,10 +21,8 @@ import dao.instance.DaoCompte;
 @WebServlet("/LoginBis")
 public class LoginBisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DaoCompte daoCompte;
     public LoginBisServlet() {
         super();
-        this.daoCompte = DaoFabrique.getInstance().createUserDao();
     }
 
     //Permet de verifier si l'user est loge pour afficher le bouton logout

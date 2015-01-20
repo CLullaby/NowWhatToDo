@@ -24,14 +24,10 @@ import dao.instance.DaoCompte;
 @WebServlet("/CompteAvancementBis")
 public class CompteAvancementServletBis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DaoActivite daoActivite;
-	private DaoCompte daoCompte;
 	private DaoAvancement daoAvancement;
     
     public CompteAvancementServletBis() {
         super();
-        this.daoCompte = DaoFabrique.getInstance().createUserDao();
-        this.daoActivite = DaoFabrique.getInstance().createActiviteDao();
         this.daoAvancement = DaoFabrique.getInstance().createAvancementDao();
     }
 

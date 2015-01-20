@@ -40,10 +40,6 @@ public class CompteAvancementServlet extends HttpServlet {
 	private DaoActivite daoActivite;
 	private DaoCompte daoCompte;
 	private DaoAvancement daoAvancement;
-	
-	private final static String NOM_TACHE_LABEL = "nomTache";
-	private final static String NOM_DOMAINE_LABEL = "domaine";
-	private final static String DESCRIPTION_LABEL = "dscription";	
        
     public CompteAvancementServlet() {
         super();
