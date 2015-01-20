@@ -40,6 +40,7 @@ public class DaoActivite {
 			query = connection.createStatement();
 
 			// Executer puis parcourir les résultats
+			//Replace permet d'écrire des apostrophes dans la base de données
 			String sql = "INSERT INTO nowwhattodo.activite (NomActivite, Description, NomLieu, Adresse, Ville, CodePostal, SiteWeb, Tel, Email, Domaine, LienPhoto, Importance) VALUES ('"
 					+ activite.getNomActivite().replace("'","\\'")
 					+ "', '"
@@ -157,7 +158,7 @@ public class DaoActivite {
 	}
 
 	public ArrayList<ActiviteModelBean> getActivitebyDomaine(String domaine) {
-		// return value
+		// return activites par domaine
 		ArrayList<ActiviteModelBean> activiteList = new ArrayList<ActiviteModelBean>();
 		// Création de la requête
 		java.sql.Statement query;
