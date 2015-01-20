@@ -30,7 +30,20 @@ function lancerRecherche()
 	        		elm.appendChild(span);
 	        		
 	        	}
+	        	//Si la recherche retourne des résultats
 	        	else{
+	        		
+	        		//Suppression des éventuels messages d'erreurs (pas d'activité trouvée)
+	        		var elementMessageVide = document.getElementById('messageVide');
+	        		while (elementMessageVide.firstChild){
+	        			elementMessageVide.removeChild(elementMessageVide.firstChild);
+	        		}
+	        		
+	        		//Suppression des éventuels messages d'erreurs (champ rempli avec moins de 3 caractères)
+	        		var elementMessageErreur = document.getElementById('messageErreur');
+	        		while (elementMessageErreur.firstChild){
+	        			elementMessageErreur.removeChild(elementMessageErreur.firstChild);
+	        		}
 	        		
 	        		//On construit une liste de tableaux d'activité
 	        		for(var i=0; i<data.length; i++){
@@ -68,7 +81,7 @@ function lancerRecherche()
 	}
 	else
 	{
-		//Message d'erreur si mauvaise saisie du mot
+		//Message d'erreur si mauvaise saisie du mot (moins de 3 caractères)
 		$('#messageErreur').addClass('messageErreur');
 		var span = document.createElement("span");
 		var text = document.createTextNode("Veuillez rentrez un mot clé d'au moins 3 caractères avant de lancer la recherche !");
