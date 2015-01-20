@@ -43,9 +43,16 @@ public class LoginBisServlet extends HttpServlet {
 		if(session != null)
 		{
 			String login = (String) session.getAttribute("connecte");
+			String loginBis = (String) session.getAttribute("connecteAdmin");
 			if(login != null && login != "")
 			{
+				jsonToSend.put("login", login);	
 				jsonToSend.put("etat", "loge");		
+			}
+			if(loginBis != null && loginBis != "")
+			{
+				jsonToSend.put("login", loginBis);
+				jsonToSend.put("etat", "loge");	
 			}
 		}
 		else{

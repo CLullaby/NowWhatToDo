@@ -159,7 +159,7 @@ public class RechercheServlet extends HttpServlet {
 		
 		
 		//jsonToSend.put("liste", );
-		System.out.println(arrayResponse);
+		//System.out.println(arrayResponse);
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.write(arrayResponse.toString());

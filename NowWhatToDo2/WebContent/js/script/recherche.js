@@ -2,7 +2,7 @@ function lancerRecherche()
 {
 	var activiteTable = [];
 	var motCle = document.getElementById("inputMotCle").value;
-	 var cheminImage = "../../img/";
+	var cheminImage = "../../img/";
 	if(motCle.match(/^[A-Za-z0-9_-]{3,30}$/) && motCle != "")
 	{
 		$.ajax({
