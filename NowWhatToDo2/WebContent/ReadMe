@@ -51,6 +51,8 @@ Il aura accès a toutes les fonctionnalités + pourra manager le contenu du site e
 
 Css:Pour bootstrap/theme.css chercher "modif" permet de retrouver le css modifié.
 
+Theme bootstrap originel disponible sur  : http://bootstrapzero.com/bootstrap-template/dashgum
+
 ---------------- Mise a jour V2 -----------------
 - Sécurite des failles XSS 
 - hash Mdp 
